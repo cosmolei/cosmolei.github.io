@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>node_exporter on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/node_exporter/</link>
+    <description>Recent content in node_exporter on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Tue, 09 Mar 2021 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/node_exporter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prometheus node_exporter网络指标</title>
+      <link>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</link>
+      <pubDate>Tue, 09 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</guid>
+      <description>&lt;p&gt;node_exporter中的网络相关指标由node_network前缀开头。&lt;/p&gt;
+&lt;p&gt;我们可以通过访问node_exporter的服务端口，直接查看该节点的各项指标：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/image-20210309172048923.png&#34; alt=&#34;image-20210309172048923&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;其中，常用指标有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node_network_receive_bytes_total：网卡上传累计字节数&lt;/li&gt;
+&lt;li&gt;node_network_transmit_bytes_total：网卡下载累计字节数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中选项device代表每个网卡。&lt;/p&gt;
+&lt;p&gt;通过Prometheus计算上传速率/下载速率的查询语句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;上传速率：irate(node_network_transmit_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载速率：irate(node_network_receive_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;device : 代表网卡&lt;/p&gt;
+&lt;p&gt;irate : 分组函数，取的是在指定时间范围内的最近两个数据点来算速率&lt;/p&gt;
+&lt;p&gt;[1m] : 分组的时长&lt;/p&gt;
+&lt;p&gt;by(instance,job) : 代表按job、instance分组&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

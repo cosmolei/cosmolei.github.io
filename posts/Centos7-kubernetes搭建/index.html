@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  环境准备
+  #
+
+
+  机器环境
+  #
+
+节点CPU核数&gt;=2
+DNS网络
+linux内核&gt;4以上，Centos 7 内核默认是3.10.0
+准备3台虚拟机环境">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Centos7 kubernetes搭建" />
+<meta property="og:description" content="
+  环境准备
+  #
+
+
+  机器环境
+  #
+
+节点CPU核数&gt;=2
+DNS网络
+linux内核&gt;4以上，Centos 7 内核默认是3.10.0
+准备3台虚拟机环境" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-07T14:50:32+08:00" />
+<meta property="article:modified_time" content="2020-05-07T14:50:32+08:00" />
+
+<title>Centos7 kubernetes搭建 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Centos7 kubernetes搭建</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#环境准备">环境准备</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/">
+    下一页<br>ElasticSearch(一)
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/kubernetes%E4%B8%80/">
+      上一页<br>kubernetes(一)
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/">Centos7 kubernetes搭建</a>
+  </h1>
+  
+  <h5>2020-05-07</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kubernetes/">kubernetes</a>, 
+      <a href="/tags/k8s/">k8s</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="环境准备">
+  环境准备
+  <a class="anchor" href="#%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87">#</a>
+</h3>
+<h4 id="机器环境">
+  机器环境
+  <a class="anchor" href="#%e6%9c%ba%e5%99%a8%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<p>节点CPU核数&gt;=2</p>
+<p>DNS网络</p>
+<p>linux内核&gt;4以上，Centos 7 内核默认是3.10.0</p>
+<p>准备3台虚拟机环境</p>
+<h4 id="依赖环境">
+  依赖环境
+  <a class="anchor" href="#%e4%be%9d%e8%b5%96%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 给机器设置主机名</span>
+hostnamectl set-hostname master01
+hostnamectl set-hostname node01
+hostnamectl set-hostname node02
+<span style="color:#75715e"># 查看主机名</span>
+hostname
+<span style="color:#75715e"># 配置IP host映射关系</span>
+vi /etc/hosts
+192.168.255.10 master01
+192.168.255.11 node01
+192.168.255.12 node02
+
+<span style="color:#75715e"># 安装依赖环境</span>
+yum install -y conntrack ntpdate ntp ipvsadm ipset jq iptables curl sysstat libseccomp wget vim net-tools git iproute lrzsz bash-completion tree bridge- utils unzip bind-utils gcc
+
+<span style="color:#75715e"># 安装iptables，启动iptables，设置开机启动，清空iptables规则，保存当前规则到默认规则</span>
+<span style="color:#75715e"># 关闭防火墙</span>
+systemctl stop firewalld <span style="color:#f92672">&amp;&amp;</span> systemctl disable firewalld
+<span style="color:#75715e"># 置空iptables</span>
+yum -y install iptables-services <span style="color:#f92672">&amp;&amp;</span> systemctl start iptables <span style="color:#f92672">&amp;&amp;</span> systemctl enable iptables <span style="color:#f92672">&amp;&amp;</span> iptables -F <span style="color:#f92672">&amp;&amp;</span> service iptables save
+
+<span style="color:#75715e"># 关闭selinux</span>
+<span style="color:#75715e"># 关闭swap分区并且永久关闭虚拟内存</span>
+swapoff -a <span style="color:#f92672">&amp;&amp;</span> sed -i <span style="color:#e6db74">&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab
+<span style="color:#75715e"># 关闭selinux</span>
+setenforce <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> sed -i <span style="color:#e6db74">&#39;s/^SELINUX=.*/SELINUX=disabled/&#39;</span> /etc/selinux/config
+
+<span style="color:#75715e"># 升级Linux内核为最新稳定版（4.44）</span>
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
+<span style="color:#75715e"># 安装内核</span>
+yum --enablerepo<span style="color:#f92672">=</span>elrepo-kernel install -y kernel-lt
+<span style="color:#75715e"># 设置开机从新内核启动</span>
+grub2-set-default <span style="color:#e6db74">&#39;CentOS Linux (4.4.219-1.el7.elrepo.x86_64) 7 (Core)&#39;</span> 
+<span style="color:#75715e"># 注意:设置完内核后，需要重启服务器才会生效。</span>
+<span style="color:#75715e">#查询内核</span>
+uname -r
+
+<span style="color:#75715e"># 调整内核参数，对于k8s</span>
+cat &gt; kubernetes.conf <span style="color:#e6db74">&lt;&lt;EOF 
+</span><span style="color:#e6db74">net.bridge.bridge-nf-call-iptables=1 
+</span><span style="color:#e6db74">net.bridge.bridge-nf-call-ip6tables=1 
+</span><span style="color:#e6db74">net.ipv4.ip_forward=1 
+</span><span style="color:#e6db74">net.ipv4.tcp_tw_recycle=0 
+</span><span style="color:#e6db74">vm.swappiness=0
+</span><span style="color:#e6db74">vm.overcommit_memory=1 
+</span><span style="color:#e6db74">vm.panic_on_oom=0 
+</span><span style="color:#e6db74">fs.inotify.max_user_instances=8192 
+</span><span style="color:#e6db74">fs.inotify.max_user_watches=1048576 
+</span><span style="color:#e6db74">fs.file-max=52706963 
+</span><span style="color:#e6db74">fs.nr_open=52706963 
+</span><span style="color:#e6db74">net.ipv6.conf.all.disable_ipv6=1 
+</span><span style="color:#e6db74">net.netfilter.nf_conntrack_max=2310720 
+</span><span style="color:#e6db74">EOF</span>
+
+<span style="color:#75715e"># 将优化内核文件拷贝到/etc/sysctl.d/文件夹下，这样优化文件开机的时候能够被调用 </span>
+cp kubernetes.conf /etc/sysctl.d/kubernetes.conf 
+<span style="color:#75715e"># 手动刷新，让优化文件立即生效</span>
+sysctl -p /etc/sysctl.d/kubernetes.conf
+
+<span style="color:#75715e"># 调整系统时区 </span>
+<span style="color:#75715e"># 设置系统时区为中国/上海</span>
+timedatectl set-timezone Asia/Shanghai 
+<span style="color:#75715e"># 将当前的 UTC 时间写入硬件时钟</span>
+timedatectl set-local-rtc <span style="color:#ae81ff">0</span> 
+<span style="color:#75715e"># 重启依赖于系统时间的服务 </span>
+systemctl restart rsyslog systemctl restart crond
+<span style="color:#75715e"># 关闭系统不需要的服务</span>
+systemctl stop postfix <span style="color:#f92672">&amp;&amp;</span> systemctl disable postfix
+
+
+<span style="color:#75715e"># 设置日志保存方式</span>
+<span style="color:#75715e"># 创建保存日志的目录</span>
+mkdir /var/log/journal 
+<span style="color:#75715e"># 创建配置文件存放目录</span>
+mkdir /etc/systemd/journald.conf.d 
+<span style="color:#75715e"># 创建配置文件</span>
+cat &gt; /etc/systemd/journald.conf.d/99-prophet.conf <span style="color:#e6db74">&lt;&lt;EOF 
+</span><span style="color:#e6db74">[Journal]
+</span><span style="color:#e6db74">Storage=persistent
+</span><span style="color:#e6db74">Compress=yes
+</span><span style="color:#e6db74">SyncIntervalSec=5m
+</span><span style="color:#e6db74">RateLimitInterval=30s
+</span><span style="color:#e6db74">RateLimitBurst=1000
+</span><span style="color:#e6db74">SystemMaxUse=10G
+</span><span style="color:#e6db74">SystemMaxFileSize=200M
+</span><span style="color:#e6db74">MaxRetentionSec=2week
+</span><span style="color:#e6db74">ForwardToSyslog=no
+</span><span style="color:#e6db74">EOF</span>
+<span style="color:#75715e"># 重启systemd journald的配置 </span>
+systemctl restart systemd-journald
+<span style="color:#75715e"># 打开文件数调整 (可忽略，不执行)</span>
+echo <span style="color:#e6db74">&#34;* soft nofile 65536&#34;</span> &gt;&gt; /etc/security/limits.conf 
+echo <span style="color:#e6db74">&#34;* hard nofile 65536&#34;</span> &gt;&gt; /etc/security/limits.conf
+
+<span style="color:#75715e"># kube-proxy 开启 ipvs 前置条件</span>
+modprobe br_netfilter
+cat &gt; /etc/sysconfig/modules/ipvs.modules <span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">#!/bin/bash
+</span><span style="color:#e6db74">modprobe -- ip_vs
+</span><span style="color:#e6db74">modprobe -- ip_vs_rr
+</span><span style="color:#e6db74">modprobe -- ip_vs_wrr
+</span><span style="color:#e6db74">modprobe -- ip_vs_sh
+</span><span style="color:#e6db74">modprobe -- nf_conntrack_ipv4
+</span><span style="color:#e6db74">EOF</span>
+<span style="color:#75715e">##使用lsmod命令查看这些文件是否被引导</span>
+chmod <span style="color:#ae81ff">755</span> /etc/sysconfig/modules/ipvs.modules <span style="color:#f92672">&amp;&amp;</span> bash /etc/sysconfig/modules/ipvs.modules <span style="color:#f92672">&amp;&amp;</span> lsmod | grep -e ip_vs -e nf_conntrack_ipv4
+</code></pre></div><h4 id="docker部署">
+  docker部署
+  <a class="anchor" href="#docker%e9%83%a8%e7%bd%b2">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装docker</span>
+<span style="color:#75715e"># 环境</span>
+yum install -y yum-utils device-mapper-persistent-data lvm2
+<span style="color:#75715e"># 配置稳定的仓库，仓库配置会保存到/etc/yum.repos.d/docker-ce.repo文件中 阿里云yum源</span>
+yum-config-manager  --add-repo  http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 
+<span style="color:#75715e"># 更新yum安装的相关Docke软件包&amp;安装Docker CE </span>
+yum update -y <span style="color:#f92672">&amp;&amp;</span> yum install docker-ce
+
+<span style="color:#75715e"># 设置docker daemon文件</span>
+<span style="color:#75715e"># 创建/etc/docker目录</span>
+mkdir /etc/docker
+<span style="color:#75715e"># 更新 daemon.json文件</span>
+cat &gt; /etc/docker/daemon.json <span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">{
+</span><span style="color:#e6db74">  &#34;exec-opts&#34;:[&#34;native.cgroupdriver=systemd&#34;],
+</span><span style="color:#e6db74">  &#34;log-driver&#34;:&#34;json-file&#34;,
+</span><span style="color:#e6db74">  &#34;log- opts&#34;:
+</span><span style="color:#e6db74">    {
+</span><span style="color:#e6db74">      &#34;max-size&#34;: &#34;100m&#34;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">EOF</span>
+<span style="color:#75715e"># 注意: 一定注意编码问题，出现错误:查看命令:journalctl -amu docker 即可发现错误</span>
+
+<span style="color:#75715e"># 创建，存储docker配置文件</span>
+mkdir -p /etc/systemd/system/docker.service.d
+
+<span style="color:#75715e"># 重启docker服务</span>
+systemctl daemon-reload <span style="color:#f92672">&amp;&amp;</span> systemctl restart docker <span style="color:#f92672">&amp;&amp;</span> systemctl enable docker
+</code></pre></div><h4 id="kubeadm">
+  kubeadm
+  <a class="anchor" href="#kubeadm">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装kubernetes的时候，需要安装kubelet, kubeadm等包，但k8s官网给的yum源是 packages.cloud.google.com，国内访问不了，此时我们可以使用阿里云的yum仓库镜像。 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span>
+<span style="color:#f92672">[</span>kubernetes<span style="color:#f92672">]</span>
+name<span style="color:#f92672">=</span>Kubernetes 
+baseurl<span style="color:#f92672">=</span>http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 
+enabled<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+gpgcheck<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+repo_gpgcheck<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> 
+gpgkey<span style="color:#f92672">=</span>http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+       http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+<span style="color:#75715e"># 安装kubeadm、kubelet、kubectl</span>
+yum install -y kubeadm-1.15.1 kubelet-1.15.1 kubectl-1.15.1 
+<span style="color:#75715e"># 启动 kubelet</span>
+systemctl enable kubelet <span style="color:#f92672">&amp;&amp;</span> systemctl start kubelet
+</code></pre></div></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/">
+    下一页<br>ElasticSearch(一)
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/kubernetes%E4%B8%80/">
+      上一页<br>kubernetes(一)
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#环境准备">环境准备</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

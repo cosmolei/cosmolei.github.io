@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="在上一篇里，介绍了离散型随机变量，实际上，取值于连续区域的随机变量的应用领域也是十分普遍的。比如汽车行驶的速度、设备连续正常运行的时间等，这些在实际应用中都非常广泛，连续型随机变量能够刻画一些离散型随机变量无法描述的问题。
+
+  概率密度函数
+  #
+
+在连续型随机变量的讨论范围中，随机变量由离散的变为了实轴上的连续值，那么与离散型随机变量的分布列以及 PMF 函数相对应，我们就有了连续型随机变量相类似的新概念：概率密度函数 PDF，二者在概念上是完全相对应的。
+我们回顾一下前面在讲离散型随机变量分布列时所使用的一张图：
+
+通过将三个事件所对应的概率值进行相加，就能得到这个事件集合所对应的总的概率：
+P(X∈S)=∑x∈SpX(x)=PX(1)&#43;PX(2)&#43;PX(3)
+而连续型随机变量和离散型随机变量最明显的不同点是，连续型随机变量的个数是无限的、不可数的，不是像这样直接简单相加，而是在实轴的区间范围内，对概率密度函数进行积分运算。
+
+这里，我们要对概率密度函数的特殊性进行强调：
+第一：实数轴上单个点的概率密度函数 PDF 取值 fX(x) 不是概率，而是概率律，因此他的取值是可以大于 1 的。
+第二：连续型随机变量的概率，我们一般讨论的是在一个区域内取值的概率，而不是某个单点的概率值。实际上，在连续区间内讨论单个点是没有意义的。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="连续型随机变量：分布与数字特征" />
+<meta property="og:description" content="在上一篇里，介绍了离散型随机变量，实际上，取值于连续区域的随机变量的应用领域也是十分普遍的。比如汽车行驶的速度、设备连续正常运行的时间等，这些在实际应用中都非常广泛，连续型随机变量能够刻画一些离散型随机变量无法描述的问题。
+
+  概率密度函数
+  #
+
+在连续型随机变量的讨论范围中，随机变量由离散的变为了实轴上的连续值，那么与离散型随机变量的分布列以及 PMF 函数相对应，我们就有了连续型随机变量相类似的新概念：概率密度函数 PDF，二者在概念上是完全相对应的。
+我们回顾一下前面在讲离散型随机变量分布列时所使用的一张图：
+
+通过将三个事件所对应的概率值进行相加，就能得到这个事件集合所对应的总的概率：
+P(X∈S)=∑x∈SpX(x)=PX(1)&#43;PX(2)&#43;PX(3)
+而连续型随机变量和离散型随机变量最明显的不同点是，连续型随机变量的个数是无限的、不可数的，不是像这样直接简单相加，而是在实轴的区间范围内，对概率密度函数进行积分运算。
+
+这里，我们要对概率密度函数的特殊性进行强调：
+第一：实数轴上单个点的概率密度函数 PDF 取值 fX(x) 不是概率，而是概率律，因此他的取值是可以大于 1 的。
+第二：连续型随机变量的概率，我们一般讨论的是在一个区域内取值的概率，而不是某个单点的概率值。实际上，在连续区间内讨论单个点是没有意义的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-21T14:50:32+08:00" />
+<meta property="article:modified_time" content="2018-07-21T14:50:32+08:00" />
+
+<title>连续型随机变量：分布与数字特征 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>连续型随机变量：分布与数字特征</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#概率密度函数">概率密度函数</a></li>
+            <li><a href="#连续型随机变量区间概率的计算">连续型随机变量区间概率的计算</a></li>
+            <li><a href="#连续型随机变量的期望与方差">连续型随机变量的期望与方差</a></li>
+            <li><a href="#正态分布及正态随机变量">正态分布及正态随机变量</a></li>
+            <li><a href="#指数分布及指数随机变量">指数分布及指数随机变量</a></li>
+            <li><a href="#均匀分布">均匀分布</a></li>
+            <li><a href="#小结">小结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/">
+    下一页<br>多元随机变量（上）：联合、边缘与条件
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+      上一页<br>离散型随机变量：分布与数字特征
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">连续型随机变量：分布与数字特征</a>
+  </h1>
+  
+  <h5>2018-07-21</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">机器学习中的数学概率统计</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>, 
+      <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+  </div>
+  
+
+
+
+
+  <p><p>在上一篇里，介绍了离散型随机变量，实际上，取值于连续区域的随机变量的应用领域也是十分普遍的。比如汽车行驶的速度、设备连续正常运行的时间等，这些在实际应用中都非常广泛，连续型随机变量能够刻画一些离散型随机变量无法描述的问题。</p>
+<h3 id="概率密度函数">
+  概率密度函数
+  <a class="anchor" href="#%e6%a6%82%e7%8e%87%e5%af%86%e5%ba%a6%e5%87%bd%e6%95%b0">#</a>
+</h3>
+<p>在连续型随机变量的讨论范围中，随机变量由离散的变为了实轴上的连续值，那么与离散型随机变量的分布列以及 PMF 函数相对应，我们就有了连续型随机变量相类似的新概念：概率密度函数 PDF，二者在概念上是完全相对应的。</p>
+<p>我们回顾一下前面在讲离散型随机变量分布列时所使用的一张图：</p>
+<p><img src="https://images.gitbook.cn/6876baf0-b46c-11e9-af8d-9f271adeee80" alt="图1.离散型随机变量的分布列" /></p>
+<p>通过将三个事件所对应的概率值进行相加，就能得到这个事件集合所对应的总的概率：</p>
+<p>P(X∈S)=∑x∈SpX(x)=PX(1)+PX(2)+PX(3)</p>
+<p>而连续型随机变量和离散型随机变量最明显的不同点是，连续型随机变量的个数是无限的、不可数的，不是像这样直接简单相加，而是在实轴的区间范围内，对概率密度函数进行积分运算。</p>
+<p><img src="https://images.gitbook.cn/854303a0-b46c-11e9-af8d-9f271adeee80" alt="图2.连续型随机变量概率密度函数以及积分运算" /></p>
+<p>这里，我们要对概率密度函数的特殊性进行强调：</p>
+<p>第一：实数轴上单个点的概率密度函数 PDF 取值 fX(x) 不是概率，而是概率律，因此他的取值是可以大于 1 的。</p>
+<p>第二：连续型随机变量的概率，我们一般讨论的是在一个区域内取值的概率，而不是某个单点的概率值。实际上，在连续区间内讨论单个点是没有意义的。</p>
+<h3 id="连续型随机变量区间概率的计算">
+  连续型随机变量区间概率的计算
+  <a class="anchor" href="#%e8%bf%9e%e7%bb%ad%e5%9e%8b%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e5%8c%ba%e9%97%b4%e6%a6%82%e7%8e%87%e7%9a%84%e8%ae%a1%e7%ae%97">#</a>
+</h3>
+<p>连续型随机变量在一个区间内取值的概率，我们可以通过求积分来计算解决。例如上图中，随机变量在 [a,b]区间内的概率即为：P(a≤X≤b)=∫bafX(x)dx，也就是图中阴影区间内的面积。因此这也进一步印证了上面的第二条结论，也就是说我们关注的不是单个点而是一个取值区间的概率计算。</p>
+<p>当 x=a 时，有 P(a≤X≤a)=∫aafX(x)dx=0，因此区间两端是否取等也无关紧要了：</p>
+<p>P(a≤X≤b)=P(a&lt;X≤b)=P(a≤X&lt;b)=P(a&lt;X&lt;b)</p>
+<p>同样的，我们继续进行类比，连续型随机变量概率的非负性和归一性体现在：</p>
+<p>非负性：对一切的 x 都有 fX(x)≥0；</p>
+<p>而归一化体现在 P(−∞≤X≤∞)=∫∞−∞fX(x)dx=1</p>
+<h3 id="连续型随机变量的期望与方差">
+  连续型随机变量的期望与方差
+  <a class="anchor" href="#%e8%bf%9e%e7%bb%ad%e5%9e%8b%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e7%9a%84%e6%9c%9f%e6%9c%9b%e4%b8%8e%e6%96%b9%e5%b7%ae">#</a>
+</h3>
+<p>大家千万不要到了这个连续型的新场景下就慌了手脚。在离散型随机变量中，我们通过分布列，求得加权的均值，即获得了离散型随机变量的期望。</p>
+<p>那么在连续型随机变量的场景下，我们死抠定义，期望 E[X] 的核心要义是大量独立重复试验中，随机变量 X 取值的平均数，那么我们此时将分布列替换成概率密度函数 PDF，求和替换成求积分就可以了，即：</p>
+<p>E[X]=∫∞−∞xfX(x)dx</p>
+<p>方差也是一样，扣定义：方差是随机变量到期望的距离平方的期望：</p>
+<p>V[X]=E[(X−E[X])2]=∫∞−∞(x−E[X])2fX(x)dx</p>
+<p>接下来和上一节一样，我们来看几个非常重要的连续型随机变量的实际举例。</p>
+<h3 id="正态分布及正态随机变量">
+  正态分布及正态随机变量
+  <a class="anchor" href="#%e6%ad%a3%e6%80%81%e5%88%86%e5%b8%83%e5%8f%8a%e6%ad%a3%e6%80%81%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f">#</a>
+</h3>
+<p>正态分布是连续型随机变量概率分布中的一种，你几乎能在各行各业中看到他的身影，自然界中某地多年统计的年降雪量、人类社会中比如某地高三男生平均身高、教育领域中的某地区高考成绩、信号系统中的噪音信号等，大量自然、社会现象均按正态形式分布。</p>
+<p>正态分布中有两个参数，一个是随机变量的均值 μ，另一个是随机变量的标准差 σ，他的概率密度函数 PDF 为：fX(x)=1√2πσe−(x−μ)2/(2σ2)。</p>
+<p>当我们指定不同的均值和标准差参数后，就能得到不同正态分布的概率密度曲线，正态分布的概率密度曲线形状都是类似的，他们都是关于均值 μ 对称的钟形曲线，概率密度曲线在离开均值区域后，呈现出快速的下降形态。</p>
+<p>这里，我们不得不专门提一句，当均值 μ=0，标准差 σ=1 时，我们称之为标准正态分布。</p>
+<p>还是老规矩，眼见为实，下面来观察两组正态分布的概率密度函数取值，一组是均值为 0，标准差为 1 的标准正态分布。另一组，我们取均值为 1，标准差为 2。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import norm
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+fig, ax = plt.subplots(1, 1)
+norm_0 = norm(loc=0, scale=1)
+norm_1 = norm(loc=1, scale=2)
+
+x = np.linspace(-10, 10, 1000)
+ax.plot(x, norm_0.pdf(x), color='red', lw=5, alpha=0.6, label='loc=0, scale=1')
+ax.plot(x, norm_1.pdf(x), color='blue', lw=5, alpha=0.6, label='loc=1, scale=2')
+ax.legend(loc='best', frameon=False)
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/c7a9f940-c184-11e9-8621-c1fbe3716b21" alt="图3.正态分布概率密度曲线" /></p>
+<p>这里，我多一句嘴，在构造正态分布时，均值用参数 loc 来描述，方差用参数 scale 来描述。</p>
+<p>同样的，我们还可以通过基于指定分布的重复采样，来观察和验证模拟试验的情况。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import norm
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+norm_rv = norm(loc=2, scale=2)
+norm_rvs = norm_rv.rvs(size=100000)
+x = np.linspace(-10, 10, 1000)
+plt.plot(x, norm_rv.pdf(x), 'r', lw=5, alpha=0.6, label=&quot;`$\\mu$=2,$\\sigma=2$`&quot;)
+plt.hist(norm_rvs, normed=True, bins=50, alpha=0.6, edgecolor='k')
+plt.legend()
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/cce0efb0-c187-11e9-9969-976e2ac29eb2" alt="图4.正态分布随机变量的采样" /></p>
+<h3 id="指数分布及指数随机变量">
+  指数分布及指数随机变量
+  <a class="anchor" href="#%e6%8c%87%e6%95%b0%e5%88%86%e5%b8%83%e5%8f%8a%e6%8c%87%e6%95%b0%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f">#</a>
+</h3>
+<p>我们再来看看我们要讲的第二种连续型随机变量，指数随机变量。指数随机变量的用处非常广泛，他一般用来表征直到某件事情发生为止所用的时间。</p>
+<p>比如，从现在你观察的时间开始算起，一台仪器设备的使用寿命终止还剩的时间、一个灯泡直到用坏了还剩的时间、陨石掉入地球沙漠还需要的时间等。</p>
+<p>指数随机变量 X 的概率密度函数为：</p>
+<p>fX(x)={λe−λxx≥00其他</p>
+<p>其中，指数分布的参数是 λ，且必须满足 λ&gt;0，指数分布的图形特征是当随机变量 X 超过某个值时，概率随着这个值的增加而呈指数递减。讨论指数分布的概率特性时，我们一般着重注意三个方面的内容：</p>
+<p>第一个：随机变量 X 超过某个指定值 a 的概率，当然此处需要满足 a≥0。依照定义，我们有：P(X≥a)=∫∞aλe−λxdx=e−λa</p>
+<p>第二个：随机变量 X 位于区间 [a,b] 内的概率，实际上也很简单： P(a≤X≤b)=P(X≥a)−P(X≥b)=e−λa−e−λb</p>
+<p>第三个：也就是整个指数分布的数字特征，同时也包含参数 λ 的物理含义。我们在这里可以通过期望和方差的定义，直接用积分求得，这里就不多赘述，直接拿出结论：E[X]=1λ，V[X]=1λ2</p>
+<p>最后，我们还是来实际看看代码。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import expon
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+x = np.linspace(0, 10, 1000)
+expon_rv_0 = expon()
+plt.plot(x, expon_rv_0.pdf(x), color='r', lw=5, alpha=0.6, label='`$\\lambda$`=1')
+expon_rv_1 = expon(scale=2)
+plt.plot(x, expon_rv_1.pdf(x), color='b', lw=5, alpha=0.6, label='`$\\lambda$`=0.5')
+plt.legend(loc='best', frameon=False)
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/68e16090-c186-11e9-9166-bdb140d6509f" alt="图5.指数分布的概率密度函数" /></p>
+<p>这里，我们来讲解一下代码，代码的第 8 行和第 10 行，我们分别生成了不同参数的两个指数分布。</p>
+<p>其中，第 8 行，默认参数为 scale=1，而第 10 行里指定 scale=2，在这里 scale 参数和指数分布参数 λ的关系为 scale=1λ，因此 expon_rv_0 是服从参数 λ=1 的指数分布，而 expon_rv_1 是服从参数 λ=0.5 的指数分布。</p>
+<p>最后，我们再来对指数型随机变量进行采样生成，我们采样的是服从参数 λ=1 的指数分布。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import expon
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+x = np.linspace(0, 10, 1000)
+expon_rv = expon()
+expon_rvs = expon_rv.rvs(100000)
+plt.plot(x, expon_rv.pdf(x), color='r', lw=5, alpha=0.6, label='`$\\lambda$`=1')
+plt.hist(expon_rvs, color='b', normed=True, alpha=0.6, bins=50, edgecolor='k')
+plt.legend(loc='best', frameon=False)
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/8b2595c0-c188-11e9-8621-c1fbe3716b21" alt="图6.指数分布的采样" /></p>
+<h3 id="均匀分布">
+  均匀分布
+  <a class="anchor" href="#%e5%9d%87%e5%8c%80%e5%88%86%e5%b8%83">#</a>
+</h3>
+<p>其实，我们还遗漏了一个很重要的分布，它太简单以至于我们时常将他忘记。但是实际上，它在程序中出现的次数，丝毫不少于正态分布和指数分布，这就是我们接下来要介绍的均匀分布。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import uniform
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+x = np.linspace(-1, 3.5, 1000)
+uniform_rv_0 = uniform()
+uniform_rv_1 = uniform(loc=0.5, scale=2)
+
+plt.plot(x, uniform_rv_0.pdf(x), color='r', lw=5, alpha=0.6, label='[0,1]')
+plt.plot(x, uniform_rv_1.pdf(x), color='b', lw=5, alpha=0.6, label='[0.5,2.5]')
+plt.legend(loc='best', frameon=False)
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/4c80c010-c188-11e9-9166-bdb140d6509f" alt="图7.均匀分布的概率密度曲线" /></p>
+<p>我们这里只说明一点，在构造均匀分布时，我们传入了两个参数，loc 和 scale。它指的是随机变量 X 在区间 [loc,loc+scale] 上均匀分布，而区间内概率密度函数的取值，满足处处相等，这是它最重要、也是最显著的特征。</p>
+<p>最后我们来实际对均匀分布进行采样，结束我们本篇的内容。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>from scipy.stats import uniform
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn
+seaborn.set()
+
+x = np.linspace(0, 3.5, 1000)
+uniform_rv = uniform(1, 2)
+uniform_rvs = uniform_rv.rvs(100000)
+plt.plot(x, uniform_rv.pdf(x), 'r-', lw=5, alpha=0.6, label='[1,3]')
+plt.hist(uniform_rvs, color='b', normed=True, alpha=0.6, bins=50, edgecolor='k')
+plt.legend(loc='best', frameon=False)
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/0961de80-c189-11e9-8621-c1fbe3716b21" alt="图8.均匀分布的采样" /></p>
+<h3 id="小结">
+  小结
+  <a class="anchor" href="#%e5%b0%8f%e7%bb%93">#</a>
+</h3>
+<p>至此，经过这两篇内容的介绍，我们学完了离散型和连续型两类单一随机变量的有关内容，并进行了程序实践。在接下来的三篇文章里，我们将重点围绕多元随机变量展开学习和讨论。</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/">
+    下一页<br>多元随机变量（上）：联合、边缘与条件
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+      上一页<br>离散型随机变量：分布与数字特征
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#概率密度函数">概率密度函数</a></li>
+            <li><a href="#连续型随机变量区间概率的计算">连续型随机变量区间概率的计算</a></li>
+            <li><a href="#连续型随机变量的期望与方差">连续型随机变量的期望与方差</a></li>
+            <li><a href="#正态分布及正态随机变量">正态分布及正态随机变量</a></li>
+            <li><a href="#指数分布及指数随机变量">指数分布及指数随机变量</a></li>
+            <li><a href="#均匀分布">均匀分布</a></li>
+            <li><a href="#小结">小结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

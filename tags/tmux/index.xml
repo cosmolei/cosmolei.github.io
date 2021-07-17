@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tmux on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/tmux/</link>
+    <description>Recent content in tmux on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Sun, 21 Feb 2021 22:40:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/tmux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tmux如何使用得更顺手</title>
+      <link>https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/</link>
+      <pubDate>Sun, 21 Feb 2021 22:40:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/</guid>
+      <description>&lt;h4 id=&#34;安装tmux&#34;&gt;
+  安装Tmux
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%ae%89%e8%a3%85tmux&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;mac下安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brew install tmux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;tmux-美化&#34;&gt;
+  Tmux 美化
+  &lt;a class=&#34;anchor&#34; href=&#34;#tmux-%e7%be%8e%e5%8c%96&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;oh my tmux，使用powerline&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/gpakosz/.tmux.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;设置tmux配置文件&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

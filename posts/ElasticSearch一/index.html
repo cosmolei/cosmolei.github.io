@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  什么叫全文检索？
+  #
+
+对非结构化的数据/结构化数据建立索引，再对索引进行搜索文档的过程就叫全文检索(Full-text Search)。
+
+  数据格式（分类）
+  #
+
+
+非结构化数据：没有固定格式的数据（html网页，文章，txt， excel） &mdash; 没有定长，字段，描述
+结构化数据：有固定格式数据（数据库一行数据） &mdash; 有固定长度（varchar(50)），字段，描述
+
+
+  倒排索引
+  #
+
+搜索采用倒排索引算法
+
+
+顺序扫描法：有一本词典，这本词典没有目录，查询一个词语只能从第一页开始，一页一页查询，直到找到为止。（数据库采用顺序扫描法 &mdash;&gt; 但可以建立索引，也是倒排索引）
+
+
+倒排扫描法：有一本词典，有目录，查询一个词语，只需查询目录，从目录找到词语所在页码。
+
+
+问题：为什么不使用数据库进行海量数据索引（虽然数据库也可以建立倒排索引进行搜索）？
+数据库缺点：
+
+
+全表扫描 &mdash;速度非常慢
+
+
+字段中所有的内容都要挨个匹配 &mdash;速度慢
+
+
+全文检索问题
+%口罩罩% 无法实现分词搜索
+
+
+建立索引，全文检索不走索引
+like不走索引，不建分词
+
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="ElasticSearch(一)" />
+<meta property="og:description" content="
+  什么叫全文检索？
+  #
+
+对非结构化的数据/结构化数据建立索引，再对索引进行搜索文档的过程就叫全文检索(Full-text Search)。
+
+  数据格式（分类）
+  #
+
+
+非结构化数据：没有固定格式的数据（html网页，文章，txt， excel） &mdash; 没有定长，字段，描述
+结构化数据：有固定格式数据（数据库一行数据） &mdash; 有固定长度（varchar(50)），字段，描述
+
+
+  倒排索引
+  #
+
+搜索采用倒排索引算法
+
+
+顺序扫描法：有一本词典，这本词典没有目录，查询一个词语只能从第一页开始，一页一页查询，直到找到为止。（数据库采用顺序扫描法 &mdash;&gt; 但可以建立索引，也是倒排索引）
+
+
+倒排扫描法：有一本词典，有目录，查询一个词语，只需查询目录，从目录找到词语所在页码。
+
+
+问题：为什么不使用数据库进行海量数据索引（虽然数据库也可以建立倒排索引进行搜索）？
+数据库缺点：
+
+
+全表扫描 &mdash;速度非常慢
+
+
+字段中所有的内容都要挨个匹配 &mdash;速度慢
+
+
+全文检索问题
+%口罩罩% 无法实现分词搜索
+
+
+建立索引，全文检索不走索引
+like不走索引，不建分词
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-06T14:50:32+08:00" />
+<meta property="article:modified_time" content="2020-12-06T14:50:32+08:00" />
+
+<title>ElasticSearch(一) | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>ElasticSearch(一)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#什么叫全文检索">什么叫全文检索？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/">
+    下一页<br>oracle中的merge into
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/">
+      上一页<br>Centos7 kubernetes搭建
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/ElasticSearch%E4%B8%80/">ElasticSearch(一)</a>
+  </h1>
+  
+  <h5>2020-12-06</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/es/">es</a>, 
+      <a href="/tags/Elasticsearch/">Elasticsearch</a>, 
+      <a href="/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/">全文检索</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="什么叫全文检索">
+  什么叫全文检索？
+  <a class="anchor" href="#%e4%bb%80%e4%b9%88%e5%8f%ab%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2">#</a>
+</h3>
+<p>对非<strong>结构化的数据/结构化数据</strong>建立索引，再对索引进行搜索<strong>文档</strong>的过程就叫全文检索(Full-text Search)。</p>
+<h4 id="数据格式分类">
+  数据格式（分类）
+  <a class="anchor" href="#%e6%95%b0%e6%8d%ae%e6%a0%bc%e5%bc%8f%e5%88%86%e7%b1%bb">#</a>
+</h4>
+<ul>
+<li><strong>非结构化数据</strong>：没有固定格式的数据（html网页，文章，txt， excel） &mdash; 没有定长，字段，描述</li>
+<li><strong>结构化数据</strong>：有固定格式数据（数据库一行数据） &mdash; 有固定长度（varchar(50)），字段，描述</li>
+</ul>
+<h4 id="倒排索引">
+  倒排索引
+  <a class="anchor" href="#%e5%80%92%e6%8e%92%e7%b4%a2%e5%bc%95">#</a>
+</h4>
+<p>搜索采用倒排索引算法</p>
+<ul>
+<li>
+<p>顺序扫描法：有一本词典，这本词典没有目录，查询一个词语只能从第一页开始，一页一页查询，直到找到为止。（数据库采用顺序扫描法 &mdash;&gt; 但可以建立索引，也是倒排索引）</p>
+</li>
+<li>
+<p>倒排扫描法：有一本词典，有目录，查询一个词语，只需查询目录，从目录找到词语所在页码。</p>
+</li>
+</ul>
+<p><strong>问题：为什么不使用数据库进行海量数据索引（虽然数据库也可以建立倒排索引进行搜索）？</strong></p>
+<p>数据库缺点：</p>
+<ol>
+<li>
+<p>全表扫描 &mdash;速度非常慢</p>
+</li>
+<li>
+<p>字段中所有的内容都要挨个匹配 &mdash;速度慢</p>
+</li>
+<li>
+<p>全文检索问题</p>
+<p>%口罩罩% 无法实现分词搜索</p>
+</li>
+<li>
+<p>建立索引，全文检索不走索引</p>
+<p>like不走索引，不建分词</p>
+</li>
+</ol>
+<h4 id="什么叫做文档">
+  什么叫做文档？
+  <a class="anchor" href="#%e4%bb%80%e4%b9%88%e5%8f%ab%e5%81%9a%e6%96%87%e6%a1%a3">#</a>
+</h4>
+<p>所谓的文档就是一条结构化数据 &mdash;-&gt;表现形式 对象&mdash;&gt;方便java api操作数据</p>
+<h4 id="全文检索场景">
+  全文检索场景
+  <a class="anchor" href="#%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2%e5%9c%ba%e6%99%af">#</a>
+</h4>
+<ul>
+<li>搜索引擎</li>
+<li>站内搜索</li>
+<li>系统文件搜索</li>
+</ul>
+<h4 id="es与solr的区别">
+  ES与Solr的区别
+  <a class="anchor" href="#es%e4%b8%8esolr%e7%9a%84%e5%8c%ba%e5%88%ab">#</a>
+</h4>
+<h4 id="建立索引的过程e">
+  建立索引的过程e
+  <a class="anchor" href="#%e5%bb%ba%e7%ab%8b%e7%b4%a2%e5%bc%95%e7%9a%84%e8%bf%87%e7%a8%8be">#</a>
+</h4>
+<h4 id="如何根据索引词典去搜索文档对象">
+  如何根据索引词典去搜索文档对象
+  <a class="anchor" href="#%e5%a6%82%e4%bd%95%e6%a0%b9%e6%8d%ae%e7%b4%a2%e5%bc%95%e8%af%8d%e5%85%b8%e5%8e%bb%e6%90%9c%e7%b4%a2%e6%96%87%e6%a1%a3%e5%af%b9%e8%b1%a1">#</a>
+</h4></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/">
+    下一页<br>oracle中的merge into
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/">
+      上一页<br>Centos7 kubernetes搭建
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#什么叫全文检索">什么叫全文检索？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

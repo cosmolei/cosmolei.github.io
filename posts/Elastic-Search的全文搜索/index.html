@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  搜索方式
+  #
+
+
+  查询DSL
+  #
+
+Elasticsearch提供基于JSON的完整查询DSL来定义查询。查询DSL包括两种子句：
+
+叶查询子句：在特定的字段上查找特定的值，如match、term或range查询。
+复合查询子句：包含其他叶查询或复合查询子句，以合理的方式结合多条查询（比如bool或dis_max查询），或者改变查询行为（比如not或constant_score查询）。
+
+根据匹配和计算方式不同，查询类别分为两类。
+
+查询(query)用于检查内容与条件是否匹配，并且计算_score元字段表示匹配度。查询的结构中以query参数开始来执行内容查询。
+过滤(filter)不计算匹配得分，只是简单的决定文档是否匹配。内容过滤主要通过过滤结构化数据，例如时间、数值、not_analyze的文本等。
+
+查询(query)的子句也可以传递filter参数，比如bool查询内的filter、constant_score查询内的filter参数。
+(
+	&#34;query&#34;: {
+  	&#34;bool&#34;: {
+  		&#34;must&#34;: [
+  			{
+  				&#34;match&#34;: { &#34;title&#34;: &#34;Search&#34;}	
+  			},
+				{
+          &#34;match&#34;: { &#34;content&#34;: &#34;Elasticsearch&#34;}
+        }
+  		],
+      &#34;filter&#34;: [
+        {&#34;term&#34;: {&#34;status&#34;: &#34;published&#34;}},
+        {&#34;range&#34;: {&#34;publish_date&#34;: {&#34;gte&#34;: &#34;2019-01-01&#34;}}}
+      ]
+  	}
+  }
+)
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Elastic Search的全文搜索" />
+<meta property="og:description" content="
+  搜索方式
+  #
+
+
+  查询DSL
+  #
+
+Elasticsearch提供基于JSON的完整查询DSL来定义查询。查询DSL包括两种子句：
+
+叶查询子句：在特定的字段上查找特定的值，如match、term或range查询。
+复合查询子句：包含其他叶查询或复合查询子句，以合理的方式结合多条查询（比如bool或dis_max查询），或者改变查询行为（比如not或constant_score查询）。
+
+根据匹配和计算方式不同，查询类别分为两类。
+
+查询(query)用于检查内容与条件是否匹配，并且计算_score元字段表示匹配度。查询的结构中以query参数开始来执行内容查询。
+过滤(filter)不计算匹配得分，只是简单的决定文档是否匹配。内容过滤主要通过过滤结构化数据，例如时间、数值、not_analyze的文本等。
+
+查询(query)的子句也可以传递filter参数，比如bool查询内的filter、constant_score查询内的filter参数。
+(
+	&#34;query&#34;: {
+  	&#34;bool&#34;: {
+  		&#34;must&#34;: [
+  			{
+  				&#34;match&#34;: { &#34;title&#34;: &#34;Search&#34;}	
+  			},
+				{
+          &#34;match&#34;: { &#34;content&#34;: &#34;Elasticsearch&#34;}
+        }
+  		],
+      &#34;filter&#34;: [
+        {&#34;term&#34;: {&#34;status&#34;: &#34;published&#34;}},
+        {&#34;range&#34;: {&#34;publish_date&#34;: {&#34;gte&#34;: &#34;2019-01-01&#34;}}}
+      ]
+  	}
+  }
+)
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-07T14:50:32+08:00" />
+<meta property="article:modified_time" content="2020-12-07T14:50:32+08:00" />
+
+<title>Elastic Search的全文搜索 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Elastic Search的全文搜索</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#搜索方式">搜索方式</a></li>
+            <li><a href="#查询dsl">查询DSL</a></li>
+            <li><a href="#全文搜索">全文搜索</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/">
+    下一页<br>安装部署prometheus
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/">
+      上一页<br>ElasticSearch(二)
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">Elastic Search的全文搜索</a>
+  </h1>
+  
+  <h5>2020-12-07</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/es/">es</a>, 
+      <a href="/tags/Elasticsearch/">Elasticsearch</a>, 
+      <a href="/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/">全文检索</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="搜索方式">
+  搜索方式
+  <a class="anchor" href="#%e6%90%9c%e7%b4%a2%e6%96%b9%e5%bc%8f">#</a>
+</h3>
+<h3 id="查询dsl">
+  查询DSL
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2dsl">#</a>
+</h3>
+<p>Elasticsearch提供基于JSON的完整查询DSL来定义查询。查询DSL包括两种子句：</p>
+<ul>
+<li><strong>叶查询子句</strong>：在特定的字段上查找特定的值，如<strong>match</strong>、<strong>term</strong>或<strong>range</strong>查询。</li>
+<li><strong>复合查询子句</strong>：包含其他叶查询或复合查询子句，以合理的方式结合多条查询（比如bool或dis_max查询），或者改变查询行为（比如not或constant_score查询）。</li>
+</ul>
+<p>根据匹配和计算方式不同，查询类别分为两类。</p>
+<ul>
+<li><strong>查询</strong>(query)用于检查内容与条件是否匹配，并且计算_score元字段表示匹配度。查询的结构中以query参数开始来执行内容查询。</li>
+<li><strong>过滤</strong>(filter)不计算匹配得分，只是简单的决定文档是否匹配。内容过滤主要通过过滤结构化数据，例如时间、数值、not_analyze的文本等。</li>
+</ul>
+<p>查询(query)的子句也可以传递filter参数，比如bool查询内的filter、constant_score查询内的filter参数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">(</span>
+	<span style="color:#e6db74">&#34;query&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+  	<span style="color:#f92672">&#34;bool&#34;</span>: {
+  		<span style="color:#f92672">&#34;must&#34;</span>: [
+  			{
+  				<span style="color:#f92672">&#34;match&#34;</span>: { <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Search&#34;</span>}	
+  			},
+				{
+          <span style="color:#f92672">&#34;match&#34;</span>: { <span style="color:#f92672">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Elasticsearch&#34;</span>}
+        }
+  		],
+      <span style="color:#f92672">&#34;filter&#34;</span>: [
+        {<span style="color:#f92672">&#34;term&#34;</span>: {<span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;published&#34;</span>}},
+        {<span style="color:#f92672">&#34;range&#34;</span>: {<span style="color:#f92672">&#34;publish_date&#34;</span>: {<span style="color:#f92672">&#34;gte&#34;</span>: <span style="color:#e6db74">&#34;2019-01-01&#34;</span>}}}
+      ]
+  	}
+  }
+<span style="color:#960050;background-color:#1e0010">)</span>
+</code></pre></div><h3 id="全文搜索">
+  全文搜索
+  <a class="anchor" href="#%e5%85%a8%e6%96%87%e6%90%9c%e7%b4%a2">#</a>
+</h3>
+<p><strong>标准查询</strong>接受文本/数字/日期的查询，分析参数并组成查询条件。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;match&#34;</span>: { <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;this is a test&#34;</span>}
+}
+</code></pre></div><p>message是字段名，可以用任何字段的名（包括_all）来替换。</p>
+<p>有三种类型的match查询：布尔（boolean）、短语（phrase）和短语前缀（phrase_prefix）。除此之外还有多段查询、Lucene语法查询、简化查询。</p>
+<h4 id="1-布尔查询">
+  1. 布尔查询
+  <a class="anchor" href="#1-%e5%b8%83%e5%b0%94%e6%9f%a5%e8%af%a2">#</a>
+</h4>
+<p>默认的标准查询类型，分析文本并组成一个布尔查询。operator参数可以设置为or或and来控制布尔子句（默认为or）。用于匹配的should子句的最小数量可以使用minimun_should_match参数来设置。</p>
+<p>可以设置analyzer来控制在文本上执行分析过程的分词器。默认是使用字段映射中明确定义或者默认的搜索分词器。</p>
+<p>lenient参数可以设置为true来忽略数据类型匹配出错造成的一场，例如尝试通过文本查询字符串来查询数字类型字段。默认为false。</p>
+<p>（1）模糊匹配</p>
+<p>fuzziness可以对请求的字段类型进行模糊匹配。prefix_length和max_expansions在这种情况下可以用来控制模糊过程。</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/">
+    下一页<br>安装部署prometheus
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/">
+      上一页<br>ElasticSearch(二)
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#搜索方式">搜索方式</a></li>
+            <li><a href="#查询dsl">查询DSL</a></li>
+            <li><a href="#全文搜索">全文搜索</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

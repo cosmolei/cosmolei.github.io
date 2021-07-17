@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  只安装ubuntu单一系统
+  #
+
+略
+
+  安装软件
+  #
+
+
+  零、基础准备
+  #
+
+
+  1. 开启ssh服务
+  #
+
+sudo apt install ssh
+# ssh安装后默认开启sshd服务并加入开机启动，如果没有，查看systemctl status sshd
+# 非enabled状态的话执行systemctl enable sshd
+# 如果不要求开机启动的话，就不需要做这一步。
+
+  2. 安装VIM
+  #
+
+sudo apt install vim
+
+  3. 载入维护的/etc/hosts文件
+  #
+
+不要问为什么，知道的自然知道，不知道本不需要知道。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="如何打造我的Surbuntu（surfacego2 &#43; ubuntu20.04）" />
+<meta property="og:description" content="
+  只安装ubuntu单一系统
+  #
+
+略
+
+  安装软件
+  #
+
+
+  零、基础准备
+  #
+
+
+  1. 开启ssh服务
+  #
+
+sudo apt install ssh
+# ssh安装后默认开启sshd服务并加入开机启动，如果没有，查看systemctl status sshd
+# 非enabled状态的话执行systemctl enable sshd
+# 如果不要求开机启动的话，就不需要做这一步。
+
+  2. 安装VIM
+  #
+
+sudo apt install vim
+
+  3. 载入维护的/etc/hosts文件
+  #
+
+不要问为什么，知道的自然知道，不知道本不需要知道。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-10T10:14:32+08:00" />
+<meta property="article:modified_time" content="2021-06-10T10:14:32+08:00" />
+
+<title>如何打造我的Surbuntu（surfacego2 &#43; ubuntu20.04） | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/"class=active>Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>如何打造我的Surbuntu（surfacego2 &#43; ubuntu20.04）</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#只安装ubuntu单一系统">只安装ubuntu单一系统</a></li>
+        <li><a href="#安装软件">安装软件</a>
+          <ul>
+            <li><a href="#零基础准备">零、基础准备</a></li>
+            <li><a href="#一打造shell">一、打造Shell</a></li>
+            <li><a href="#二安装必备软件">二、安装必备软件</a></li>
+            <li><a href="#三准备coding环境">三、准备coding环境</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E5%8C%85rpm/">
+    下一页<br>如何打包RPM
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/">
+      上一页<br>vscode中anaconda的python debug
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">如何打造我的Surbuntu（surfacego2 &#43; ubuntu20.04）</a>
+  </h1>
+  
+  <h5>2021-06-10</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/">日常折腾</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/ubuntu/">ubuntu</a>, 
+      <a href="/tags/surface/">surface</a>
+  </div>
+  
+
+
+
+
+  <p><h2 id="只安装ubuntu单一系统">
+  只安装ubuntu单一系统
+  <a class="anchor" href="#%e5%8f%aa%e5%ae%89%e8%a3%85ubuntu%e5%8d%95%e4%b8%80%e7%b3%bb%e7%bb%9f">#</a>
+</h2>
+<p>略</p>
+<h2 id="安装软件">
+  安装软件
+  <a class="anchor" href="#%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6">#</a>
+</h2>
+<h3 id="零基础准备">
+  零、基础准备
+  <a class="anchor" href="#%e9%9b%b6%e5%9f%ba%e7%a1%80%e5%87%86%e5%a4%87">#</a>
+</h3>
+<h4 id="1-开启ssh服务">
+  1. 开启ssh服务
+  <a class="anchor" href="#1-%e5%bc%80%e5%90%afssh%e6%9c%8d%e5%8a%a1">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install ssh
+<span style="color:#75715e"># ssh安装后默认开启sshd服务并加入开机启动，如果没有，查看systemctl status sshd</span>
+<span style="color:#75715e"># 非enabled状态的话执行systemctl enable sshd</span>
+<span style="color:#75715e"># 如果不要求开机启动的话，就不需要做这一步。</span>
+</code></pre></div><h4 id="2-安装vim">
+  2. 安装VIM
+  <a class="anchor" href="#2-%e5%ae%89%e8%a3%85vim">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install vim
+</code></pre></div><h4 id="3-载入维护的etchosts文件">
+  3. 载入维护的/etc/hosts文件
+  <a class="anchor" href="#3-%e8%bd%bd%e5%85%a5%e7%bb%b4%e6%8a%a4%e7%9a%84etchosts%e6%96%87%e4%bb%b6">#</a>
+</h4>
+<p>不要问为什么，知道的自然知道，不知道本不需要知道。</p>
+<h4 id="4-安装git">
+  4. 安装git
+  <a class="anchor" href="#4-%e5%ae%89%e8%a3%85git">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install git
+</code></pre></div><p>基础配置一下git：</p>
+<p>全局保存密码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global credential.helper store
+</code></pre></div><p>证书问题</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global http.sslVerify false
+</code></pre></div><p>设置邮箱、姓名</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global user.email <span style="color:#e6db74">&#34;you@example.com&#34;</span>
+git config --global user.name <span style="color:#e6db74">&#34;Your Name&#34;</span>
+</code></pre></div><p>不显示中文，却显示八进制数字的问题</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global core.quotepath false
+</code></pre></div><h4 id="5-准备proxy">
+  5. 准备proxy
+  <a class="anchor" href="#5-%e5%87%86%e5%a4%87proxy">#</a>
+</h4>
+<p>hosts文件能解决一半github的访问问题。</p>
+<p>剩下的一半依然需要借助proxy来实现。</p>
+<p>如果你能正常访问github，那么不需要。</p>
+<h4 id="6-基础环境">
+  6. 基础环境
+  <a class="anchor" href="#6-%e5%9f%ba%e7%a1%80%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install make gcc
+</code></pre></div><h4 id="7-其他准备">
+  7. 其他准备
+  <a class="anchor" href="#7-%e5%85%b6%e4%bb%96%e5%87%86%e5%a4%87">#</a>
+</h4>
+<h5 id="1unlock-login-keyring">
+  1）unlock login keyring
+  <a class="anchor" href="#1unlock-login-keyring">#</a>
+</h5>
+<ol>
+<li>
+<p>Press Alt+F2, type <em>seahorse</em> and press Enter to start the Gnome Keyring Manager:</p>
+<p><img src="https://i.stack.imgur.com/P7WYq.png" alt="enter image description here" /></p>
+</li>
+<li>
+<p>Alternately, open a terminal with Ctrl+F2+T, type <code>seahorse &amp;</code> and press Enter.</p>
+</li>
+<li>
+<p>The &ldquo;Passwords and Keys&rdquo; window should come up as shown below. Under the <em>Passwords</em> tab, select <em>login</em>, right-click on it, and then click on <em>Change Password</em>:</p>
+<p><img src="https://i.stack.imgur.com/QpfPB.png" alt="enter image description here" /></p>
+</li>
+<li>
+<p>The &ldquo;Change Keyring Password&rdquo; box will come up. Type your old password, and then <em>leave the new/confirm password fields <strong>blank</strong></em>. Then press OK, and the information box shown below will pop-up; read it, and then click on <em>Use Unsafe Storage</em> to not have to enter your password at each login:</p>
+<p><img src="https://i.stack.imgur.com/OFoGF.png" alt="enter image description here" /></p>
+</li>
+<li>
+<p>Close the keyring manager. After you log out/reboot, you won&rsquo;t be asked for your password any more.</p>
+</li>
+</ol>
+<h5 id="2中文输入法">
+  2）中文输入法
+  <a class="anchor" href="#2%e4%b8%ad%e6%96%87%e8%be%93%e5%85%a5%e6%b3%95">#</a>
+</h5>
+<p>略</p>
+<h5 id="3一些alias">
+  3）一些alias
+  <a class="anchor" href="#3%e4%b8%80%e4%ba%9balias">#</a>
+</h5>
+<p>习惯了在mac下用<code>open .</code>来打开Finder，ubuntu下默认Files应用是nautilus。编辑环境变量文件把nautilus变成open。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># vim ~/.zshrc,添加</span>
+alias open<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;nautilus&#39;</span>
+</code></pre></div><p>sublime_text</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">alias sublime<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/opt/sublime_text/sublime_text&#39;</span>
+</code></pre></div><h3 id="一打造shell">
+  一、打造Shell
+  <a class="anchor" href="#%e4%b8%80%e6%89%93%e9%80%a0shell">#</a>
+</h3>
+<h4 id="1-oh-my-zsh">
+  1. oh-my-zsh
+  <a class="anchor" href="#1-oh-my-zsh">#</a>
+</h4>
+<h5 id="安装oh-my-zsh">
+  安装oh-my-zsh
+  <a class="anchor" href="#%e5%ae%89%e8%a3%85oh-my-zsh">#</a>
+</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt update
+sudo apt install curl
+sudo apt install zsh
+sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><h5 id="安装必要插件">
+  安装必要插件
+  <a class="anchor" href="#%e5%ae%89%e8%a3%85%e5%bf%85%e8%a6%81%e6%8f%92%e4%bb%b6">#</a>
+</h5>
+<p>在$HOME/.oh-my-zsh/custom/plugins目录下clone</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone git://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.gi
+</code></pre></div><p>修改~/.zshrc文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">plugins<span style="color:#f92672">=(</span>git
+        zsh-autosuggestions
+        zsh-syntax-highlighting<span style="color:#f92672">)</span>
+</code></pre></div><h5 id="更改主题powerlevel10k">
+  更改主题：powerlevel10k
+  <a class="anchor" href="#%e6%9b%b4%e6%94%b9%e4%b8%bb%e9%a2%98powerlevel10k">#</a>
+</h5>
+<p>下载主题</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> https://github.com/romkatv/powerlevel10k.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>$HOME/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/themes/powerlevel10k
+<span style="color:#75715e"># 国内可以使用gitee上的官方镜像</span>
+git clone --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> https://gitee.com/romkatv/powerlevel10k.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>$HOME/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/themes/powerlevel10k
+</code></pre></div><p>修改～/.zshrc文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ZSH_THEME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;powerlevel10k/powerlevel10k&#34;</span>
+</code></pre></div><p>安装缺少的字体</p>
+<p>为了减少折腾并且减少空间，统一使用MesloLGS NF系列的Nerd Font，也是powerlevel10k库提供的字体文件：</p>
+<p><a href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf">MesloLGS NF Regular.ttf</a></p>
+<p><a href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf">MesloLGS NF Bold.ttf</a></p>
+<p><a href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf">MesloLGS NF Italic.ttf</a></p>
+<p><a href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf">MesloLGS NF Bold Italic.ttf</a></p>
+<p>下载到本地双击安装即可</p>
+<h4 id="2-安装shell主题">
+  2. 安装shell主题
+  <a class="anchor" href="#2-%e5%ae%89%e8%a3%85shell%e4%b8%bb%e9%a2%98">#</a>
+</h4>
+<p>当然是安装我最喜欢的Gruvbox Dark主题，给gnome-shell</p>
+<p>通过Gogh安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bash -c  <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>wget -qO- https://git.io/vQgMr<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> 
+</code></pre></div><p>选择gruvbox dark主题</p>
+<h4 id="2-neovim">
+  2. neovim
+  <a class="anchor" href="#2-neovim">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install neovim
+</code></pre></div><h4 id="3-spacevim">
+  3. spacevim
+  <a class="anchor" href="#3-spacevim">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -sLf https://spacevim.org/cn/install.sh | bash
+</code></pre></div><p>安装完成之后，vim/nvim命令打开vim会自动安装插件</p>
+<p>如果报错[vimproc] vimproc&rsquo;s DLL:问题,</p>
+<p>执行<code>:VimProcInstall</code>修复</p>
+<h4 id="4-emacs">
+  4. emacs
+  <a class="anchor" href="#4-emacs">#</a>
+</h4>
+<p>由于ubuntu20.04源带的emacs版本太低，于是选择编译安装emacs最新版</p>
+<p>下载源码包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget http://mirror.team-cymru.com/gnu/emacs/emacs-27.2.tar.gz
+tar zxvf emacs-27.2.tar.gz
+cd emacs-27.2
+</code></pre></div><p>准备编译环境</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install autoconf make gcc texinfo libgtk-3-dev libxpm-dev libjpeg-dev libgif-dev libtiff5-dev libncurses5-dev libxml2-dev libgnutls28-dev
+</code></pre></div><p>运行./autogen.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">./autogen.sh
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./configure
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make -j <span style="color:#ae81ff">2</span>
+sudo make install
+</code></pre></div><h4 id="5-spacemacs">
+  5. spacemacs
+  <a class="anchor" href="#5-spacemacs">#</a>
+</h4>
+<p>安装sqlite3</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install sqlite3
+</code></pre></div><p>安装spacemacs</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+</code></pre></div><h4 id="6-org-roam">
+  6. org-roam
+  <a class="anchor" href="#6-org-roam">#</a>
+</h4>
+<p>用emacs主要用来构建知识体系的免费解决方案，obsidian的替代品。</p>
+<p>涉及到org-mode，org-roam，org-roam-server，org-protocol等的配置。</p>
+<p>具体配置内容会单开一篇文章来整理。</p>
+<h4 id="7-tmux">
+  7. Tmux
+  <a class="anchor" href="#7-tmux">#</a>
+</h4>
+<p>tmux</p>
+<h4 id="8-fusuma">
+  8. fusuma
+  <a class="anchor" href="#8-fusuma">#</a>
+</h4>
+<p>触控板手势配置程序。</p>
+<p><strong>IMPORTANT</strong>: You <strong>MUST</strong> be a member of the <strong>INPUT</strong> group to read touchpad by Fusuma.</p>
+<pre><code>$ sudo gpasswd -a $USER input
+</code></pre><p>Then, You apply the change with no logout or reboot.</p>
+<pre><code>$ newgrp input
+</code></pre><ol>
+<li>
+<p>Install libinput-tools</p>
+<p>You need <code>libinput</code> release 1.0 or later.</p>
+</li>
+</ol>
+<pre><code>$ sudo apt-get install libinput-tools
+</code></pre><ol start="2">
+<li>
+<p>Install Ruby</p>
+<p>Fusuma runs in Ruby, so you must install it first.</p>
+</li>
+</ol>
+<pre><code>$ sudo apt-get install ruby
+</code></pre><ol start="3">
+<li>Install Fusuma</li>
+</ol>
+<pre><code>$ sudo gem install fusuma
+</code></pre><ol start="4">
+<li>
+<p>Install xdotool (optional)</p>
+<p>For sending shortcuts:</p>
+</li>
+</ol>
+<pre><code>$ sudo apt-get install xdotool
+</code></pre><h4 id="7-配置文件更新">
+  7. 配置文件更新
+  <a class="anchor" href="#7-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e6%9b%b4%e6%96%b0">#</a>
+</h4>
+<p>恢复备份在git仓库的spacemacs等配置文件。</p>
+<h3 id="二安装必备软件">
+  二、安装必备软件
+  <a class="anchor" href="#%e4%ba%8c%e5%ae%89%e8%a3%85%e5%bf%85%e5%a4%87%e8%bd%af%e4%bb%b6">#</a>
+</h3>
+<h4 id="1-安装edge">
+  1. 安装Edge
+  <a class="anchor" href="#1-%e5%ae%89%e8%a3%85edge">#</a>
+</h4>
+<p>下载地址：<a href="https://www.microsoftedgeinsider.com/zh-cn/">microsoft-edge-linux</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install libatomic1
+sudo dpkg -i microsoft-edge-beta_91.0.864.37_1_amd64.deb
+</code></pre></div><p>之后同步微软账号，就可以接入其他设备的配置、历史记录、集锦（阅读列表）了。</p>
+<h4 id="2-安装vscode">
+  2. 安装Vscode
+  <a class="anchor" href="#2-%e5%ae%89%e8%a3%85vscode">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo dpkg -i code_1.56.2-1620838498_amd64.deb
+</code></pre></div><p>开启配置文件同步</p>
+<h4 id="3-xournal">
+  3. Xournal++
+  <a class="anchor" href="#3-xournal">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo add-apt-repository ppa:andreasbutti/xournalpp-master
+sudo apt update
+sudo apt install xournalpp
+</code></pre></div><h4 id="4-typora">
+  4. Typora
+  <a class="anchor" href="#4-typora">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># or use</span>
+<span style="color:#75715e"># sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE</span>
+wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
+
+<span style="color:#75715e"># add Typora&#39;s repository</span>
+sudo add-apt-repository <span style="color:#e6db74">&#39;deb https://typora.io/linux ./&#39;</span>
+sudo apt-get update
+
+<span style="color:#75715e"># install typora</span>
+sudo apt-get install typora
+</code></pre></div><h4 id="5-obsidian">
+  5. Obsidian
+  <a class="anchor" href="#5-obsidian">#</a>
+</h4>
+<p>通过flatpak安装，首先安装flatpak</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install flatpak
+</code></pre></div><p>下载flatpak文件，安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flatpak install md.obsidian.Obsidian.flatpakref
+</code></pre></div><h4 id="6-virtualbox">
+  6. VirtualBox
+  <a class="anchor" href="#6-virtualbox">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install virtualbox
+</code></pre></div><h4 id="7-parsec">
+  7. Parsec
+  <a class="anchor" href="#7-parsec">#</a>
+</h4>
+<p>官网下载deb包安装。</p>
+<h4 id="8-krita">
+  8. Krita
+  <a class="anchor" href="#8-krita">#</a>
+</h4>
+<p>通过官网下载flatpak安装。</p>
+<h4 id="9-sublime-text4">
+  9. sublime-text4
+  <a class="anchor" href="#9-sublime-text4">#</a>
+</h4>
+<p>正好发布了4的版本，通过apt安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+
+sudo apt-get install apt-transport-https
+
+echo <span style="color:#e6db74">&#34;deb https://download.sublimetext.com/ apt/stable/&#34;</span> | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
+sudo apt-get update
+sudo apt-get install sublime-text
+</code></pre></div><h4 id="10-pgyvpn">
+  10. Pgyvpn
+  <a class="anchor" href="#10-pgyvpn">#</a>
+</h4>
+<p>安装蒲公英客户端，官网下载deb包安装。</p>
+<h4 id="11-chiaki">
+  11. Chiaki
+  <a class="anchor" href="#11-chiaki">#</a>
+</h4>
+<p>PS remote play in linux.</p>
+<h4 id="12-dolphin">
+  12. Dolphin
+  <a class="anchor" href="#12-dolphin">#</a>
+</h4>
+<p>必备的任天堂wii模拟器。</p>
+<h4 id="13-ppsspp">
+  13. ppsspp
+  <a class="anchor" href="#13-ppsspp">#</a>
+</h4>
+<p>psp模拟器</p>
+<h4 id="14-pscx2">
+  14. pscx2
+  <a class="anchor" href="#14-pscx2">#</a>
+</h4>
+<p>基础环境及依赖包的安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo dpkg --add-architecture i386
+sudo apt install cmake gcc-multilib g++-multilib
+sudo apt install libaio-dev:i386 libbz2-dev:i386 libcggl:i386 libegl1-mesa-dev:i386 libglew-dev:i386 libgles2-mesa-dev:i386 libgtk2.0-dev:i386 libjpeg-dev:i386 libsdl1.2-dev:i386 libwxgtk3.0-gtk3-dev:i386 nvidia-cg-toolkit zlib1g-dev:i386 libsdl2-dev:i386 libjack-jackd2-dev:i386 libportaudiocpp0:i386 portaudio19-dev:i386 liblzma-dev:i386 libsoundtouch-dev:i386 libxml2-dev:i386 libpcap0.8-dev:i386
+</code></pre></div><p>添加源</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># sudo vim /etc/apt/source.list</span>
+deb http://us.archive.ubuntu.com/ubuntu/ trusty multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ trusty multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
+</code></pre></div><p>add-apt-repository</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo add-apt-repository ppa:gregory-hainaut/pcsx2.official.ppa
+sudo apt-get update
+</code></pre></div><p>安装包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> sudo apt-get install pcsx2
+</code></pre></div><h4 id="15-vlc">
+  15. VLC
+  <a class="anchor" href="#15-vlc">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install vlc
+</code></pre></div><h4 id="16-synaptic">
+  16. Synaptic
+  <a class="anchor" href="#16-synaptic">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install synaptic
+</code></pre></div><h4 id="17-tmux">
+  17. Tmux
+  <a class="anchor" href="#17-tmux">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install tmux
+</code></pre></div><h4 id="18-安装deepin系软件源的安装包都不见了">
+  18. 安装deepin系软件(源的安装包都不见了)
+  <a class="anchor" href="#18-%e5%ae%89%e8%a3%85deepin%e7%b3%bb%e8%bd%af%e4%bb%b6%e6%ba%90%e7%9a%84%e5%ae%89%e8%a3%85%e5%8c%85%e9%83%bd%e4%b8%8d%e8%a7%81%e4%ba%86">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
+
+
+</code></pre></div><h3 id="三准备coding环境">
+  三、准备coding环境
+  <a class="anchor" href="#%e4%b8%89%e5%87%86%e5%a4%87coding%e7%8e%af%e5%a2%83">#</a>
+</h3>
+<h4 id="1-golang环境">
+  1. golang环境
+  <a class="anchor" href="#1-golang%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<p>官网下载go的压缩包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">rm -rf /usr/local/go <span style="color:#f92672">&amp;&amp;</span> tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+</code></pre></div><p>加入环境变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export PATH<span style="color:#f92672">=</span>$PATH:/usr/local/go/bin
+</code></pre></div><p>配置代理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go env -w GO111MODULE<span style="color:#f92672">=</span>on
+go env -w GOPROXY<span style="color:#f92672">=</span>https://goproxy.cn,direct
+</code></pre></div><h4 id="2-nodejs环境">
+  2. Nodejs环境
+  <a class="anchor" href="#2-nodejs%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<p>安装稳定版nodejs</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tar -C ~/. -xf node-v14.17.0-linux-x64.tar.xz
+</code></pre></div><h4 id="3-miniconda-环境">
+  3. Miniconda 环境
+  <a class="anchor" href="#3-miniconda-%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<p>下载安装官方miniconda python3.9最新版，一路yesyes</p>
+<p>记得取消默认base环境</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">conda config --set auto_activate_base false
+</code></pre></div><h4 id="4-flutter-环境">
+  4. Flutter 环境
+  <a class="anchor" href="#4-flutter-%e7%8e%af%e5%a2%83">#</a>
+</h4>
+<p>略</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E5%8C%85rpm/">
+    下一页<br>如何打包RPM
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/">
+      上一页<br>vscode中anaconda的python debug
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#只安装ubuntu单一系统">只安装ubuntu单一系统</a></li>
+        <li><a href="#安装软件">安装软件</a>
+          <ul>
+            <li><a href="#零基础准备">零、基础准备</a></li>
+            <li><a href="#一打造shell">一、打造Shell</a></li>
+            <li><a href="#二安装必备软件">二、安装必备软件</a></li>
+            <li><a href="#三准备coding环境">三、准备coding环境</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

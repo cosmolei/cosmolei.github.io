@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  安装步骤
+  #
+
+
+  一、安装prometheus
+  #
+
+部署路径：/usr/local/prometheus
+服务文件：/usr/lib/systemd/system/prometheus.service
+部署过程:
+
+  1. 解压文件，复制到指定路径
+  #
+
+tar zxvf prometheus-2.22.2.linux-amd64.tar.gz
+mv prometheus-2.22.2.linux-amd64 prometheus
+cp -r prometheus /usr/local/
+
+  2. 创建service服务文件
+  #
+
+vim /usr/lib/systemd/system/prometheus.service
+
+[Unit]
+Description=Prometheus
+After=network.target
+ 
+[Service]
+ExecStart=/usr/local/prometheus/prometheus --config.file=/usr/local/prometheus/prometheus.yml --storage.tsdb.path=/data/prometheus --storage.tsdb.retention.time=180d --storage.tsdb.retention.size=29TB
+User=root
+
+[Install]
+WantedBy=multi-user.target
+其中，执行命令涉及的参数如下：
+
+config.file：配置文件路径。
+storage.tsdb.path：tsdb存储路径，默认是相对于执行路径的/data目录。
+storage.tsdb.retention.time：数据保存的最长时间，这里是180天。
+storage.tsdb.retention.size：数据保存的最大量值，这里最大保存29TB的数据，再有更多的数据，则会删除最早的历史数据来腾出空间。
+
+加入开机启动：
+systemctl enable prometheus
+systemctl start prometheus
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="安装部署prometheus" />
+<meta property="og:description" content="
+  安装步骤
+  #
+
+
+  一、安装prometheus
+  #
+
+部署路径：/usr/local/prometheus
+服务文件：/usr/lib/systemd/system/prometheus.service
+部署过程:
+
+  1. 解压文件，复制到指定路径
+  #
+
+tar zxvf prometheus-2.22.2.linux-amd64.tar.gz
+mv prometheus-2.22.2.linux-amd64 prometheus
+cp -r prometheus /usr/local/
+
+  2. 创建service服务文件
+  #
+
+vim /usr/lib/systemd/system/prometheus.service
+
+[Unit]
+Description=Prometheus
+After=network.target
+ 
+[Service]
+ExecStart=/usr/local/prometheus/prometheus --config.file=/usr/local/prometheus/prometheus.yml --storage.tsdb.path=/data/prometheus --storage.tsdb.retention.time=180d --storage.tsdb.retention.size=29TB
+User=root
+
+[Install]
+WantedBy=multi-user.target
+其中，执行命令涉及的参数如下：
+
+config.file：配置文件路径。
+storage.tsdb.path：tsdb存储路径，默认是相对于执行路径的/data目录。
+storage.tsdb.retention.time：数据保存的最长时间，这里是180天。
+storage.tsdb.retention.size：数据保存的最大量值，这里最大保存29TB的数据，再有更多的数据，则会删除最早的历史数据来腾出空间。
+
+加入开机启动：
+systemctl enable prometheus
+systemctl start prometheus
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-07T17:17:32+08:00" />
+<meta property="article:modified_time" content="2020-12-07T17:17:32+08:00" />
+
+<title>安装部署prometheus | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>安装部署prometheus</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装步骤">安装步骤</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">
+    下一页<br>golang模块开发
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">
+      上一页<br>Elastic Search的全文搜索
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/">安装部署prometheus</a>
+  </h1>
+  
+  <h5>2020-12-07</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/Prometheus/">Prometheus</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="安装步骤">
+  安装步骤
+  <a class="anchor" href="#%e5%ae%89%e8%a3%85%e6%ad%a5%e9%aa%a4">#</a>
+</h3>
+<h4 id="一安装prometheus">
+  一、安装prometheus
+  <a class="anchor" href="#%e4%b8%80%e5%ae%89%e8%a3%85prometheus">#</a>
+</h4>
+<p>部署路径：/usr/local/prometheus</p>
+<p>服务文件：/usr/lib/systemd/system/prometheus.service</p>
+<p>部署过程:</p>
+<h5 id="1-解压文件复制到指定路径">
+  1. 解压文件，复制到指定路径
+  <a class="anchor" href="#1-%e8%a7%a3%e5%8e%8b%e6%96%87%e4%bb%b6%e5%a4%8d%e5%88%b6%e5%88%b0%e6%8c%87%e5%ae%9a%e8%b7%af%e5%be%84">#</a>
+</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar zxvf prometheus-2.22.2.linux-amd64.tar.gz
+mv prometheus-2.22.2.linux-amd64 prometheus
+cp -r prometheus /usr/local/
+</code></pre></div><h5 id="2-创建service服务文件">
+  2. 创建service服务文件
+  <a class="anchor" href="#2-%e5%88%9b%e5%bb%baservice%e6%9c%8d%e5%8a%a1%e6%96%87%e4%bb%b6">#</a>
+</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /usr/lib/systemd/system/prometheus.service
+
+<span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+Description<span style="color:#f92672">=</span>Prometheus
+After<span style="color:#f92672">=</span>network.target
+ 
+<span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+ExecStart<span style="color:#f92672">=</span>/usr/local/prometheus/prometheus --config.file<span style="color:#f92672">=</span>/usr/local/prometheus/prometheus.yml --storage.tsdb.path<span style="color:#f92672">=</span>/data/prometheus --storage.tsdb.retention.time<span style="color:#f92672">=</span>180d --storage.tsdb.retention.size<span style="color:#f92672">=</span>29TB
+User<span style="color:#f92672">=</span>root
+
+<span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+WantedBy<span style="color:#f92672">=</span>multi-user.target
+</code></pre></div><p>其中，执行命令涉及的参数如下：</p>
+<ul>
+<li>config.file：配置文件路径。</li>
+<li>storage.tsdb.path：tsdb存储路径，默认是相对于执行路径的/data目录。</li>
+<li>storage.tsdb.retention.time：数据保存的最长时间，这里是180天。</li>
+<li>storage.tsdb.retention.size：数据保存的最大量值，这里最大保存29TB的数据，再有更多的数据，则会删除最早的历史数据来腾出空间。</li>
+</ul>
+<p>加入开机启动：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl enable prometheus
+systemctl start prometheus
+</code></pre></div><h5 id="3-修改prometheus配置文件">
+  3. 修改prometheus配置文件
+  <a class="anchor" href="#3-%e4%bf%ae%e6%94%b9prometheus%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6">#</a>
+</h5>
+<p>这里根据实际情况有针对性的修改（需要先在节点上部署node_exporter和process-exporter）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 配置文件简单描述</span>
+<span style="color:#75715e"># my global config</span>
+global:
+  scrape_interval: 1s <span style="color:#75715e"># 抓取数据的频率，这里设置为1秒</span>
+  evaluation_interval: 1s <span style="color:#75715e"># 计算规则的频率（用不到），这里设置为1秒</span>
+
+<span style="color:#75715e"># ...省略中间默认配置</span>
+
+<span style="color:#75715e"># A scrape configuration containing exactly one endpoint to scrape:</span>
+<span style="color:#75715e"># Here it&#39;s Prometheus itself.</span>
+<span style="color:#75715e"># 这里开始配置要抓取数据的对象,一个抓取配置对应一个job，可以把同类或同组节点放到一个job里抓取</span>
+scrape_configs:
+  <span style="color:#75715e"># 指定一个job名称，job名称可以在查询时作为参数</span>
+  - job_name: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+  
+    <span style="color:#75715e"># target配置，以http协议传输数据,9090是prometheus的端口，node_exporter的端口是9100，process-exporter的端口是9256</span>
+    static_configs:
+    - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;localhost:9090&#39;</span><span style="color:#f92672">]</span>
+  
+  - job_name: <span style="color:#e6db74">&#39;test_job&#39;</span>
+    static_configs:
+    - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test01:9100&#39;</span>, <span style="color:#e6db74">&#39;test01:9256&#39;</span><span style="color:#f92672">]</span>
+    - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test02:9100&#39;</span>, <span style="color:#e6db74">&#39;test02:9256&#39;</span><span style="color:#f92672">]</span>
+    <span style="color:#75715e"># ...</span>
+    
+</code></pre></div><h4 id="二-安装node_exporter-和process-exporter">
+  二、 安装node_exporter 和process-exporter
+  <a class="anchor" href="#%e4%ba%8c-%e5%ae%89%e8%a3%85node_exporter-%e5%92%8cprocess-exporter">#</a>
+</h4>
+<h5 id="1-安装node_exporter">
+  1. 安装node_exporter
+  <a class="anchor" href="#1-%e5%ae%89%e8%a3%85node_exporter">#</a>
+</h5>
+<p>解压、拷贝</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar zxvf node_exporter-1.0.1.linux-amd64.tar.gz
+mv node_exporter-1.0.1.linux-amd64 node_exporter
+cp -r node_exporter /usr/local/
+</code></pre></div><p>创建service并开机启动</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># vim node_exporter.service</span>
+vim /usr/lib/systemd/system/node_exporter.service
+
+<span style="color:#75715e"># node_exporter.service的内容</span>
+<span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+Description<span style="color:#f92672">=</span>Node Exporter
+After<span style="color:#f92672">=</span>network.target
+ 
+<span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+ExecStart<span style="color:#f92672">=</span>/usr/local/node_exporter/node_exporter
+User<span style="color:#f92672">=</span>root
+
+<span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+WantedBy<span style="color:#f92672">=</span>multi-user.target
+
+<span style="color:#75715e"># 设置开机启动并启动</span>
+systemctl enable node_exporter
+systemctl start node_exporter
+</code></pre></div><h5 id="2-安装process-exporter">
+  2. 安装process-exporter
+  <a class="anchor" href="#2-%e5%ae%89%e8%a3%85process-exporter">#</a>
+</h5>
+<p>解压、拷贝</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar zxvf process-exporter-0.7.5.linux-amd64.tar.gz
+mv process-exporter-0.7.5.linux-amd64 process-exporter
+cp -r process-exporter /usr/local/
+</code></pre></div><p>创建process-exporter配置文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># vim /usr/local/process-exporter/all.yaml</span>
+vim /usr/local/process-exporter/all.yaml
+
+<span style="color:#75715e"># 编辑内容：</span>
+process_names:
+  - name: <span style="color:#e6db74">&#34;{{.Comm}}&#34;</span>
+    cmdline: 
+    - <span style="color:#e6db74">&#39;.+&#39;</span>
+</code></pre></div><p>创建service并开机启动</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /usr/lib/systemd/system/process_exporter.service
+
+
+<span style="color:#75715e"># 编辑的内容</span>
+<span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+Description<span style="color:#f92672">=</span>Process Exporter <span style="color:#66d9ef">for</span> Prometheus
+
+<span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+User<span style="color:#f92672">=</span>root
+ExecStart<span style="color:#f92672">=</span>/usr/local/process-exporter/process-exporter --config.path /usr/local/process-exporter/all.yaml --web.listen-address<span style="color:#f92672">=</span>:9256
+KillMode<span style="color:#f92672">=</span>process
+Restart<span style="color:#f92672">=</span>always
+
+<span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+WantedBy<span style="color:#f92672">=</span>multi-user.target
+
+
+<span style="color:#75715e"># 设置开机启动</span>
+systemctl enable process_exporter
+systemctl start process_exporter
+</code></pre></div></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">
+    下一页<br>golang模块开发
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">
+      上一页<br>Elastic Search的全文搜索
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装步骤">安装步骤</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emqx on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/emqx/</link>
+    <description>Recent content in emqx on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Wed, 24 Feb 2021 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/emqx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>emqx体系分析</title>
+      <link>https://cosmolei.github.io/posts/emqx%E4%BD%93%E7%B3%BB%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 24 Feb 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/emqx%E4%BD%93%E7%B3%BB%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;EMQ X是什么。。。&lt;/p&gt;
+&lt;h3 id=&#34;emqx-broker&#34;&gt;
+  EMQX Broker
+  &lt;a class=&#34;anchor&#34; href=&#34;#emqx-broker&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;完全开源，提供一个管理平台和mqtt broker。&lt;/p&gt;
+&lt;p&gt;安装release版本rpm包，启动servie&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#docker pull emqx/emqx:4.2.7  &lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8883:8883 -p 8084:8084 -p 18083:18083 emqx/emqx:4.2.7&lt;/span&gt;
+
+sudo systemctl start emqx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动EMQX客户端连接测试成功。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

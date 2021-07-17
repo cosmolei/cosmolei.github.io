@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Ubuntu 20.04安装microstack出错
+  #
+
+安装
+$ sudo snap install microstack --devmode --beta
+失败
+查看日志
+$ systemctl status snap.microstack.load-modules.service
+modprobe: ERROR: could not insert &#39;vhost_vsock&#39;: Device or resource busy
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Ubuntu 20.04安装microstack出错" />
+<meta property="og:description" content="
+  Ubuntu 20.04安装microstack出错
+  #
+
+安装
+$ sudo snap install microstack --devmode --beta
+失败
+查看日志
+$ systemctl status snap.microstack.load-modules.service
+modprobe: ERROR: could not insert &#39;vhost_vsock&#39;: Device or resource busy
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/Ubuntu-20.04%E5%AE%89%E8%A3%85microstack%E5%87%BA%E9%94%99/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-13T15:50:32+08:00" />
+<meta property="article:modified_time" content="2021-01-13T15:50:32+08:00" />
+
+<title>Ubuntu 20.04安装microstack出错 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Ubuntu 20.04安装microstack出错</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ubuntu-2004安装microstack出错">Ubuntu 20.04安装microstack出错</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/">
+    下一页<br>Tmux如何使用得更顺手
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Ubuntu-20.04-%E5%8D%95%E8%8A%82%E7%82%B9%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2microstack/">
+      上一页<br>Ubuntu 20.04 单节点安装部署microstack
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/Ubuntu-20.04%E5%AE%89%E8%A3%85microstack%E5%87%BA%E9%94%99/">Ubuntu 20.04安装microstack出错</a>
+  </h1>
+  
+  <h5>2021-01-13</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/Openstack/">Openstack</a>
+  </div>
+  
+
+
+
+
+  <p><h2 id="ubuntu-2004安装microstack出错">
+  Ubuntu 20.04安装microstack出错
+  <a class="anchor" href="#ubuntu-2004%e5%ae%89%e8%a3%85microstack%e5%87%ba%e9%94%99">#</a>
+</h2>
+<p>安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo snap install microstack --devmode --beta
+</code></pre></div><p>失败</p>
+<p>查看日志</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ systemctl status snap.microstack.load-modules.service
+modprobe: ERROR: could not insert <span style="color:#e6db74">&#39;vhost_vsock&#39;</span>: Device or resource busy
+</code></pre></div><p>由于linux检测到在vmware环境中运行时，会加载vmware的模块并使用vsock产生了冲突。</p>
+<p>通过命令查看冲突：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ lsmod | grep vsock
+
+vmw_vsock_virtio_transport_common    <span style="color:#ae81ff">32768</span>  <span style="color:#ae81ff">0</span>
+vmw_vsock_vmci_transport    <span style="color:#ae81ff">32768</span>  <span style="color:#ae81ff">1</span>
+vsock                  <span style="color:#ae81ff">36864</span>  <span style="color:#ae81ff">3</span> vmw_vsock_virtio_transport_common,vmw_vsock_vmci_transport
+vmw_vmci               <span style="color:#ae81ff">69632</span>  <span style="color:#ae81ff">2</span> vmw_balloon,vmw_vsock_vmci_transport
+</code></pre></div><p>解决办法：</p>
+<p>创建编辑配置文件：/etc/modprobe.d/blacklist-vmware.conf</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo vi /etc/modprobe.d/blacklist-vmware.conf
+
+<span style="color:#75715e">## 加入以下两行</span>
+blacklist vmw_vsock_virtio_transport_common
+blacklist vmw_vsock_vmci_transport
+</code></pre></div><p>重新执行安装：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo snap install microstack --devmode --beta
+microstack <span style="color:#f92672">(</span>beta<span style="color:#f92672">)</span> ussuri from Canonical?? installed
+</code></pre></div></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/">
+    下一页<br>Tmux如何使用得更顺手
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/Ubuntu-20.04-%E5%8D%95%E8%8A%82%E7%82%B9%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2microstack/">
+      上一页<br>Ubuntu 20.04 单节点安装部署microstack
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ubuntu-2004安装microstack出错">Ubuntu 20.04安装microstack出错</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

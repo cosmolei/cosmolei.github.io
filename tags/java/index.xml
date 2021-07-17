@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/java/</link>
+    <description>Recent content in java on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Sat, 06 Apr 2019 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IO模型讲义</title>
+      <link>https://cosmolei.github.io/posts/IO%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sat, 06 Apr 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/IO%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;h2 id=&#34;io模型讲义&#34;&gt;
+  IO模型讲义
+  &lt;a class=&#34;anchor&#34; href=&#34;#io%e6%a8%a1%e5%9e%8b%e8%ae%b2%e4%b9%89&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id=&#34;用户空间和内核空间&#34;&gt;
+  用户空间和内核空间
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%94%a8%e6%88%b7%e7%a9%ba%e9%97%b4%e5%92%8c%e5%86%85%e6%a0%b8%e7%a9%ba%e9%97%b4&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用户空间：用户程序使用的内存空间&lt;/li&gt;
+&lt;li&gt;内核空间：系统内核程序使用的内存空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pio与dma&#34;&gt;
+  PIO与DMA
+  &lt;a class=&#34;anchor&#34; href=&#34;#pio%e4%b8%8edma&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;PIO
+早先的磁盘和内存之间的数据传输要经过CPU存储转发，这种方式成为PIO&lt;/li&gt;
+&lt;li&gt;DMA
+后来，DMA（直接内存访问，Direct Memory Access）取代了PIO，它可以不经过CPU而直接进行磁盘和内存（内核空间）的数据交换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缓存io和直接io&#34;&gt;
+  缓存IO和直接IO
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%bc%93%e5%ad%98io%e5%92%8c%e7%9b%b4%e6%8e%a5io&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;缓存IO：数据从磁盘先通过DMA copy到内核空间，再从内核空间通过cpu copy到用户空间&lt;/p&gt;
+&lt;p&gt;直接IO： 数据从磁盘通过DMA copy到用户空间&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

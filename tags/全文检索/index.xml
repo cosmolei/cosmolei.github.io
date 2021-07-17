@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>全文检索 on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</link>
+    <description>Recent content in 全文检索 on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Mon, 07 Dec 2020 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elastic Search的全文搜索</title>
+      <link>https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/</guid>
+      <description>&lt;h3 id=&#34;搜索方式&#34;&gt;
+  搜索方式
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%90%9c%e7%b4%a2%e6%96%b9%e5%bc%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h3 id=&#34;查询dsl&#34;&gt;
+  查询DSL
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9f%a5%e8%af%a2dsl&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Elasticsearch提供基于JSON的完整查询DSL来定义查询。查询DSL包括两种子句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;叶查询子句&lt;/strong&gt;：在特定的字段上查找特定的值，如&lt;strong&gt;match&lt;/strong&gt;、&lt;strong&gt;term&lt;/strong&gt;或&lt;strong&gt;range&lt;/strong&gt;查询。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复合查询子句&lt;/strong&gt;：包含其他叶查询或复合查询子句，以合理的方式结合多条查询（比如bool或dis_max查询），或者改变查询行为（比如not或constant_score查询）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据匹配和计算方式不同，查询类别分为两类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查询&lt;/strong&gt;(query)用于检查内容与条件是否匹配，并且计算_score元字段表示匹配度。查询的结构中以query参数开始来执行内容查询。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;过滤&lt;/strong&gt;(filter)不计算匹配得分，只是简单的决定文档是否匹配。内容过滤主要通过过滤结构化数据，例如时间、数值、not_analyze的文本等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;查询(query)的子句也可以传递filter参数，比如bool查询内的filter、constant_score查询内的filter参数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; {
+  	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;bool&amp;#34;&lt;/span&gt;: {
+  		&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;must&amp;#34;&lt;/span&gt;: [
+  			{
+  				&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;match&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;title&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Search&amp;#34;&lt;/span&gt;}	
+  			},
+				{
+          &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;match&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elasticsearch&amp;#34;&lt;/span&gt;}
+        }
+  		],
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt;: [
+        {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;term&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;published&amp;#34;&lt;/span&gt;}},
+        {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;range&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;publish_date&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;gte&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2019-01-01&amp;#34;&lt;/span&gt;}}}
+      ]
+  	}
+  }
+&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch(二)</title>
+      <link>https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/</guid>
+      <description>&lt;h2 id=&#34;elastic-search中的数据建模方法&#34;&gt;
+  Elastic Search中的数据建模方法
+  &lt;a class=&#34;anchor&#34; href=&#34;#elastic-search%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e5%bb%ba%e6%a8%a1%e6%96%b9%e6%b3%95&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;要想让查询速度更快，让更新更容易而且代价更小，定义数据结构是要解决的关键问题之一。虽然大多数NoSQL方案都无法提供关系型映射和查询，蛋ES仍然提供了一些管理关系型数据的方法。&lt;/p&gt;
+&lt;p&gt;在Elasticsearch中主要有4中定义文档结构的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;扁平式结构（应用侧关联）&lt;/li&gt;
+&lt;li&gt;数据反范式化&lt;/li&gt;
+&lt;li&gt;嵌套对象&lt;/li&gt;
+&lt;li&gt;父子关系&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;扁平式结构&lt;/strong&gt;：在扁平式结构中，最简单的键值对索引文档，有时候也用简单对象（plain objects）的形式。数据存储成这种格式可以索引更快，也可以查询更快。缺点是会导致难以维护不同实体之间的关系。使用扁平式结构之后，就经常要在应用代码中做关联，以发现文档之间的关系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据反范式化&lt;/strong&gt;：把其他文档内的相关字段多复制一份，目的只是为了维护实体之间的关系。这种方法可用于维护扁平式结构，也可以通过在每份文档中多保存一到多个字段来维护它们之间的关系。这种方法速度很快，但会多占用大量空间，因为有时候要处理很多份副本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;嵌套与父子关系&lt;/strong&gt;：这些关系是Elasticsearch为管理关系型数据而自带的解决方案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch(一)</title>
+      <link>https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/</link>
+      <pubDate>Sun, 06 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/</guid>
+      <description>&lt;h3 id=&#34;什么叫全文检索&#34;&gt;
+  什么叫全文检索？
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%80%e4%b9%88%e5%8f%ab%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;对非&lt;strong&gt;结构化的数据/结构化数据&lt;/strong&gt;建立索引，再对索引进行搜索&lt;strong&gt;文档&lt;/strong&gt;的过程就叫全文检索(Full-text Search)。&lt;/p&gt;
+&lt;h4 id=&#34;数据格式分类&#34;&gt;
+  数据格式（分类）
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%95%b0%e6%8d%ae%e6%a0%bc%e5%bc%8f%e5%88%86%e7%b1%bb&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;非结构化数据&lt;/strong&gt;：没有固定格式的数据（html网页，文章，txt， excel） &amp;mdash; 没有定长，字段，描述&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结构化数据&lt;/strong&gt;：有固定格式数据（数据库一行数据） &amp;mdash; 有固定长度（varchar(50)），字段，描述&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;倒排索引&#34;&gt;
+  倒排索引
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%80%92%e6%8e%92%e7%b4%a2%e5%bc%95&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;搜索采用倒排索引算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;顺序扫描法：有一本词典，这本词典没有目录，查询一个词语只能从第一页开始，一页一页查询，直到找到为止。（数据库采用顺序扫描法 &amp;mdash;&amp;gt; 但可以建立索引，也是倒排索引）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;倒排扫描法：有一本词典，有目录，查询一个词语，只需查询目录，从目录找到词语所在页码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;问题：为什么不使用数据库进行海量数据索引（虽然数据库也可以建立倒排索引进行搜索）？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;数据库缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;全表扫描 &amp;mdash;速度非常慢&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;字段中所有的内容都要挨个匹配 &amp;mdash;速度慢&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全文检索问题&lt;/p&gt;
+&lt;p&gt;%口罩罩% 无法实现分词搜索&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建立索引，全文检索不走索引&lt;/p&gt;
+&lt;p&gt;like不走索引，不建分词&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

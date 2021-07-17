@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数学 on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
+    <description>Recent content in 数学 on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Wed, 25 Jul 2018 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>理论基石：条件概率、独立性与贝叶斯</title>
+      <link>https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/</link>
+      <pubDate>Wed, 25 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/</guid>
+      <description>&lt;h3 id=&#34;从概率到条件概率&#34;&gt;
+  从概率到条件概率
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%8e%e6%a6%82%e7%8e%87%e5%88%b0%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;条件概率的发生背景&#34;&gt;
+  条件概率的发生背景
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87%e7%9a%84%e5%8f%91%e7%94%9f%e8%83%8c%e6%99%af&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;从这一篇开始，我们就正式进入到概率统计的内容板块中了。&lt;/p&gt;
+&lt;p&gt;对于概率，相信大家都不会陌生，在各阶段的数学课上，它都是高频出现的常客，最简单的概率场景比如掷骰子：第一次掷出的点数为 5 的概率为多大？你会毫不犹豫的说出答案：16。&lt;/p&gt;
+&lt;p&gt;这太简单了。接下来我增加一个限定条件：已知在抛出骰子是奇数的情况下，抛掷点数为 5 的可能性有多大？&lt;/p&gt;
+&lt;p&gt;发现了没有，在第二个问题中我就没有直接的只问投掷出 5 这个事件的概率，而是增加了一个前提条件：这次抛掷出的点数为奇数。&lt;/p&gt;
+&lt;p&gt;生活中这类场景更多，我们一般不会直接去推断一个事件发生的可能性，因为这样实际意义并不明显，而且也不容易推断出结果。比如我问你今天下雨的概率是多大？你可能是一头雾水，什么地点？什么月份？当日云层的厚度？这些条件都没有提供，这样是无法给出一个有意义、有价值的合理推断的。&lt;/p&gt;
+&lt;p&gt;而且在实际情况下，一个事件一般而言也不会是孤立的发生，它会伴随着其他事情一同出现，单独谈一个事件的概率，一般而言也是不存在的。&lt;/p&gt;
+&lt;p&gt;因此，在实际的应用中，我们更关心的是条件概率，也就是在给定部分信息的基础上对试验结果的推断。这些给定的信息就是我们附加的条件，是我们研究时关注的重点。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量实践：聚焦多元正态分布</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/</link>
+      <pubDate>Tue, 24 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/</guid>
+      <description>&lt;p&gt;在前两篇中，我们介绍了多元随机变量的有关概念，重点围绕着多元随机变量的联合概率、条件与边缘概率分布以及独立性和相关性，阐述了多元随机变量之间的关系，这些都是多元随机变量重点需要关注和研究的问题。&lt;/p&gt;
+&lt;p&gt;在上两篇理论知识的基础之上，我们在这篇文章里以多元正态分布作为实际例子，让大家能够更直观的理解和强化这些概念和方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量（下）：独立与相关</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Mon, 23 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/</guid>
+      <description>&lt;p&gt;在这篇文章中，我们开始讨论多元随机变量之间的关系，重点围绕独立性和相关性的概念展开。&lt;/p&gt;
+&lt;h3 id=&#34;关于独立性的讨论&#34;&gt;
+  关于独立性的讨论
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%85%b3%e4%ba%8e%e7%8b%ac%e7%ab%8b%e6%80%a7%e7%9a%84%e8%ae%a8%e8%ae%ba&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;随机变量与事件的独立性&#34;&gt;
+  随机变量与事件的独立性
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e4%b8%8e%e4%ba%8b%e4%bb%b6%e7%9a%84%e7%8b%ac%e7%ab%8b%e6%80%a7&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;在概率统计的最开始部分，探讨过事件独立性的概念，同时我们知道：随机变量的取值，本质上同样也是一个事件，因此不难理解其独立性的概念。&lt;/p&gt;
+&lt;p&gt;首先我们讨论随机变量与事件之间的相互独立性。那么回到定义中去，我们可以说他的本质就是事件的发生与否，不会对随机变量的取值提供额外的新信息，这其实就是照搬了事件独立性的概念。如果用条件概率的式子来表示的话，就有：&lt;/p&gt;
+&lt;p&gt;如果随机变量 X 独立于事件 A，那么满足：&lt;/p&gt;
+&lt;p&gt;P({X=x}且A)=P({X=x})P(A)=PX(x)P(A)，对随机变量 X 的一切取值 X=x 都成立。&lt;/p&gt;
+&lt;p&gt;同时我们再拿出一个联合概率和条件概念的关系式：&lt;/p&gt;
+&lt;p&gt;P({X=x}且A)=PX|A(x)P(A)&lt;/p&gt;
+&lt;p&gt;我们把上下这两个式子结合起来看，就有了：&lt;/p&gt;
+&lt;p&gt;PX(x)P(A)=PX|A(x)P(A)⇒PX(x)=PX|A(x)&lt;/p&gt;
+&lt;p&gt;因此，PX(x)=PX|A(x) 对于随机变量 X 的一切取值恒成立，就是随机变量 X 和事件 A 满足独立性的等价条件，即无条件分布列和条件分布列完全相等。&lt;/p&gt;
+&lt;h4 id=&#34;随机变量之间的独立性&#34;&gt;
+  随机变量之间的独立性
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e4%b9%8b%e9%97%b4%e7%9a%84%e7%8b%ac%e7%ab%8b%e6%80%a7&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;这个时候，如果我们把上面的事件 A 看成是另一个随机变量 Y 的取值，就能顺手得到了随机变量 X 和随机变量 Y 之间相互独立需要满足的条件：&lt;/p&gt;
+&lt;p&gt;即：PX,Y(x,y)=pX(x)pY(y)，对于任意的取值 x 和取值 y 都成立，换言之，也就是事件 {X=x} 和 {Y=y} 相互独立。&lt;/p&gt;
+&lt;p&gt;然后再通过条件概率和联合概率的式子 pX,Y(x,y)=pX|Y(x|y)pY(y) 进行转换，最终我们就得到了：&lt;/p&gt;
+&lt;p&gt;pX|Y(x|y)=pX(x) 对于一切取值 x 和满足 pY(y)&amp;gt;0 的取值 y 都成立。&lt;/p&gt;
+&lt;p&gt;其实道理也是一样的，独立性意味着随机变量 Y 的取值，不会给随机变量 X 的取值提供任何额外的信息。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量（上）：联合、边缘与条件</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/</link>
+      <pubDate>Sun, 22 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/</guid>
+      <description>&lt;h3 id=&#34;试验中引入多个随机变量&#34;&gt;
+  试验中引入多个随机变量
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%af%95%e9%aa%8c%e4%b8%ad%e5%bc%95%e5%85%a5%e5%a4%9a%e4%b8%aa%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;前两篇我们讨论的离散型和连续型随机变量都是单一变量，然而在现实当中，一个试验常常会涉及到多个随机变量。所谓多个随机变量是指在同一个试验结果之下产生的多个随机变量。这些随机变量的取值是由试验结果确定的，因此它们的取值会存在相互关联。这里我们先以离散型随机变量为例，将离散型随机变量的分布列和期望推广到多个随机变量的情况，并且进一步在此基础上讨论多元随机变量条件和独立的重要概念。&lt;/p&gt;
+&lt;p&gt;好了，此刻我们假设试验中不再只有一个随机变量，而是两个随机变量 X 和 Y，同时描述他们俩的取值概率，我们用什么方式？&lt;/p&gt;
+&lt;h3 id=&#34;联合分布列&#34;&gt;
+  联合分布列
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%81%94%e5%90%88%e5%88%86%e5%b8%83%e5%88%97&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;基于之前讲过的离散型随机变量分布列的概念，这里为多元随机变量引入联合分布列，用 pX,Y 对其进行表示。设 (x,y) 是随机变量 X 和 Y 的一组可能取值。因此对应的 (x,y) 的概率质量就定义为事件 {X=x,Y=y} 的概率：&lt;/p&gt;
+&lt;p&gt;PX,Y(x,y)=P({X=x,Y=y})，也就是同时满足事件 {X=x} 和 {Y=y} 的概率。那么首先，来实际看一个联合分布列的表示。很明显，我们可以用一个二维表格来表示随机变量 X 和 Y 的联合分布列：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/bfe9fb60-b667-11e9-96e0-d90b4d8f55a3&#34; alt=&#34;图1.多元随机变量的联合分布列&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;从这张表出发，就可以把联合分布列中所有的知识点都梳理一遍：&lt;/p&gt;
+&lt;p&gt;第一，可以从图中获得随机变量 X 和 Y 的任意一组取值的联合概率，例如：PX,Y(x3,y2)=P(X=x3,Y=y2)=3/20&lt;/p&gt;
+&lt;p&gt;第二，对于由随机变量 X 和 Y 构成的任意事件集合也是一样的，例如定义事件集合 A={(x1,y2),(x3,y2),(x4,y4)}，那么很显然，我们直接就能从联合分布列中计算出事件集合的总概率：&lt;/p&gt;
+&lt;p&gt;P((X,Y)∈A)=∑(x,y)∈ApX,Y(x,y)=1/20+3/20+1/20=5/20&lt;/p&gt;
+&lt;p&gt;第三，也是最朴实的一点，我们把二维表中所有的联合概率进行相加，得到的结果必然是 1，这也满足概率的归一性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>连续型随机变量：分布与数字特征</title>
+      <link>https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</link>
+      <pubDate>Sat, 21 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</guid>
+      <description>&lt;p&gt;在上一篇里，介绍了离散型随机变量，实际上，取值于连续区域的随机变量的应用领域也是十分普遍的。比如汽车行驶的速度、设备连续正常运行的时间等，这些在实际应用中都非常广泛，连续型随机变量能够刻画一些离散型随机变量无法描述的问题。&lt;/p&gt;
+&lt;h3 id=&#34;概率密度函数&#34;&gt;
+  概率密度函数
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%a6%82%e7%8e%87%e5%af%86%e5%ba%a6%e5%87%bd%e6%95%b0&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;在连续型随机变量的讨论范围中，随机变量由离散的变为了实轴上的连续值，那么与离散型随机变量的分布列以及 PMF 函数相对应，我们就有了连续型随机变量相类似的新概念：概率密度函数 PDF，二者在概念上是完全相对应的。&lt;/p&gt;
+&lt;p&gt;我们回顾一下前面在讲离散型随机变量分布列时所使用的一张图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/6876baf0-b46c-11e9-af8d-9f271adeee80&#34; alt=&#34;图1.离散型随机变量的分布列&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过将三个事件所对应的概率值进行相加，就能得到这个事件集合所对应的总的概率：&lt;/p&gt;
+&lt;p&gt;P(X∈S)=∑x∈SpX(x)=PX(1)+PX(2)+PX(3)&lt;/p&gt;
+&lt;p&gt;而连续型随机变量和离散型随机变量最明显的不同点是，连续型随机变量的个数是无限的、不可数的，不是像这样直接简单相加，而是在实轴的区间范围内，对概率密度函数进行积分运算。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/854303a0-b46c-11e9-af8d-9f271adeee80&#34; alt=&#34;图2.连续型随机变量概率密度函数以及积分运算&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们要对概率密度函数的特殊性进行强调：&lt;/p&gt;
+&lt;p&gt;第一：实数轴上单个点的概率密度函数 PDF 取值 fX(x) 不是概率，而是概率律，因此他的取值是可以大于 1 的。&lt;/p&gt;
+&lt;p&gt;第二：连续型随机变量的概率，我们一般讨论的是在一个区域内取值的概率，而不是某个单点的概率值。实际上，在连续区间内讨论单个点是没有意义的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>离散型随机变量：分布与数字特征</title>
+      <link>https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</link>
+      <pubDate>Fri, 20 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</guid>
+      <description>&lt;h3 id=&#34;从事件到随机变量&#34;&gt;
+  从事件到随机变量
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%8e%e4%ba%8b%e4%bb%b6%e5%88%b0%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;在前面两篇内容中，我们介绍了事件概率的一些基本概念，给大家找了找概率的感觉，对于“试验”、“试验结果”、“事件发生的概率”等等重要概念有了直观的认识，那么我们进一步来讨论一个新的概念。&lt;/p&gt;
+&lt;p&gt;我们可以把某一次具体试验中所有可能出现的结果构成一个样本空间，对于样本空间中的每一个可能的试验结果，我们去将他关联到一个特定的数。这种试验结果与数的对应关系就形成了&lt;strong&gt;随机变量&lt;/strong&gt;，将试验结果所对应的数称为随机变量的取值。这里就是接下来要讨论的重要内容。&lt;/p&gt;
+&lt;p&gt;请注意这个概念中的一个关键点，随机变量如何取值？他可以直接就是试验的结果取值，比如“抛掷骰子的结果点数为 5”。&lt;/p&gt;
+&lt;p&gt;但是，随机变量更多的是这种情况，比如随机变量可以是“连续抛掷硬币 10 次，其中硬币正面出现的次数”，或者是“转了一道弯”的映射值：我们把骰子连续抛掷两次，随机变量对应连续两次试验中的最大值或者点数之和，这就是映射的情况。但是无论如何，对于随机变量，都必须要明确对应具体的取值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/5d01f2c0-b421-11e9-a960-5951e3207033&#34; alt=&#34;图1.随机变量表示试验结果与数的对应关系&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

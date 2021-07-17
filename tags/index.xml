@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/</link>
+    <description>Recent content in Tags on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Sat, 10 Jul 2021 10:14:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的世界</title>
+      <link>https://cosmolei.github.io/tags/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/</link>
+      <pubDate>Sat, 10 Jul 2021 10:14:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>读书</title>
+      <link>https://cosmolei.github.io/tags/%E8%AF%BB%E4%B9%A6/</link>
+      <pubDate>Sat, 10 Jul 2021 10:14:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E8%AF%BB%E4%B9%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>surface</title>
+      <link>https://cosmolei.github.io/tags/surface/</link>
+      <pubDate>Thu, 10 Jun 2021 17:17:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/surface/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://cosmolei.github.io/tags/ubuntu/</link>
+      <pubDate>Thu, 10 Jun 2021 17:17:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debug</title>
+      <link>https://cosmolei.github.io/tags/debug/</link>
+      <pubDate>Thu, 15 Apr 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/debug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://cosmolei.github.io/tags/python/</link>
+      <pubDate>Thu, 15 Apr 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vscode</title>
+      <link>https://cosmolei.github.io/tags/vscode/</link>
+      <pubDate>Thu, 15 Apr 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/vscode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nodejs</title>
+      <link>https://cosmolei.github.io/tags/nodejs/</link>
+      <pubDate>Mon, 22 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>npm</title>
+      <link>https://cosmolei.github.io/tags/npm/</link>
+      <pubDate>Mon, 22 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>verdaccio</title>
+      <link>https://cosmolei.github.io/tags/verdaccio/</link>
+      <pubDate>Mon, 22 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/verdaccio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node_exporter</title>
+      <link>https://cosmolei.github.io/tags/node_exporter/</link>
+      <pubDate>Tue, 09 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/node_exporter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://cosmolei.github.io/tags/Prometheus/</link>
+      <pubDate>Tue, 09 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/Prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>terminal</title>
+      <link>https://cosmolei.github.io/tags/terminal/</link>
+      <pubDate>Mon, 01 Mar 2021 22:09:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/terminal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emqx</title>
+      <link>https://cosmolei.github.io/tags/emqx/</link>
+      <pubDate>Wed, 24 Feb 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/emqx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kuiper</title>
+      <link>https://cosmolei.github.io/tags/kuiper/</link>
+      <pubDate>Wed, 24 Feb 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/kuiper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>物联网</title>
+      <link>https://cosmolei.github.io/tags/%E7%89%A9%E8%81%94%E7%BD%91/</link>
+      <pubDate>Wed, 24 Feb 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E7%89%A9%E8%81%94%E7%BD%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>https://cosmolei.github.io/tags/tmux/</link>
+      <pubDate>Sun, 21 Feb 2021 22:40:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Openstack</title>
+      <link>https://cosmolei.github.io/tags/Openstack/</link>
+      <pubDate>Wed, 13 Jan 2021 15:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/Openstack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://cosmolei.github.io/tags/grafana/</link>
+      <pubDate>Thu, 10 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://cosmolei.github.io/tags/go/</link>
+      <pubDate>Wed, 09 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://cosmolei.github.io/tags/golang/</link>
+      <pubDate>Wed, 09 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://cosmolei.github.io/tags/Elasticsearch/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/Elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>es</title>
+      <link>https://cosmolei.github.io/tags/es/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/es/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>merge</title>
+      <link>https://cosmolei.github.io/tags/merge/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/merge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>https://cosmolei.github.io/tags/oracle/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>全文检索</title>
+      <link>https://cosmolei.github.io/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://cosmolei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>https://cosmolei.github.io/tags/k8s/</link>
+      <pubDate>Thu, 07 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://cosmolei.github.io/tags/kubernetes/</link>
+      <pubDate>Thu, 07 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://cosmolei.github.io/tags/postgresql/</link>
+      <pubDate>Mon, 06 Apr 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IO</title>
+      <link>https://cosmolei.github.io/tags/IO/</link>
+      <pubDate>Sat, 06 Apr 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/IO/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://cosmolei.github.io/tags/java/</link>
+      <pubDate>Sat, 06 Apr 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://cosmolei.github.io/tags/git/</link>
+      <pubDate>Fri, 22 Mar 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数学</title>
+      <link>https://cosmolei.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Wed, 25 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>机器学习</title>
+      <link>https://cosmolei.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 25 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

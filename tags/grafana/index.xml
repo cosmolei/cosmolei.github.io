@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grafana on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/grafana/</link>
+    <description>Recent content in grafana on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Thu, 10 Dec 2020 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grafana免登录</title>
+      <link>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Thu, 10 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</guid>
+      <description>&lt;p&gt;在ubuntu下，grafana以systemctl管理的service的方式运行，修改默认环境变量配置文件：&lt;/p&gt;
+&lt;p&gt;/etc/default/grafana-server文件&lt;/p&gt;
+&lt;p&gt;增加以下环境变量配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GF_AUTH_PROXY_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+GF_AUTH_ANONYMOUS_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

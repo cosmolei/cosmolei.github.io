@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Thu, 07 May 2020 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos7 kubernetes搭建</title>
+      <link>https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Thu, 07 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;h3 id=&#34;环境准备&#34;&gt;
+  环境准备
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;机器环境&#34;&gt;
+  机器环境
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9c%ba%e5%99%a8%e7%8e%af%e5%a2%83&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;节点CPU核数&amp;gt;=2&lt;/p&gt;
+&lt;p&gt;DNS网络&lt;/p&gt;
+&lt;p&gt;linux内核&amp;gt;4以上，Centos 7 内核默认是3.10.0&lt;/p&gt;
+&lt;p&gt;准备3台虚拟机环境&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kubernetes(一)</title>
+      <link>https://cosmolei.github.io/posts/kubernetes%E4%B8%80/</link>
+      <pubDate>Wed, 06 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/kubernetes%E4%B8%80/</guid>
+      <description>&lt;h3 id=&#34;pod底层核心原理&#34;&gt;
+  pod底层核心原理
+  &lt;a class=&#34;anchor&#34; href=&#34;#pod%e5%ba%95%e5%b1%82%e6%a0%b8%e5%bf%83%e5%8e%9f%e7%90%86&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;pause容器共享网络，本地容器相互访问只需要使用localhost来访问，不需要ip地址。&lt;/p&gt;
+&lt;p&gt;每一个pod里都有pause容器。&lt;/p&gt;
+&lt;p&gt;pod内部的容器没有ip地址。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建pod后，会先创建pause容器。pause容器先于业务容器创建。&lt;/li&gt;
+&lt;li&gt;pause容器用来共享pod中所有容器的网络，存储。&lt;/li&gt;
+&lt;li&gt;pod中所有容器互相之间的访问，只需要使用localhost访问即可，相当于访问本地服务一样。&lt;/li&gt;
+&lt;li&gt;一个pod只能在一个物理机上运行，不能分裂。一个物理机上可以部署多个pod。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;pod是K8s中的最小单位，一个Pod有一个或多个容器组成。&lt;/p&gt;
+&lt;p&gt;pod用来做集群，只需要部署多个内容相同的pod。&lt;/p&gt;
+&lt;p&gt;pod一旦当机，就不存在了（生命周期短）。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

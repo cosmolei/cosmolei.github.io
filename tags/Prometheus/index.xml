@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prometheus on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/Prometheus/</link>
+    <description>Recent content in Prometheus on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Tue, 09 Mar 2021 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/Prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prometheus node_exporter网络指标</title>
+      <link>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</link>
+      <pubDate>Tue, 09 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</guid>
+      <description>&lt;p&gt;node_exporter中的网络相关指标由node_network前缀开头。&lt;/p&gt;
+&lt;p&gt;我们可以通过访问node_exporter的服务端口，直接查看该节点的各项指标：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/image-20210309172048923.png&#34; alt=&#34;image-20210309172048923&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;其中，常用指标有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node_network_receive_bytes_total：网卡上传累计字节数&lt;/li&gt;
+&lt;li&gt;node_network_transmit_bytes_total：网卡下载累计字节数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中选项device代表每个网卡。&lt;/p&gt;
+&lt;p&gt;通过Prometheus计算上传速率/下载速率的查询语句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;上传速率：irate(node_network_transmit_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载速率：irate(node_network_receive_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;device : 代表网卡&lt;/p&gt;
+&lt;p&gt;irate : 分组函数，取的是在指定时间范围内的最近两个数据点来算速率&lt;/p&gt;
+&lt;p&gt;[1m] : 分组的时长&lt;/p&gt;
+&lt;p&gt;by(instance,job) : 代表按job、instance分组&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>grafana免登录</title>
+      <link>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Thu, 10 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</guid>
+      <description>&lt;p&gt;在ubuntu下，grafana以systemctl管理的service的方式运行，修改默认环境变量配置文件：&lt;/p&gt;
+&lt;p&gt;/etc/default/grafana-server文件&lt;/p&gt;
+&lt;p&gt;增加以下环境变量配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GF_AUTH_PROXY_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+GF_AUTH_ANONYMOUS_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>安装部署prometheus</title>
+      <link>https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/</link>
+      <pubDate>Mon, 07 Dec 2020 17:17:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/</guid>
+      <description>&lt;h3 id=&#34;安装步骤&#34;&gt;
+  安装步骤
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%ae%89%e8%a3%85%e6%ad%a5%e9%aa%a4&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;一安装prometheus&#34;&gt;
+  一、安装prometheus
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%b8%80%e5%ae%89%e8%a3%85prometheus&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;部署路径：/usr/local/prometheus&lt;/p&gt;
+&lt;p&gt;服务文件：/usr/lib/systemd/system/prometheus.service&lt;/p&gt;
+&lt;p&gt;部署过程:&lt;/p&gt;
+&lt;h5 id=&#34;1-解压文件复制到指定路径&#34;&gt;
+  1. 解压文件，复制到指定路径
+  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e8%a7%a3%e5%8e%8b%e6%96%87%e4%bb%b6%e5%a4%8d%e5%88%b6%e5%88%b0%e6%8c%87%e5%ae%9a%e8%b7%af%e5%be%84&#34;&gt;#&lt;/a&gt;
+&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;tar zxvf prometheus-2.22.2.linux-amd64.tar.gz
+mv prometheus-2.22.2.linux-amd64 prometheus
+cp -r prometheus /usr/local/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;2-创建service服务文件&#34;&gt;
+  2. 创建service服务文件
+  &lt;a class=&#34;anchor&#34; href=&#34;#2-%e5%88%9b%e5%bb%baservice%e6%9c%8d%e5%8a%a1%e6%96%87%e4%bb%b6&#34;&gt;#&lt;/a&gt;
+&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vim /usr/lib/systemd/system/prometheus.service
+
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Unit&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+Description&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Prometheus
+After&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;network.target
+ 
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Service&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+ExecStart&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/local/prometheus/prometheus --config.file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/local/prometheus/prometheus.yml --storage.tsdb.path&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/data/prometheus --storage.tsdb.retention.time&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;180d --storage.tsdb.retention.size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;29TB
+User&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;root
+
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Install&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+WantedBy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中，执行命令涉及的参数如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;config.file：配置文件路径。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.path：tsdb存储路径，默认是相对于执行路径的/data目录。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.retention.time：数据保存的最长时间，这里是180天。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.retention.size：数据保存的最大量值，这里最大保存29TB的数据，再有更多的数据，则会删除最早的历史数据来腾出空间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;加入开机启动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl enable prometheus
+systemctl start prometheus
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

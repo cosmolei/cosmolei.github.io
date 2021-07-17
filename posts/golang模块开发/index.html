@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="[[golang]]
+golang模块开发流程：
+
+
+创建项目目录
+$ mkdir myapp
+$ cd myapp
+
+
+模块初始化， 会生成go.mod文件
+$ go mod init myapp
+
+
+创建main入口文件
+// 文件名随意，但package要是main
+package main
+
+import &#34;fmt&#34;
+
+func main() {
+	fmt.Println(&#34;Welcome&#34;)
+}
+
+
+引入第三方库之后，执行go mod vendor下载
+package main
+
+import (
+	&#34;fmt&#34;
+	&#34;gopkg.in/alecthomas/kingpin.v2&#34;
+)
+
+func main() {
+	kingpin.Parse()
+	fmt.Println(&#34;Welcome&#34;)
+}
+在代码中引入包后执行，会主动下载包
+$ go mod vendor
+go: finding module for package gopkg.in/alecthomas/kingpin.v2
+go: found gopkg.in/alecthomas/kingpin.v2 in gopkg.in/alecthomas/kingpin.v2 v2.2.6
+go: finding module for package github.com/alecthomas/units
+go: finding module for package github.com/alecthomas/template
+go: downloading github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+go: found github.com/alecthomas/template in github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+go: found github.com/alecthomas/units in github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="golang模块开发" />
+<meta property="og:description" content="[[golang]]
+golang模块开发流程：
+
+
+创建项目目录
+$ mkdir myapp
+$ cd myapp
+
+
+模块初始化， 会生成go.mod文件
+$ go mod init myapp
+
+
+创建main入口文件
+// 文件名随意，但package要是main
+package main
+
+import &#34;fmt&#34;
+
+func main() {
+	fmt.Println(&#34;Welcome&#34;)
+}
+
+
+引入第三方库之后，执行go mod vendor下载
+package main
+
+import (
+	&#34;fmt&#34;
+	&#34;gopkg.in/alecthomas/kingpin.v2&#34;
+)
+
+func main() {
+	kingpin.Parse()
+	fmt.Println(&#34;Welcome&#34;)
+}
+在代码中引入包后执行，会主动下载包
+$ go mod vendor
+go: finding module for package gopkg.in/alecthomas/kingpin.v2
+go: found gopkg.in/alecthomas/kingpin.v2 in gopkg.in/alecthomas/kingpin.v2 v2.2.6
+go: finding module for package github.com/alecthomas/units
+go: finding module for package github.com/alecthomas/template
+go: downloading github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+go: found github.com/alecthomas/template in github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+go: found github.com/alecthomas/units in github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-09T14:50:32+08:00" />
+<meta property="article:modified_time" content="2020-12-09T14:50:32+08:00" />
+
+<title>golang模块开发 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>golang模块开发</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/">
+    下一页<br>grafana免登录
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/">
+      上一页<br>安装部署prometheus
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">golang模块开发</a>
+  </h1>
+  
+  <h5>2020-12-09</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/go/">go</a>, 
+      <a href="/tags/golang/">golang</a>
+  </div>
+  
+
+
+
+
+  <p><p>[[golang]]</p>
+<p>golang模块开发流程：</p>
+<ol>
+<li>
+<p>创建项目目录</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir myapp
+$ cd myapp
+</code></pre></div></li>
+<li>
+<p>模块初始化， 会生成go.mod文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ go mod init myapp
+</code></pre></div></li>
+<li>
+<p>创建main入口文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 文件名随意，但package要是main
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Welcome&#34;</span>)
+}
+</code></pre></div></li>
+<li>
+<p>引入第三方库之后，执行go mod vendor下载</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;gopkg.in/alecthomas/kingpin.v2&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">kingpin</span>.<span style="color:#a6e22e">Parse</span>()
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Welcome&#34;</span>)
+}
+</code></pre></div><p>在代码中引入包后执行，会主动下载包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ go mod vendor
+go: finding module <span style="color:#66d9ef">for</span> package gopkg.in/alecthomas/kingpin.v2
+go: found gopkg.in/alecthomas/kingpin.v2 in gopkg.in/alecthomas/kingpin.v2 v2.2.6
+go: finding module <span style="color:#66d9ef">for</span> package github.com/alecthomas/units
+go: finding module <span style="color:#66d9ef">for</span> package github.com/alecthomas/template
+go: downloading github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+go: found github.com/alecthomas/template in github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+go: found github.com/alecthomas/units in github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+</code></pre></div></li>
+</ol></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/">
+    下一页<br>grafana免登录
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/">
+      上一页<br>安装部署prometheus
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

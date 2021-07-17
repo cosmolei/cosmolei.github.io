@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  试验中引入多个随机变量
+  #
+
+前两篇我们讨论的离散型和连续型随机变量都是单一变量，然而在现实当中，一个试验常常会涉及到多个随机变量。所谓多个随机变量是指在同一个试验结果之下产生的多个随机变量。这些随机变量的取值是由试验结果确定的，因此它们的取值会存在相互关联。这里我们先以离散型随机变量为例，将离散型随机变量的分布列和期望推广到多个随机变量的情况，并且进一步在此基础上讨论多元随机变量条件和独立的重要概念。
+好了，此刻我们假设试验中不再只有一个随机变量，而是两个随机变量 X 和 Y，同时描述他们俩的取值概率，我们用什么方式？
+
+  联合分布列
+  #
+
+基于之前讲过的离散型随机变量分布列的概念，这里为多元随机变量引入联合分布列，用 pX,Y 对其进行表示。设 (x,y) 是随机变量 X 和 Y 的一组可能取值。因此对应的 (x,y) 的概率质量就定义为事件 {X=x,Y=y} 的概率：
+PX,Y(x,y)=P({X=x,Y=y})，也就是同时满足事件 {X=x} 和 {Y=y} 的概率。那么首先，来实际看一个联合分布列的表示。很明显，我们可以用一个二维表格来表示随机变量 X 和 Y 的联合分布列：
+
+从这张表出发，就可以把联合分布列中所有的知识点都梳理一遍：
+第一，可以从图中获得随机变量 X 和 Y 的任意一组取值的联合概率，例如：PX,Y(x3,y2)=P(X=x3,Y=y2)=3/20
+第二，对于由随机变量 X 和 Y 构成的任意事件集合也是一样的，例如定义事件集合 A={(x1,y2),(x3,y2),(x4,y4)}，那么很显然，我们直接就能从联合分布列中计算出事件集合的总概率：
+P((X,Y)∈A)=∑(x,y)∈ApX,Y(x,y)=1/20&#43;3/20&#43;1/20=5/20
+第三，也是最朴实的一点，我们把二维表中所有的联合概率进行相加，得到的结果必然是 1，这也满足概率的归一性。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="多元随机变量（上）：联合、边缘与条件" />
+<meta property="og:description" content="
+  试验中引入多个随机变量
+  #
+
+前两篇我们讨论的离散型和连续型随机变量都是单一变量，然而在现实当中，一个试验常常会涉及到多个随机变量。所谓多个随机变量是指在同一个试验结果之下产生的多个随机变量。这些随机变量的取值是由试验结果确定的，因此它们的取值会存在相互关联。这里我们先以离散型随机变量为例，将离散型随机变量的分布列和期望推广到多个随机变量的情况，并且进一步在此基础上讨论多元随机变量条件和独立的重要概念。
+好了，此刻我们假设试验中不再只有一个随机变量，而是两个随机变量 X 和 Y，同时描述他们俩的取值概率，我们用什么方式？
+
+  联合分布列
+  #
+
+基于之前讲过的离散型随机变量分布列的概念，这里为多元随机变量引入联合分布列，用 pX,Y 对其进行表示。设 (x,y) 是随机变量 X 和 Y 的一组可能取值。因此对应的 (x,y) 的概率质量就定义为事件 {X=x,Y=y} 的概率：
+PX,Y(x,y)=P({X=x,Y=y})，也就是同时满足事件 {X=x} 和 {Y=y} 的概率。那么首先，来实际看一个联合分布列的表示。很明显，我们可以用一个二维表格来表示随机变量 X 和 Y 的联合分布列：
+
+从这张表出发，就可以把联合分布列中所有的知识点都梳理一遍：
+第一，可以从图中获得随机变量 X 和 Y 的任意一组取值的联合概率，例如：PX,Y(x3,y2)=P(X=x3,Y=y2)=3/20
+第二，对于由随机变量 X 和 Y 构成的任意事件集合也是一样的，例如定义事件集合 A={(x1,y2),(x3,y2),(x4,y4)}，那么很显然，我们直接就能从联合分布列中计算出事件集合的总概率：
+P((X,Y)∈A)=∑(x,y)∈ApX,Y(x,y)=1/20&#43;3/20&#43;1/20=5/20
+第三，也是最朴实的一点，我们把二维表中所有的联合概率进行相加，得到的结果必然是 1，这也满足概率的归一性。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-22T14:50:32+08:00" />
+<meta property="article:modified_time" content="2018-07-22T14:50:32+08:00" />
+
+<title>多元随机变量（上）：联合、边缘与条件 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>多元随机变量（上）：联合、边缘与条件</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#试验中引入多个随机变量">试验中引入多个随机变量</a></li>
+            <li><a href="#联合分布列">联合分布列</a></li>
+            <li><a href="#边缘分布列">边缘分布列</a></li>
+            <li><a href="#条件分布列">条件分布列</a></li>
+            <li><a href="#集中梳理核心的概率理论">集中梳理核心的概率理论</a></li>
+            <li><a href="#条件期望与全期望">条件期望与全期望</a></li>
+            <li><a href="#小结">小结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/">
+    下一页<br>多元随机变量（下）：独立与相关
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+      上一页<br>连续型随机变量：分布与数字特征
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/">多元随机变量（上）：联合、边缘与条件</a>
+  </h1>
+  
+  <h5>2018-07-22</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">机器学习中的数学概率统计</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>, 
+      <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="试验中引入多个随机变量">
+  试验中引入多个随机变量
+  <a class="anchor" href="#%e8%af%95%e9%aa%8c%e4%b8%ad%e5%bc%95%e5%85%a5%e5%a4%9a%e4%b8%aa%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f">#</a>
+</h3>
+<p>前两篇我们讨论的离散型和连续型随机变量都是单一变量，然而在现实当中，一个试验常常会涉及到多个随机变量。所谓多个随机变量是指在同一个试验结果之下产生的多个随机变量。这些随机变量的取值是由试验结果确定的，因此它们的取值会存在相互关联。这里我们先以离散型随机变量为例，将离散型随机变量的分布列和期望推广到多个随机变量的情况，并且进一步在此基础上讨论多元随机变量条件和独立的重要概念。</p>
+<p>好了，此刻我们假设试验中不再只有一个随机变量，而是两个随机变量 X 和 Y，同时描述他们俩的取值概率，我们用什么方式？</p>
+<h3 id="联合分布列">
+  联合分布列
+  <a class="anchor" href="#%e8%81%94%e5%90%88%e5%88%86%e5%b8%83%e5%88%97">#</a>
+</h3>
+<p>基于之前讲过的离散型随机变量分布列的概念，这里为多元随机变量引入联合分布列，用 pX,Y 对其进行表示。设 (x,y) 是随机变量 X 和 Y 的一组可能取值。因此对应的 (x,y) 的概率质量就定义为事件 {X=x,Y=y} 的概率：</p>
+<p>PX,Y(x,y)=P({X=x,Y=y})，也就是同时满足事件 {X=x} 和 {Y=y} 的概率。那么首先，来实际看一个联合分布列的表示。很明显，我们可以用一个二维表格来表示随机变量 X 和 Y 的联合分布列：</p>
+<p><img src="https://images.gitbook.cn/bfe9fb60-b667-11e9-96e0-d90b4d8f55a3" alt="图1.多元随机变量的联合分布列" /></p>
+<p>从这张表出发，就可以把联合分布列中所有的知识点都梳理一遍：</p>
+<p>第一，可以从图中获得随机变量 X 和 Y 的任意一组取值的联合概率，例如：PX,Y(x3,y2)=P(X=x3,Y=y2)=3/20</p>
+<p>第二，对于由随机变量 X 和 Y 构成的任意事件集合也是一样的，例如定义事件集合 A={(x1,y2),(x3,y2),(x4,y4)}，那么很显然，我们直接就能从联合分布列中计算出事件集合的总概率：</p>
+<p>P((X,Y)∈A)=∑(x,y)∈ApX,Y(x,y)=1/20+3/20+1/20=5/20</p>
+<p>第三，也是最朴实的一点，我们把二维表中所有的联合概率进行相加，得到的结果必然是 1，这也满足概率的归一性。</p>
+<h3 id="边缘分布列">
+  边缘分布列
+  <a class="anchor" href="#%e8%be%b9%e7%bc%98%e5%88%86%e5%b8%83%e5%88%97">#</a>
+</h3>
+<p>如果我们把事件集合再设置的讲究一些，例如把事件集合 A 设置为表中的第一列，即 A={(x1,y1),(x1,y2),(x1,y3)}，此时我们计算出来的事件集合 A 的总概率也就是概率 pX(x1)=P(X=x1)，对于这个概率，我们把它称为边缘概率：</p>
+<p>PX(x1)=1/20+1/20+1/20+0=3/20</p>
+<p>当然，更进一步，如果我们把随机变量 X 所有取值的边缘概率都计算出来，就能得到随机变量 X 的边缘分布列：</p>
+<p>pX(x)=P(X=x)=∑yP(X=x,Y=y)=∑yPX,Y(x,y)</p>
+<p>看着公式头疼对吧，简单点，我们先求随机变量 X 每一个取值的边缘概率，就是把对应列的联合概率全部相加，然后再把 X=xi 的所有边缘概率放在一起，就是随机变量 X 的边缘分布列。</p>
+<p>|取值 | x1 | x2 |x3|x4| |&mdash;|&mdash;|&mdash;|&mdash;|&mdash;| | PX(x) | 320 | 320 | 820 | 620 |</p>
+<p>当然，随机变量 Y 的边缘分布也是同理：</p>
+<p>pY(y)=P(Y=y)=∑xP(X=x,Y=y)=∑xPX,Y(x,y)</p>
+<p>这里我们就不再赘述了。</p>
+<p>边缘概率和边缘分布列的 <strong>“边缘”</strong> 是什么含义？一句话描述就是，随机变量 X 的边缘分布列及其任意一个边缘概率的取值，都是只与自己有关，而与其他的随机变量（这里是随机变量 Y）无关了。</p>
+<p>而对应的联合分布列和联合概率中的<strong>联合</strong>二字，意思也很明显，这里面的取值需由所有的随机变量，即由随机变量 X 和 Y 共同决定。</p>
+<h3 id="条件分布列">
+  条件分布列
+  <a class="anchor" href="#%e6%9d%a1%e4%bb%b6%e5%88%86%e5%b8%83%e5%88%97">#</a>
+</h3>
+<p>在前面我们学习了，条件可以给某些事件提供补充信息，由于随机变量的取值也是一种事件。同样的，条件也可以对随机变量取某些值提供补充信息。因此我们是不是能引入随机变量的条件分布列呢？当然是可以的。</p>
+<p>条件可以指某个事件的发生，当然也可以包含其他随机变量的取值。</p>
+<p>还是来看一个风格上我们非常熟悉的图：</p>
+<p><img src="https://images.gitbook.cn/a2130e90-b669-11e9-9502-4d2d1c5bfcd4" alt="图2.条件分布列的概念示意图" /></p>
+<p>可以发现，在某个事件 A 发生的情况下，随机变量 X 发生的条件分布列很容易给出，还记得条件概率的表达式么，把它拿过来直接套用过来就可以了。</p>
+<p>pX|A(x)=P(X=x|A)=P({X=x}∩A)P(A)</p>
+<p>感觉是不是很熟悉？但是有些关键点我还是要再提一下，首先对于随机变量 X 不同的取值 x1,x2,x3,&hellip;,xn，{X=x}∩A 彼此之间互不相容，并且他们的并集是整个事件 A，当然上面的示意图里。随机变量 X 的取值没有完全覆盖事件 A，因为这只是一个示例而已，没有画完全。</p>
+<p>对于这个事件 A，我们知道，它既可以对应某个事件的发生，也可以对应另外一个随机变量的具体取值。我们这里重点讨论给定另一个随机变量值的前提下的条件概率。</p>
+<p>我们还是回到试验中，试验中有两个随机变量 X 和 Y，我们假定的条件就是随机变量 Y 已经取定了一个具体的值 y，那么意味着，这个 y 值的选取可能会提供关于随机变量 X 取值的部分信息。反映在我们的条件分布列 pX|Y 中，对应来看条件分布列中的事件 A 就是随机变量的取值 {Y=y}。</p>
+<p>那么好，此时关键部分就来了，我们把上面的条件分布列的定义式 pX|A(x)=P(X=x|A)=P({X=x}∩A)P(A)中的条件事件 A，替换成随机变量的取值 Y=y，就有了：</p>
+<p>pX|Y(x|y)=P(X=x|Y=y)=P(X=x,Y=y)P(Y=y)=PX,Y(x,y)pY(y)</p>
+<p>通过这个公式，我们可以把 {Y=y} 条件下，随机变量 X 所有取值的条件概率都计算出来，就得到了在事件 {Y=y} 之下的随机变量 X 的条件分布列。</p>
+<p>最关键的其实不是这个式子，大家有没有回想起第一篇中我们重点分析过的贝叶斯公式，同样的我们把上面的式子整理一下，有：</p>
+<p>pX,Y(x,y)=pY(y)pX|Y(x|y)</p>
+<p>pX,Y(x,y)=pX(x)pY|X(y|x)</p>
+<p>这组公式非常重要，他把多个随机变量的联合概率、边缘概率和条件概率这三个概念非常完美的结合在了一起，串联了我们这节的核心内容。</p>
+<p>我们还是举上面的例子，具体对其进行计算验证：</p>
+<p><img src="https://images.gitbook.cn/334a8b30-b66b-11e9-bada-434c712b2f35" alt="图3.联合分布列举例" /></p>
+<p>我们来看看满足 {Y=y2} 的条件下，随机变量 X 的条件分布列：</p>
+<p>首先计算边缘概率 pY(y2)=1/20+1/20+3/20+2/20=7/20</p>
+<p>pX|Y(x1|y2)=pX,Y(x1,y2)pY(y2)=1/207/20=1/7</p>
+<p>pX|Y(x2|y2)=pX,Y(x2,y2)pY(y2)=1/207/20=1/7</p>
+<p>pX|Y(x3|y2)=pX,Y(x3,y2)pY(y2)=3/207/20=3/7</p>
+<p>pX|Y(x4|y2)=pX,Y(x4,y2)pY(y2)=2/207/20=2/7</p>
+<p>结合起来，我们就能观察出他的条件分布列：PX|Y(x|y2)：</p>
+<p>| 取值| x1 | x2 |x3|x4| |&mdash;|&mdash;|&mdash;|&mdash;|&mdash;| | PX(x) | 17 | 17 | 37 | 27 |</p>
+<p>我们把这个条件分布列的所有项进行相加，得到的结果为 1，当然也必须为 1 ，满足归一化的条件和要求。</p>
+<h3 id="集中梳理核心的概率理论">
+  集中梳理核心的概率理论
+  <a class="anchor" href="#%e9%9b%86%e4%b8%ad%e6%a2%b3%e7%90%86%e6%a0%b8%e5%bf%83%e7%9a%84%e6%a6%82%e7%8e%87%e7%90%86%e8%ae%ba">#</a>
+</h3>
+<p>谈到这里，我们觉得有必要停一停了，结合前面和这一节中所讲过的内容，将条件概率、联合概率、边缘概率、全概率、贝叶斯定理等内容，集中做一个梳理。</p>
+<h4 id="从条件概率及归一性起步">
+  从条件概率及归一性起步
+  <a class="anchor" href="#%e4%bb%8e%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87%e5%8f%8a%e5%bd%92%e4%b8%80%e6%80%a7%e8%b5%b7%e6%ad%a5">#</a>
+</h4>
+<p>实际上，条件分布和无条件分布基本上是一样的，唯一的差别就是条件分布存在一个事件发生的前提，其余的定理都是一样的，我们来一步一步的回顾、演进。</p>
+<p><img src="https://images.gitbook.cn/0ee9e1d0-b66d-11e9-946b-cbe58cff72ef" alt="图4.条件概率示意图" /></p>
+<p>在这幅图当中，我们绘制出了随机变量 X 构成的一个样本空间，其中 A 为其中发生的某事件。从这里，我们就得到了随机变量 X 在给定事件 A 发生的条件下的条件分布列：</p>
+<p>pX|A(x)=P(X=x|A)</p>
+<p>由概率的归一性原则，我们就能够得到：∑xpX|A(x)=1。</p>
+<h4 id="样本划分条件概率联合概率推进到边缘概率">
+  样本划分：条件概率、联合概率推进到边缘概率
+  <a class="anchor" href="#%e6%a0%b7%e6%9c%ac%e5%88%92%e5%88%86%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87%e8%81%94%e5%90%88%e6%a6%82%e7%8e%87%e6%8e%a8%e8%bf%9b%e5%88%b0%e8%be%b9%e7%bc%98%e6%a6%82%e7%8e%87">#</a>
+</h4>
+<p>我们进一步对样本空间做一个划分，让互不相容的事件 A1，A2，A3, A4 成为整个样本空间的一个分割。</p>
+<p><img src="https://images.gitbook.cn/e14b4dd0-b66d-11e9-9502-4d2d1c5bfcd4" alt="图5.对于样本空间的一个划分" /></p>
+<p>基于上面这幅图，我们有 pX(x)=∑ni=1P(Ai)pX|Ai(x)。</p>
+<p>这个式子很简单，就是一个联合概率到边缘概率的一个转换关系。大家如果觉得理解还有些困难，那是因为中间省掉了一步条件概率和联合概率的转换关系，我们把他添加进去就豁然开朗了。</p>
+<p>pX(x)=∑ni=1P(Ai∩{X=x})=∑ni=1P(Ai)pX|Ai(x)</p>
+<h4 id="更进一步在划分中再引入条件">
+  更进一步：在划分中再引入条件
+  <a class="anchor" href="#%e6%9b%b4%e8%bf%9b%e4%b8%80%e6%ad%a5%e5%9c%a8%e5%88%92%e5%88%86%e4%b8%ad%e5%86%8d%e5%bc%95%e5%85%a5%e6%9d%a1%e4%bb%b6">#</a>
+</h4>
+<p>好的，我们再继续往下走，我们在样本空间中给随机变量 X 的取值增加一个条件事件 B，同时为了展示方便，我们要求 P(B∩Ai)&gt;0</p>
+<p><img src="https://images.gitbook.cn/902b9070-b66f-11e9-bada-434c712b2f35" alt="图6.在划分中再引入条件事件" /></p>
+<p>这里再把条件事件 B 掺和进去，看上去大家会觉得很复杂，我们先看结论：</p>
+<p>pX|B(x)=∑ni=1P(Ai|B)pX|Ai∩B(x)</p>
+<p>看到规律没，我们在事件 B 的发生条件下讨论事件 {X=x} 发生的概率。那么式子的每一个组成部分都添加上条件 B 即可，等式依然是成立的，就得到了结果表达式。</p>
+<h4 id="总结整合">
+  总结整合
+  <a class="anchor" href="#%e6%80%bb%e7%bb%93%e6%95%b4%e5%90%88">#</a>
+</h4>
+<p>因为这条知识线索实在是太重要了，我们最后不厌其烦，多费口舌，再把条件概率、联合概率、边缘概率反映在一组等式中，一把看个明白：</p>
+<p>pX,Y(x,y)=pY(y)pX|Y(x|y)</p>
+<p>pX(x)=∑ypY(y)pX|Y(x)</p>
+<p>可以这么说，为什么我反反复复提了三遍这组公式，因为我觉得他在简单的形式下，包含的信息量太大了。而且关键是，他的重要性不言而喻，后续在随机过程等主题中，随处可见，不可不察啊。</p>
+<h3 id="条件期望与全期望">
+  条件期望与全期望
+  <a class="anchor" href="#%e6%9d%a1%e4%bb%b6%e6%9c%9f%e6%9c%9b%e4%b8%8e%e5%85%a8%e6%9c%9f%e6%9c%9b">#</a>
+</h3>
+<h4 id="条件期望的概念">
+  条件期望的概念
+  <a class="anchor" href="#%e6%9d%a1%e4%bb%b6%e6%9c%9f%e6%9c%9b%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
+</h4>
+<p>最后，我们再提一下条件期望和全期望的问题。</p>
+<p>条件期望和期望本质上没有任何不同，只不过用来表示权重的概率变成了条件概率而已：</p>
+<p>E[X]=∑xxp(x)</p>
+<p>E[X|A]=∑xxpX|A(x)</p>
+<p>同样，把条件事件 A，替换成随机变量的取值 {Y=y}，就有：</p>
+<p>E[X|Y=y]=∑xxpX|Y(x|y)</p>
+<h4 id="全期望的概念和公式">
+  全期望的概念和公式
+  <a class="anchor" href="#%e5%85%a8%e6%9c%9f%e6%9c%9b%e7%9a%84%e6%a6%82%e5%bf%b5%e5%92%8c%e5%85%ac%e5%bc%8f">#</a>
+</h4>
+<p>我们再来看一个全期望的概念，也是基于样本空间中的一组分割 A1，A2，A3，A4，我们基于期望的定义公式，通过全概率公式做一步变换可以得到：</p>
+<p>E[X]=∑xxpX(x)=∑xx∑ni=1P(Ai)pX|Ai(x|Ai)=∑ni=1P(Ai)∑xxpX|Ai(x|Ai)=∑ni=1P(Ai)E[X|Ai]</p>
+<p>去掉中间的推导过程，只看一头一尾就有：</p>
+<p>E[X]=∑ni=1P(Ai)E[X|Ai]</p>
+<p>当然，如果我们的事件 A 对应的是随机变量 Y 的取值，简单做一下替换即可：</p>
+<p>E[X]=∑yPY(y)E[X|Y=y]</p>
+<h4 id="由全期望再回到条件期望">
+  由全期望再回到条件期望
+  <a class="anchor" href="#%e7%94%b1%e5%85%a8%e6%9c%9f%e6%9c%9b%e5%86%8d%e5%9b%9e%e5%88%b0%e6%9d%a1%e4%bb%b6%e6%9c%9f%e6%9c%9b">#</a>
+</h4>
+<p>最后，还是那句话，有了分割 A1，A2，A3，A4，是不是觉得不掺和进去个条件事件 B 就颇感遗憾？是的，我们最后看一下基于事件 B 的条件期望：</p>
+<p>我们来看看怎么把分割和条件都表达进去，来得出条件期望 E[X|B]？很简单，我们从全期望公式出发：</p>
+<p>E[X]=∑ni=1P(Ai)E[X|Ai]</p>
+<p>每一部分都加上条件事件 B，就 ok 了。</p>
+<p>E[X|B]=∑ni=1P(Ai|B)E[X|Ai∩B]</p>
+<h3 id="小结">
+  小结
+  <a class="anchor" href="#%e5%b0%8f%e7%bb%93">#</a>
+</h3>
+<p>大家仔细揣摩一下，会发现这里面用一根很清晰的线条，把事件、随机变量、条件概率、全概率、边缘概率、条件期望、全期望、贝叶斯全部串联了起来，在这个视图下纵览全局，你会感觉有一种一览众山小的快感。</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/">
+    下一页<br>多元随机变量（下）：独立与相关
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+      上一页<br>连续型随机变量：分布与数字特征
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#试验中引入多个随机变量">试验中引入多个随机变量</a></li>
+            <li><a href="#联合分布列">联合分布列</a></li>
+            <li><a href="#边缘分布列">边缘分布列</a></li>
+            <li><a href="#条件分布列">条件分布列</a></li>
+            <li><a href="#集中梳理核心的概率理论">集中梳理核心的概率理论</a></li>
+            <li><a href="#条件期望与全期望">条件期望与全期望</a></li>
+            <li><a href="#小结">小结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="在前两篇中，我们介绍了多元随机变量的有关概念，重点围绕着多元随机变量的联合概率、条件与边缘概率分布以及独立性和相关性，阐述了多元随机变量之间的关系，这些都是多元随机变量重点需要关注和研究的问题。
+在上两篇理论知识的基础之上，我们在这篇文章里以多元正态分布作为实际例子，让大家能够更直观的理解和强化这些概念和方法。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="多元随机变量实践：聚焦多元正态分布" />
+<meta property="og:description" content="在前两篇中，我们介绍了多元随机变量的有关概念，重点围绕着多元随机变量的联合概率、条件与边缘概率分布以及独立性和相关性，阐述了多元随机变量之间的关系，这些都是多元随机变量重点需要关注和研究的问题。
+在上两篇理论知识的基础之上，我们在这篇文章里以多元正态分布作为实际例子，让大家能够更直观的理解和强化这些概念和方法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-24T14:50:32+08:00" />
+<meta property="article:modified_time" content="2018-07-24T14:50:32+08:00" />
+
+<title>多元随机变量实践：聚焦多元正态分布 | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>多元随机变量实践：聚焦多元正态分布</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#再谈相关性基于多元正态分布">再谈相关性：基于多元正态分布</a></li>
+            <li><a href="#聚焦相关系数">聚焦相关系数</a></li>
+            <li><a href="#独立和相关性的关系">独立和相关性的关系</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/">
+    下一页<br>理论基石：条件概率、独立性与贝叶斯
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/">
+      上一页<br>多元随机变量（下）：独立与相关
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/">多元随机变量实践：聚焦多元正态分布</a>
+  </h1>
+  
+  <h5>2018-07-24</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">机器学习中的数学概率统计</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>, 
+      <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+  </div>
+  
+
+
+
+
+  <p><p>在前两篇中，我们介绍了多元随机变量的有关概念，重点围绕着多元随机变量的联合概率、条件与边缘概率分布以及独立性和相关性，阐述了多元随机变量之间的关系，这些都是多元随机变量重点需要关注和研究的问题。</p>
+<p>在上两篇理论知识的基础之上，我们在这篇文章里以多元正态分布作为实际例子，让大家能够更直观的理解和强化这些概念和方法。</p>
+<h3 id="再谈相关性基于多元正态分布">
+  再谈相关性：基于多元正态分布
+  <a class="anchor" href="#%e5%86%8d%e8%b0%88%e7%9b%b8%e5%85%b3%e6%80%a7%e5%9f%ba%e4%ba%8e%e5%a4%9a%e5%85%83%e6%ad%a3%e6%80%81%e5%88%86%e5%b8%83">#</a>
+</h3>
+<p>很简单，我们举一个例子，之前我们介绍过随机变量的正态分布，这里我们引入多元随机变量的正态分布：</p>
+<p>如果向量 Z 由若干个遵从标准正态分布的独立同分布随机变量 Z1,Z2,&hellip;,Zn 组成，那么我们就说向量 Z 遵从 n 元标准正态分布。</p>
+<h4 id="二元标准正态分布">
+  二元标准正态分布
+  <a class="anchor" href="#%e4%ba%8c%e5%85%83%e6%a0%87%e5%87%86%e6%ad%a3%e6%80%81%e5%88%86%e5%b8%83">#</a>
+</h4>
+<p>为了便于讨论，我们这里主要讨论二元随机变量的情况。由随机变量 X 和 Y 组成的二元标准正态分布中，随机变量 X 和 Y 都服从均值为 0，方差为 1 的标准正态分布，并且随机变量 X 和 Y 之间的协方差为 0。其协方差矩阵为：[1001]。</p>
+<p>我们利用 Python 来生成服从二元标准正态分布的随机变量 X 和 Y，并且通过可视化的方式进行观察。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+seaborn.set()
+
+mean = np.array([0, 0])
+conv = np.array([[1, 0],
+                 [0, 1]])
+
+x, y = np.random.multivariate_normal(mean=mean, cov=conv, size=5000).T
+plt.figure(figsize=(6, 6))
+plt.plot(x, y, 'ro', alpha=0.2)
+plt.gca().axes.set_xlim(-4, 4)
+plt.gca().axes.set_ylim(-4, 4)
+plt.show()
+</code></pre><p>在代码中，我们生成了各自均值为 0，方差为 1，随机变量间的协方差为 0 的二元标准正态分布随机变量 X和 Y，一共生成 3000 组样本，我们实际观察一下可视化的结果。</p>
+<p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/61fe25a0-c1c3-11e9-bd96-63ef3b62a5b4" alt="图1.二元标准正态分布样本示意图" /></p>
+<p>从图中我们发现，在均值点（这里对应的是原点）附近，样本出现的概率较高（我们设置的样本点的透明度为 0.2，因此颜色越深意味着样本点的个数越多）。远离均值点的地方样本出现的概率较低，并且无论向任何方向，总体上概率没有表现出太大区别。</p>
+<h4 id="二元一般正态分布">
+  二元一般正态分布
+  <a class="anchor" href="#%e4%ba%8c%e5%85%83%e4%b8%80%e8%88%ac%e6%ad%a3%e6%80%81%e5%88%86%e5%b8%83">#</a>
+</h4>
+<p>我们通过调整参数，可以逐渐将二元标准正态分布变换为二元一般正态分布。我们可以调整的参数主要有以下三个方面：</p>
+<p><strong>第一：调整多个随机变量自身的均值</strong>，这样是让样本整体在二维平面上进行平移，这个很简单，我们就不多说了。</p>
+<p><strong>第二：调整随机变量 X，Y 自身的方差</strong>，当然此时我们还是保留他们互相之间彼此独立的关系，我们来观察一下样本图像的特点。</p>
+<p>与标准二元正态分布对照，我们设定随机变量 X2 的方差为 4，Y2 的方差为 0.25，对比观察一下：</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+seaborn.set()
+
+mean = np.array([0, 0])
+conv_1 = np.array([[1, 0],
+                 [0, 1]])
+
+conv_2 = np.array([[4, 0],
+                 [0, 0.25]])
+
+x_1, y_1 = np.random.multivariate_normal(mean=mean, cov=conv_1, size=3000).T
+x_2, y_2 = np.random.multivariate_normal(mean=mean, cov=conv_2, size=3000).T
+plt.plot(x_1, y_1, 'ro', alpha=0.05)
+plt.plot(x_2, y_2, 'bo', alpha=0.05)
+
+plt.gca().axes.set_xlim(-6, 6)
+plt.gca().axes.set_ylim(-6, 6)
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/0f2478b0-c1c4-11e9-82b5-b58823479541" alt="图2.彼此独立的二元非标准正态分布示意图" /></p>
+<p>从图中对比可以看出，蓝色的样本点就是调整了随机变量各自的方差，但保持随机变量 X 和 Y 之间协方差为 0 的样本分布。</p>
+<p><strong>第三：就是调整协方差。</strong> 我们保持随机变量各自的方差不变，通过改变协方差的值，来观察协方差的变换给随机变量间的相关特性带来的影响以及在图像上的反映。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+seaborn.set()
+
+fig, ax = plt.subplots(2, 2)
+mean = np.array([0,0])
+
+conv_1 = np.array([[1, 0],
+                 [0, 1]])
+
+conv_2 = np.array([[1, 0.3],
+                 [0.3, 1]])
+
+conv_3 = np.array([[1, 0.85],
+                 [0.85, 1]])
+
+conv_4 = np.array([[1, -0.85],
+                 [-0.85, 1]])
+
+x_1, y_1 = np.random.multivariate_normal(mean=mean, cov=conv_1, size=3000).T
+x_2, y_2 = np.random.multivariate_normal(mean=mean, cov=conv_2, size=3000).T
+x_3, y_3 = np.random.multivariate_normal(mean=mean, cov=conv_3, size=3000).T
+x_4, y_4 = np.random.multivariate_normal(mean=mean, cov=conv_4, size=3000).T
+
+ax[0][0].plot(x_1, y_1, 'bo', alpha=0.05)
+ax[0][1].plot(x_2, y_2, 'bo', alpha=0.05)
+ax[1][0].plot(x_3, y_3, 'bo', alpha=0.05)
+ax[1][1].plot(x_4, y_4, 'bo', alpha=0.05)
+
+plt.show()
+</code></pre><p>在代码中，我们生成了四组二元正态分布，其中第一组是作为对照用的二元标准正态分布。第二组的协方差为 0.3，第三组的协方差为 0.85，第四组的协方差为 −0.85。</p>
+<p><strong>运行结果：</strong></p>
+<p><img src="https://images.gitbook.cn/cadc3250-c1c4-11e9-8e83-732bbad28698" alt="图3.彼此相关的二元非标准正态分布对比示意图" /></p>
+<p>从运行结果中我们发现，与二元标准正态分布的样本图像呈现为圆形相比，协方差不为 0 的二元正态分布呈现为一定斜率的椭圆图像，并且协方差越大，椭圆越窄。</p>
+<p>同时协方差为正和为负，椭圆的方向是相反的，这个很容易理解，分别对应体现了正相关和负相关的关系。</p>
+<h3 id="聚焦相关系数">
+  聚焦相关系数
+  <a class="anchor" href="#%e8%81%9a%e7%84%a6%e7%9b%b8%e5%85%b3%e7%b3%bb%e6%95%b0">#</a>
+</h3>
+<p>有了生成多元正态分布随机变量的方法和可视化手段之后，我们再来从量化的角度回答前面一个小节中提到过的问题：协方差大的两个随机变量，他们之间的相关性一定就大于协方差小的随机变量吗？</p>
+<p>我们来看下面这段代码。</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+seaborn.set()
+
+fig, ax = plt.subplots(1, 2)
+mean = np.array([0,0])
+
+conv = np.array([[1, 0.85],
+                 [0.85, 1]])
+
+x_1, y_1 = np.random.multivariate_normal(mean=mean, cov=conv, size=3000).T
+x_2 = x_1*100
+y_2 = y_1*100
+
+ax[0].plot(x_1, y_1, 'bo', alpha=0.05)
+ax[1].plot(x_2, y_2, 'bo', alpha=0.05)
+
+S_1 = np.vstack((x_1, y_1))
+S_2 = np.vstack((x_2, y_2))
+print(np.cov(S_1))
+print(np.cov(S_2))
+
+plt.show()
+</code></pre><p><strong>运行结果：</strong></p>
+<pre><code>[[1.03533866 0.879386  ]
+ [0.879386   1.02916918]]
+
+[[10353.38658014  8793.8599675 ]
+ [ 8793.8599675  10291.69181821]]
+</code></pre><p>从代码中，我们首先按照协方差矩阵 [10.850.851] 生成了二元正态分布随机变量 X1 和 Y1，然后将其各自扩大 100 倍，得到新的二元正态分布随机变量 X2 和 Y2。</p>
+<p>通过对各自生成的 3000 个样本点进行计算，发现随机变量 X2 和 Y2 之间的协方差（包括各自的方差）是随机变量 X1 和 Y1 的 10000 倍，满足之前推导过的协方差的数量关系</p>
+<p>cov[X2,Y2] =cov[100X1,100Y1] =E[(100X1−100μ)(100Y1−100v)] =1002E[(X1−μ)(Y−v)]=1002cov[X1,Y1]</p>
+<p>然而，让我们再看两组随机变量的样本图像：</p>
+<p><img src="https://images.gitbook.cn/47bc1f60-c1c5-11e9-9f9f-bd390e636ac0" alt="图4.两组随机变量的样本图像" /></p>
+<p>那么，随机变量 X2 和 Y2 的相关性提升了吗？显然没有。</p>
+<p>那好，一方面说协方差越大，相关性越大；一方面又说，协方差即使大了 10000 倍，相关性也不一定大了。到底听谁的？</p>
+<p>实际上，这并不矛盾，这里主要是要告诉大家，随机变量的量纲选取的不同，会对方差和协方差的结果值带来数值上的影响，这在我们的公式推导中已经反复说明了。</p>
+<p>因此我们需要对随机变量完成标准化，进行缩放处理，具体的方法就是将随机变量除以其标准差即可。其实本质上就是让各个随机变量的方差都回到 1，通过这种方法得到的新指标为：</p>
+<p>ρXY=Cov[XσX,YσY]=Cov[X,Y]σXσY=Cov[X,Y]√V[X]√V[Y]</p>
+<p>进行标准化处理之后得到了<strong>相关系数</strong>，我们就可以放心的使用他来进行随机变量相关性的分析。</p>
+<p>有几个重要的结论希望大家能够牢记：</p>
+<p>第一：经过标准化处理之后的相关系数，他的取值介于 [−1,1] 之间，相关系数为 0，说明随机变量之间相互独立。</p>
+<p>第二：相关系数的绝对值越接近 1，随机变量之间的相关性越强，样本分布图像呈现的椭圆就越窄，如果取到 1，图像收缩为一条直线。</p>
+<p>第三：相关系数为正，随机变量正相关，呈现为右上方倾斜，为负则随机变量负相关，呈现左下方倾斜。</p>
+<p>那我们回到上面的例子中来，计算两组随机变量的相关系数：</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+
+mean = np.array([0,0])
+conv = np.array([[1, 0.85],
+                 [0.85, 1]])
+
+x_1, y_1 = np.random.multivariate_normal(mean=mean, cov=conv, size=3000).T
+x_2 = x_1*100
+y_2 = y_1*100
+
+S_1 = np.vstack((x_1, y_1))
+S_2 = np.vstack((x_2, y_2))
+
+print(np.corrcoef(S_1))
+print(np.corrcoef(S_2))
+</code></pre><p><strong>运行结果：</strong></p>
+<pre><code>[[ 1.          0.85250365]
+ [ 0.85250365  1.        ]]
+
+[[ 1.          0.85250365]
+ [ 0.85250365  1.        ]]
+</code></pre><p>程序运行的结果生成的是相关系数矩阵，两组随机变量的协方差虽然相差万倍，但经过标准化处理后，我们得到的相关系数却完全一样，这也从量化的角度证明了他们的相关程度完全一致。</p>
+<p>因此，请大家记住，比较随机变量之间的相关性，只看一个指标：那就是相关系数（而不是盯着协方差的取值），相关系数去除了不同量纲所带来的影响。相关系数的绝对值越大，相关性越强，就这一条就够了。</p>
+<h3 id="独立和相关性的关系">
+  独立和相关性的关系
+  <a class="anchor" href="#%e7%8b%ac%e7%ab%8b%e5%92%8c%e7%9b%b8%e5%85%b3%e6%80%a7%e7%9a%84%e5%85%b3%e7%b3%bb">#</a>
+</h3>
+<p>最后我们来说说独立和相关这两个概念。就是说：两组随机变量独立性和不相关是不是等价的概念？</p>
+<p>首先我们看看，如果随机变量 X 和 Y 独立，那么他们是否一定不相关？</p>
+<p>是否相关，就扣协方差是否为 0 这个判断标准。如果随机变量 X 和 Y 独立，则有 E[XY]=E[X]E[Y]，那么我们接着计算协方差:</p>
+<p>cov(X,Y)=E[(X−E[X])(Y−E[Y])] =E[XY−XE[Y]−E[X]Y+E[X]E[Y]] =E[XY]−E[X]E[Y]−E[X]E[Y]+E[X]E[Y] =E[XY]−E[X]E[Y]=0</p>
+<p>协方差为 0，满足不相关。</p>
+<p>但反过来，如果随机变量相互之间满足协方差为0，即不相关，那么一定能保证他们之间是独立的么？</p>
+<p>独立性意味着什么，意味着随机变量 X 的出现与否，不提供给随机变量 Y 取值概率额外的信息。</p>
+<p>例如，我们观察下图中分布的八个点：</p>
+<p><img src="https://images.gitbook.cn/e2ca8e20-b80a-11e9-80e4-e55acaa62b5b" alt="图5.独立性与相关性分析示意图" /></p>
+<p>我们计算一下随机变量 X 和 Y 的协方差：</p>
+<p><strong>代码片段：</strong></p>
+<pre><code>import numpy as np
+
+X = [-2,-1,-1,0,0,1,1,2]
+Y = [0,1,-1,2,-2,1,-1,0]
+
+S = np.vstack((X, Y))
+print(np.cov(S))
+</code></pre><p><strong>运行结果：</strong></p>
+<pre><code>[[ 1.71428571  0.        ]
+ [ 0.          1.71428571]]
+</code></pre><p>我们计算了随机变量 X 和随机变量 Y 的协方差，发现结果为 0。按照定义，它们不相关。</p>
+<p>但是独立性呢？很简单，我们就扣条件概率。随机变量 Y=0 的取值概率为 pY(0)=1/4，而当附加了随机变量 X=2 这个条件之后呢？</p>
+<p>我们发现 pY|X(0|2)=1≠pY(0)，随机变量 X 的出现，给随机变量 Y 的取值概率带来了新的信息，因此随机变量 X 和 Y 显然不独立。</p>
+<p>仔细琢磨一下，协方差的定义是从数字的表示特征和现象进行概况的，而随机变量独立性的定义更触及本质一些：即 X 的取值不会影响 Y 的条件分布，因此独立性的描述意义要更强。</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/">
+    下一页<br>理论基石：条件概率、独立性与贝叶斯
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/">
+      上一页<br>多元随机变量（下）：独立与相关
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#再谈相关性基于多元正态分布">再谈相关性：基于多元正态分布</a></li>
+            <li><a href="#聚焦相关系数">聚焦相关系数</a></li>
+            <li><a href="#独立和相关性的关系">独立和相关性的关系</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

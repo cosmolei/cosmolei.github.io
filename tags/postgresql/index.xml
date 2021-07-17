@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/postgresql/</link>
+    <description>Recent content in postgresql on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Mon, 06 Apr 2020 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>postgresql 创建用户及表空间</title>
+      <link>https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</link>
+      <pubDate>Mon, 06 Apr 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</guid>
+      <description>&lt;p&gt;进入管理员界面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;psql postgres
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#创建用户(ROLE)&lt;/span&gt;
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# create user testuser with password &amp;#39;******&amp;#39;;&lt;/span&gt;
+CREATE ROLE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# create database testdb owner testuser;&lt;/span&gt;
+CREATE DATABASE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# grant all on database testdb to testuser;&lt;/span&gt;
+GRANT
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# alter user testuser superuser;&lt;/span&gt;
+ALTER ROLE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# \du&lt;/span&gt;
+                              角色列表
+  角色名称   |                    属性                    | 成员属于 
+-------------+--------------------------------------------+----------
+ postgres    | 超级用户, 建立角色, 建立 DB, 复制, 绕过RLS | &lt;span style=&#34;color:#f92672&#34;&gt;{}&lt;/span&gt;
+ testuser | 超级用户                                   | &lt;span style=&#34;color:#f92672&#34;&gt;{}&lt;/span&gt;
+
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

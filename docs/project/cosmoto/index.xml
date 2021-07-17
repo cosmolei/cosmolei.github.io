@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Carpe diem</title>
+    <link>https://cosmolei.github.io/docs/project/cosmoto/</link>
+    <description>Recent content on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright><atom:link href="https://cosmolei.github.io/docs/project/cosmoto/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oracle on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/oracle/</link>
+    <description>Recent content in oracle on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Mon, 07 Dec 2020 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>oracle中的merge into</title>
+      <link>https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/</guid>
+      <description>&lt;h2 id=&#34;oracle-merge-into&#34;&gt;
+  oracle merge into
+  &lt;a class=&#34;anchor&#34; href=&#34;#oracle-merge-into&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-oracle&#34; data-lang=&#34;oracle&#34;&gt;MERGE INTO A_MERGE A USING (select B.AID,B.NAME,B.YEAR from B_MERGE B) C ON (A.id=C.AID)
+
+WHEN MATCHED THEN
+
+UPDATE SET A.YEAR=C.YEAR
+
+WHEN NOT MATCHED THEN
+
+ INSERT(A.ID,A.NAME,A.YEAR) VALUES(C.AID,C.NAME,C.YEAR); 
+
+commit;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

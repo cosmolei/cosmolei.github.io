@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>索引 on Carpe diem</title>
+    <link>https://cosmolei.github.io/</link>
+    <description>Recent content in 索引 on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Sat, 10 Jul 2021 10:14:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://cosmolei.github.io/about/</link>
+      <pubDate>Thu, 15 Jul 2021 20:52:30 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>我的世界</title>
+      <link>https://cosmolei.github.io/docs/read/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/</link>
+      <pubDate>Sat, 10 Jul 2021 10:14:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/docs/read/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/</guid>
+      <description>hehehe #  </description>
+    </item>
+    
+    <item>
+      <title>如何打包RPM</title>
+      <link>https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E5%8C%85rpm/</link>
+      <pubDate>Thu, 10 Jun 2021 17:17:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E5%8C%85rpm/</guid>
+      <description>&lt;p&gt;在centos环境中，运行rpmbuild，会生成/home/$USER/rpmbuild目录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 先随便指定一个文件生成目录，之后再编写spec文件&lt;/span&gt;
+$ rpmbuild test.spec
+
+$ tree rpmbuild
+rpmbuild
+├── BUILD
+├── BUILDROOT
+├── RPMS
+├── SOURCES
+├── SPECS
+└── SRPMS
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何打造我的Surbuntu（surfacego2 &#43; ubuntu20.04）</title>
+      <link>https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/</link>
+      <pubDate>Thu, 10 Jun 2021 10:14:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/</guid>
+      <description>&lt;h2 id=&#34;只安装ubuntu单一系统&#34;&gt;
+  只安装ubuntu单一系统
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%8f%aa%e5%ae%89%e8%a3%85ubuntu%e5%8d%95%e4%b8%80%e7%b3%bb%e7%bb%9f&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;h2 id=&#34;安装软件&#34;&gt;
+  安装软件
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id=&#34;零基础准备&#34;&gt;
+  零、基础准备
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%9b%b6%e5%9f%ba%e7%a1%80%e5%87%86%e5%a4%87&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;1-开启ssh服务&#34;&gt;
+  1. 开启ssh服务
+  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e5%bc%80%e5%90%afssh%e6%9c%8d%e5%8a%a1&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo apt install ssh
+&lt;span style=&#34;color:#75715e&#34;&gt;# ssh安装后默认开启sshd服务并加入开机启动，如果没有，查看systemctl status sshd&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# 非enabled状态的话执行systemctl enable sshd&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# 如果不要求开机启动的话，就不需要做这一步。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;2-安装vim&#34;&gt;
+  2. 安装VIM
+  &lt;a class=&#34;anchor&#34; href=&#34;#2-%e5%ae%89%e8%a3%85vim&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo apt install vim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;3-载入维护的etchosts文件&#34;&gt;
+  3. 载入维护的/etc/hosts文件
+  &lt;a class=&#34;anchor&#34; href=&#34;#3-%e8%bd%bd%e5%85%a5%e7%bb%b4%e6%8a%a4%e7%9a%84etchosts%e6%96%87%e4%bb%b6&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;不要问为什么，知道的自然知道，不知道本不需要知道。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vscode中anaconda的python debug</title>
+      <link>https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/</link>
+      <pubDate>Thu, 15 Apr 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/</guid>
+      <description>&lt;p&gt;在调试ioserver的过程中，发现并没有正常条转到断点。&lt;/p&gt;
+&lt;p&gt;原因是在conda的环境ioserver中，安装了项目打包后的程序，导致从.vscode目录下的settings.json中配置的环境变量PYTHONPATH的效果抵消了。&lt;/p&gt;
+&lt;p&gt;于是卸载了项目打包后的程序，之后，重新正确配置PYTHONPATH&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;python.pythonPath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/Users/cosmo/miniconda3/envs/the_env/bin/python&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;terminal.integrated.env.osx&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;PYTHONPATH&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;${workspaceFolder}&amp;#34;&lt;/span&gt;}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解决问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>搭建私有npm仓库</title>
+      <link>https://cosmolei.github.io/posts/%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Mon, 22 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/</guid>
+      <description>&lt;h3 id=&#34;发布到npm仓库本地使用verdaccio搭建私有npm仓库&#34;&gt;
+  发布到npm仓库（本地使用verdaccio搭建私有npm仓库）
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%8f%91%e5%b8%83%e5%88%b0npm%e4%bb%93%e5%ba%93%e6%9c%ac%e5%9c%b0%e4%bd%bf%e7%94%a8verdaccio%e6%90%ad%e5%bb%ba%e7%a7%81%e6%9c%89npm%e4%bb%93%e5%ba%93&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 全局安装verdaccio&lt;/span&gt;
+npm install -g verdaccio
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 启动verdaccio&lt;/span&gt;
+verdaccio
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 创建verdaccio用户&lt;/span&gt;
+npm adduser --registry http://localhost:4873
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 发布包&lt;/span&gt;
+npm publish --registry http://localhost:4873
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;heading&#34;&gt;
+  
+  &lt;a class=&#34;anchor&#34; href=&#34;#heading&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>Prometheus node_exporter网络指标</title>
+      <link>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</link>
+      <pubDate>Tue, 09 Mar 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/</guid>
+      <description>&lt;p&gt;node_exporter中的网络相关指标由node_network前缀开头。&lt;/p&gt;
+&lt;p&gt;我们可以通过访问node_exporter的服务端口，直接查看该节点的各项指标：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;node_exporter%E7%BD%91%E7%BB%9C%E6%8C%87%E6%A0%87/image-20210309172048923.png&#34; alt=&#34;image-20210309172048923&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;其中，常用指标有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node_network_receive_bytes_total：网卡上传累计字节数&lt;/li&gt;
+&lt;li&gt;node_network_transmit_bytes_total：网卡下载累计字节数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中选项device代表每个网卡。&lt;/p&gt;
+&lt;p&gt;通过Prometheus计算上传速率/下载速率的查询语句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;上传速率：irate(node_network_transmit_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载速率：irate(node_network_receive_bytes_total{device!=&amp;ldquo;lo&amp;rdquo;}[1m]) by (instance, job)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;device : 代表网卡&lt;/p&gt;
+&lt;p&gt;irate : 分组函数，取的是在指定时间范围内的最近两个数据点来算速率&lt;/p&gt;
+&lt;p&gt;[1m] : 分组的时长&lt;/p&gt;
+&lt;p&gt;by(instance,job) : 代表按job、instance分组&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的Terminal不可能这么好用</title>
+      <link>https://cosmolei.github.io/posts/%E6%88%91%E7%9A%84Terminal%E4%B8%8D%E5%8F%AF%E8%83%BD%E8%BF%99%E4%B9%88%E5%A5%BD%E7%94%A8/</link>
+      <pubDate>Mon, 01 Mar 2021 22:09:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E6%88%91%E7%9A%84Terminal%E4%B8%8D%E5%8F%AF%E8%83%BD%E8%BF%99%E4%B9%88%E5%A5%BD%E7%94%A8/</guid>
+      <description>&lt;h4 id=&#34;终端美化&#34;&gt;
+  终端美化
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%bb%88%e7%ab%af%e7%be%8e%e5%8c%96&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Use powerlevel10k to config terminal&lt;/p&gt;
+&lt;p&gt;配色&lt;/p&gt;
+&lt;p&gt;字体&lt;/p&gt;
+&lt;h4 id=&#34;常用快捷键&#34;&gt;
+  常用快捷键
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;删除命令行光标前的字符&lt;/td&gt;
+&lt;td&gt;ctrl + u&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;快速跳转到命令行首&lt;/td&gt;
+&lt;td&gt;ctrl + a&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;快速跳转到命令行尾&lt;/td&gt;
+&lt;td&gt;ctrl + e&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+    <item>
+      <title>emqx体系分析</title>
+      <link>https://cosmolei.github.io/posts/emqx%E4%BD%93%E7%B3%BB%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 24 Feb 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/emqx%E4%BD%93%E7%B3%BB%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;EMQ X是什么。。。&lt;/p&gt;
+&lt;h3 id=&#34;emqx-broker&#34;&gt;
+  EMQX Broker
+  &lt;a class=&#34;anchor&#34; href=&#34;#emqx-broker&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;完全开源，提供一个管理平台和mqtt broker。&lt;/p&gt;
+&lt;p&gt;安装release版本rpm包，启动servie&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#docker pull emqx/emqx:4.2.7  &lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8883:8883 -p 8084:8084 -p 18083:18083 emqx/emqx:4.2.7&lt;/span&gt;
+
+sudo systemctl start emqx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动EMQX客户端连接测试成功。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tmux如何使用得更顺手</title>
+      <link>https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/</link>
+      <pubDate>Sun, 21 Feb 2021 22:40:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Tmux%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%BE%97%E6%9B%B4%E9%A1%BA%E6%89%8B/</guid>
+      <description>&lt;h4 id=&#34;安装tmux&#34;&gt;
+  安装Tmux
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%ae%89%e8%a3%85tmux&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;mac下安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brew install tmux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;tmux-美化&#34;&gt;
+  Tmux 美化
+  &lt;a class=&#34;anchor&#34; href=&#34;#tmux-%e7%be%8e%e5%8c%96&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;oh my tmux，使用powerline&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/gpakosz/.tmux.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;设置tmux配置文件&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.04安装microstack出错</title>
+      <link>https://cosmolei.github.io/posts/Ubuntu-20.04%E5%AE%89%E8%A3%85microstack%E5%87%BA%E9%94%99/</link>
+      <pubDate>Wed, 13 Jan 2021 15:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Ubuntu-20.04%E5%AE%89%E8%A3%85microstack%E5%87%BA%E9%94%99/</guid>
+      <description>&lt;h2 id=&#34;ubuntu-2004安装microstack出错&#34;&gt;
+  Ubuntu 20.04安装microstack出错
+  &lt;a class=&#34;anchor&#34; href=&#34;#ubuntu-2004%e5%ae%89%e8%a3%85microstack%e5%87%ba%e9%94%99&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo snap install microstack --devmode --beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;失败&lt;/p&gt;
+&lt;p&gt;查看日志&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ systemctl status snap.microstack.load-modules.service
+modprobe: ERROR: could not insert &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;vhost_vsock&amp;#39;&lt;/span&gt;: Device or resource busy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.04 单节点安装部署microstack</title>
+      <link>https://cosmolei.github.io/posts/Ubuntu-20.04-%E5%8D%95%E8%8A%82%E7%82%B9%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2microstack/</link>
+      <pubDate>Wed, 13 Jan 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Ubuntu-20.04-%E5%8D%95%E8%8A%82%E7%82%B9%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2microstack/</guid>
+      <description>&lt;h2 id=&#34;ubuntu-2004-单节点安装部署microstack&#34;&gt;
+  Ubuntu 20.04 单节点安装部署microstack
+  &lt;a class=&#34;anchor&#34; href=&#34;#ubuntu-2004-%e5%8d%95%e8%8a%82%e7%82%b9%e5%ae%89%e8%a3%85%e9%83%a8%e7%bd%b2microstack&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h4 id=&#34;1-安装&#34;&gt;
+  1. 安装
+  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e5%ae%89%e8%a3%85&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;通过snap安装，如果没有snap请先安装snap。&lt;/p&gt;
+&lt;p&gt;执行以下命令安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo snap install microstack --devmode --beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果安装成功，则跳到第二部分初始化。&lt;/p&gt;
+&lt;p&gt;如果安装完提示未成功，systemctl查看status提示&lt;/p&gt;
+&lt;p&gt;modprobe: ERROR: could not insert &amp;lsquo;vhost_vsock&amp;rsquo;: Device or resource busy&lt;/p&gt;
+&lt;p&gt;则查看是否有冲突&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ lsmod | grep vsock
+&lt;span style=&#34;color:#75715e&#34;&gt;# vsock模块冲突&lt;/span&gt;
+vmw_vsock_virtio_transport_common    &lt;span style=&#34;color:#ae81ff&#34;&gt;32768&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+vmw_vsock_vmci_transport    &lt;span style=&#34;color:#ae81ff&#34;&gt;32768&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+vsock                  &lt;span style=&#34;color:#ae81ff&#34;&gt;36864&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; vmw_vsock_virtio_transport_common,vmw_vsock_vmci_transport
+vmw_vmci               &lt;span style=&#34;color:#ae81ff&#34;&gt;69632&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; vmw_balloon,vmw_vsock_vmci_transport
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>grafana免登录</title>
+      <link>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Thu, 10 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/grafana%E5%85%8D%E7%99%BB%E5%BD%95/</guid>
+      <description>&lt;p&gt;在ubuntu下，grafana以systemctl管理的service的方式运行，修改默认环境变量配置文件：&lt;/p&gt;
+&lt;p&gt;/etc/default/grafana-server文件&lt;/p&gt;
+&lt;p&gt;增加以下环境变量配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GF_AUTH_PROXY_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+GF_AUTH_ANONYMOUS_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang模块开发</title>
+      <link>https://cosmolei.github.io/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 09 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/golang%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</guid>
+      <description>&lt;p&gt;[[golang]]&lt;/p&gt;
+&lt;p&gt;golang模块开发流程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建项目目录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ mkdir myapp
+$ cd myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模块初始化， 会生成go.mod文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ go mod init myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建main入口文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 文件名随意，但package要是main
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Welcome&amp;#34;&lt;/span&gt;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入第三方库之后，执行go mod vendor下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gopkg.in/alecthomas/kingpin.v2&amp;#34;&lt;/span&gt;
+)
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;kingpin&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Parse&lt;/span&gt;()
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Welcome&amp;#34;&lt;/span&gt;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在代码中引入包后执行，会主动下载包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ go mod vendor
+go: finding module &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; package gopkg.in/alecthomas/kingpin.v2
+go: found gopkg.in/alecthomas/kingpin.v2 in gopkg.in/alecthomas/kingpin.v2 v2.2.6
+go: finding module &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; package github.com/alecthomas/units
+go: finding module &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; package github.com/alecthomas/template
+go: downloading github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+go: found github.com/alecthomas/template in github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+go: found github.com/alecthomas/units in github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>安装部署prometheus</title>
+      <link>https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/</link>
+      <pubDate>Mon, 07 Dec 2020 17:17:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2prometheus/</guid>
+      <description>&lt;h3 id=&#34;安装步骤&#34;&gt;
+  安装步骤
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%ae%89%e8%a3%85%e6%ad%a5%e9%aa%a4&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;一安装prometheus&#34;&gt;
+  一、安装prometheus
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%b8%80%e5%ae%89%e8%a3%85prometheus&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;部署路径：/usr/local/prometheus&lt;/p&gt;
+&lt;p&gt;服务文件：/usr/lib/systemd/system/prometheus.service&lt;/p&gt;
+&lt;p&gt;部署过程:&lt;/p&gt;
+&lt;h5 id=&#34;1-解压文件复制到指定路径&#34;&gt;
+  1. 解压文件，复制到指定路径
+  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e8%a7%a3%e5%8e%8b%e6%96%87%e4%bb%b6%e5%a4%8d%e5%88%b6%e5%88%b0%e6%8c%87%e5%ae%9a%e8%b7%af%e5%be%84&#34;&gt;#&lt;/a&gt;
+&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;tar zxvf prometheus-2.22.2.linux-amd64.tar.gz
+mv prometheus-2.22.2.linux-amd64 prometheus
+cp -r prometheus /usr/local/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;2-创建service服务文件&#34;&gt;
+  2. 创建service服务文件
+  &lt;a class=&#34;anchor&#34; href=&#34;#2-%e5%88%9b%e5%bb%baservice%e6%9c%8d%e5%8a%a1%e6%96%87%e4%bb%b6&#34;&gt;#&lt;/a&gt;
+&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vim /usr/lib/systemd/system/prometheus.service
+
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Unit&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+Description&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Prometheus
+After&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;network.target
+ 
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Service&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+ExecStart&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/local/prometheus/prometheus --config.file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/local/prometheus/prometheus.yml --storage.tsdb.path&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/data/prometheus --storage.tsdb.retention.time&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;180d --storage.tsdb.retention.size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;29TB
+User&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;root
+
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;Install&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+WantedBy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中，执行命令涉及的参数如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;config.file：配置文件路径。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.path：tsdb存储路径，默认是相对于执行路径的/data目录。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.retention.time：数据保存的最长时间，这里是180天。&lt;/li&gt;
+&lt;li&gt;storage.tsdb.retention.size：数据保存的最大量值，这里最大保存29TB的数据，再有更多的数据，则会删除最早的历史数据来腾出空间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;加入开机启动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl enable prometheus
+systemctl start prometheus
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Elastic Search的全文搜索</title>
+      <link>https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Elastic-Search%E7%9A%84%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/</guid>
+      <description>&lt;h3 id=&#34;搜索方式&#34;&gt;
+  搜索方式
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%90%9c%e7%b4%a2%e6%96%b9%e5%bc%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h3 id=&#34;查询dsl&#34;&gt;
+  查询DSL
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9f%a5%e8%af%a2dsl&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Elasticsearch提供基于JSON的完整查询DSL来定义查询。查询DSL包括两种子句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;叶查询子句&lt;/strong&gt;：在特定的字段上查找特定的值，如&lt;strong&gt;match&lt;/strong&gt;、&lt;strong&gt;term&lt;/strong&gt;或&lt;strong&gt;range&lt;/strong&gt;查询。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复合查询子句&lt;/strong&gt;：包含其他叶查询或复合查询子句，以合理的方式结合多条查询（比如bool或dis_max查询），或者改变查询行为（比如not或constant_score查询）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据匹配和计算方式不同，查询类别分为两类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查询&lt;/strong&gt;(query)用于检查内容与条件是否匹配，并且计算_score元字段表示匹配度。查询的结构中以query参数开始来执行内容查询。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;过滤&lt;/strong&gt;(filter)不计算匹配得分，只是简单的决定文档是否匹配。内容过滤主要通过过滤结构化数据，例如时间、数值、not_analyze的文本等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;查询(query)的子句也可以传递filter参数，比如bool查询内的filter、constant_score查询内的filter参数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; {
+  	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;bool&amp;#34;&lt;/span&gt;: {
+  		&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;must&amp;#34;&lt;/span&gt;: [
+  			{
+  				&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;match&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;title&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Search&amp;#34;&lt;/span&gt;}	
+  			},
+				{
+          &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;match&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elasticsearch&amp;#34;&lt;/span&gt;}
+        }
+  		],
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt;: [
+        {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;term&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;published&amp;#34;&lt;/span&gt;}},
+        {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;range&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;publish_date&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;gte&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2019-01-01&amp;#34;&lt;/span&gt;}}}
+      ]
+  	}
+  }
+&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch(二)</title>
+      <link>https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/ElasticSearch%E4%BA%8C/</guid>
+      <description>&lt;h2 id=&#34;elastic-search中的数据建模方法&#34;&gt;
+  Elastic Search中的数据建模方法
+  &lt;a class=&#34;anchor&#34; href=&#34;#elastic-search%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e5%bb%ba%e6%a8%a1%e6%96%b9%e6%b3%95&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;要想让查询速度更快，让更新更容易而且代价更小，定义数据结构是要解决的关键问题之一。虽然大多数NoSQL方案都无法提供关系型映射和查询，蛋ES仍然提供了一些管理关系型数据的方法。&lt;/p&gt;
+&lt;p&gt;在Elasticsearch中主要有4中定义文档结构的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;扁平式结构（应用侧关联）&lt;/li&gt;
+&lt;li&gt;数据反范式化&lt;/li&gt;
+&lt;li&gt;嵌套对象&lt;/li&gt;
+&lt;li&gt;父子关系&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;扁平式结构&lt;/strong&gt;：在扁平式结构中，最简单的键值对索引文档，有时候也用简单对象（plain objects）的形式。数据存储成这种格式可以索引更快，也可以查询更快。缺点是会导致难以维护不同实体之间的关系。使用扁平式结构之后，就经常要在应用代码中做关联，以发现文档之间的关系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据反范式化&lt;/strong&gt;：把其他文档内的相关字段多复制一份，目的只是为了维护实体之间的关系。这种方法可用于维护扁平式结构，也可以通过在每份文档中多保存一到多个字段来维护它们之间的关系。这种方法速度很快，但会多占用大量空间，因为有时候要处理很多份副本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;嵌套与父子关系&lt;/strong&gt;：这些关系是Elasticsearch为管理关系型数据而自带的解决方案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>oracle中的merge into</title>
+      <link>https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/</link>
+      <pubDate>Mon, 07 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/oracle%E4%B8%AD%E7%9A%84merge-into/</guid>
+      <description>&lt;h2 id=&#34;oracle-merge-into&#34;&gt;
+  oracle merge into
+  &lt;a class=&#34;anchor&#34; href=&#34;#oracle-merge-into&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-oracle&#34; data-lang=&#34;oracle&#34;&gt;MERGE INTO A_MERGE A USING (select B.AID,B.NAME,B.YEAR from B_MERGE B) C ON (A.id=C.AID)
+
+WHEN MATCHED THEN
+
+UPDATE SET A.YEAR=C.YEAR
+
+WHEN NOT MATCHED THEN
+
+ INSERT(A.ID,A.NAME,A.YEAR) VALUES(C.AID,C.NAME,C.YEAR); 
+
+commit;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch(一)</title>
+      <link>https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/</link>
+      <pubDate>Sun, 06 Dec 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/ElasticSearch%E4%B8%80/</guid>
+      <description>&lt;h3 id=&#34;什么叫全文检索&#34;&gt;
+  什么叫全文检索？
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%80%e4%b9%88%e5%8f%ab%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;对非&lt;strong&gt;结构化的数据/结构化数据&lt;/strong&gt;建立索引，再对索引进行搜索&lt;strong&gt;文档&lt;/strong&gt;的过程就叫全文检索(Full-text Search)。&lt;/p&gt;
+&lt;h4 id=&#34;数据格式分类&#34;&gt;
+  数据格式（分类）
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%95%b0%e6%8d%ae%e6%a0%bc%e5%bc%8f%e5%88%86%e7%b1%bb&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;非结构化数据&lt;/strong&gt;：没有固定格式的数据（html网页，文章，txt， excel） &amp;mdash; 没有定长，字段，描述&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结构化数据&lt;/strong&gt;：有固定格式数据（数据库一行数据） &amp;mdash; 有固定长度（varchar(50)），字段，描述&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;倒排索引&#34;&gt;
+  倒排索引
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%80%92%e6%8e%92%e7%b4%a2%e5%bc%95&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;搜索采用倒排索引算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;顺序扫描法：有一本词典，这本词典没有目录，查询一个词语只能从第一页开始，一页一页查询，直到找到为止。（数据库采用顺序扫描法 &amp;mdash;&amp;gt; 但可以建立索引，也是倒排索引）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;倒排扫描法：有一本词典，有目录，查询一个词语，只需查询目录，从目录找到词语所在页码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;问题：为什么不使用数据库进行海量数据索引（虽然数据库也可以建立倒排索引进行搜索）？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;数据库缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;全表扫描 &amp;mdash;速度非常慢&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;字段中所有的内容都要挨个匹配 &amp;mdash;速度慢&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全文检索问题&lt;/p&gt;
+&lt;p&gt;%口罩罩% 无法实现分词搜索&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建立索引，全文检索不走索引&lt;/p&gt;
+&lt;p&gt;like不走索引，不建分词&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>Centos7 kubernetes搭建</title>
+      <link>https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Thu, 07 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;h3 id=&#34;环境准备&#34;&gt;
+  环境准备
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;机器环境&#34;&gt;
+  机器环境
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9c%ba%e5%99%a8%e7%8e%af%e5%a2%83&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;节点CPU核数&amp;gt;=2&lt;/p&gt;
+&lt;p&gt;DNS网络&lt;/p&gt;
+&lt;p&gt;linux内核&amp;gt;4以上，Centos 7 内核默认是3.10.0&lt;/p&gt;
+&lt;p&gt;准备3台虚拟机环境&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kubernetes(一)</title>
+      <link>https://cosmolei.github.io/posts/kubernetes%E4%B8%80/</link>
+      <pubDate>Wed, 06 May 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/kubernetes%E4%B8%80/</guid>
+      <description>&lt;h3 id=&#34;pod底层核心原理&#34;&gt;
+  pod底层核心原理
+  &lt;a class=&#34;anchor&#34; href=&#34;#pod%e5%ba%95%e5%b1%82%e6%a0%b8%e5%bf%83%e5%8e%9f%e7%90%86&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;pause容器共享网络，本地容器相互访问只需要使用localhost来访问，不需要ip地址。&lt;/p&gt;
+&lt;p&gt;每一个pod里都有pause容器。&lt;/p&gt;
+&lt;p&gt;pod内部的容器没有ip地址。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建pod后，会先创建pause容器。pause容器先于业务容器创建。&lt;/li&gt;
+&lt;li&gt;pause容器用来共享pod中所有容器的网络，存储。&lt;/li&gt;
+&lt;li&gt;pod中所有容器互相之间的访问，只需要使用localhost访问即可，相当于访问本地服务一样。&lt;/li&gt;
+&lt;li&gt;一个pod只能在一个物理机上运行，不能分裂。一个物理机上可以部署多个pod。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;pod是K8s中的最小单位，一个Pod有一个或多个容器组成。&lt;/p&gt;
+&lt;p&gt;pod用来做集群，只需要部署多个内容相同的pod。&lt;/p&gt;
+&lt;p&gt;pod一旦当机，就不存在了（生命周期短）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>postgresql 创建用户及表空间</title>
+      <link>https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</link>
+      <pubDate>Mon, 06 Apr 2020 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</guid>
+      <description>&lt;p&gt;进入管理员界面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;psql postgres
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#创建用户(ROLE)&lt;/span&gt;
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# create user testuser with password &amp;#39;******&amp;#39;;&lt;/span&gt;
+CREATE ROLE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# create database testdb owner testuser;&lt;/span&gt;
+CREATE DATABASE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# grant all on database testdb to testuser;&lt;/span&gt;
+GRANT
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# alter user testuser superuser;&lt;/span&gt;
+ALTER ROLE
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# \du&lt;/span&gt;
+                              角色列表
+  角色名称   |                    属性                    | 成员属于 
+-------------+--------------------------------------------+----------
+ postgres    | 超级用户, 建立角色, 建立 DB, 复制, 绕过RLS | &lt;span style=&#34;color:#f92672&#34;&gt;{}&lt;/span&gt;
+ testuser | 超级用户                                   | &lt;span style=&#34;color:#f92672&#34;&gt;{}&lt;/span&gt;
+
+postgres&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>IO模型讲义</title>
+      <link>https://cosmolei.github.io/posts/IO%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sat, 06 Apr 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/IO%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;h2 id=&#34;io模型讲义&#34;&gt;
+  IO模型讲义
+  &lt;a class=&#34;anchor&#34; href=&#34;#io%e6%a8%a1%e5%9e%8b%e8%ae%b2%e4%b9%89&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id=&#34;用户空间和内核空间&#34;&gt;
+  用户空间和内核空间
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%94%a8%e6%88%b7%e7%a9%ba%e9%97%b4%e5%92%8c%e5%86%85%e6%a0%b8%e7%a9%ba%e9%97%b4&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用户空间：用户程序使用的内存空间&lt;/li&gt;
+&lt;li&gt;内核空间：系统内核程序使用的内存空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pio与dma&#34;&gt;
+  PIO与DMA
+  &lt;a class=&#34;anchor&#34; href=&#34;#pio%e4%b8%8edma&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;PIO
+早先的磁盘和内存之间的数据传输要经过CPU存储转发，这种方式成为PIO&lt;/li&gt;
+&lt;li&gt;DMA
+后来，DMA（直接内存访问，Direct Memory Access）取代了PIO，它可以不经过CPU而直接进行磁盘和内存（内核空间）的数据交换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缓存io和直接io&#34;&gt;
+  缓存IO和直接IO
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%bc%93%e5%ad%98io%e5%92%8c%e7%9b%b4%e6%8e%a5io&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;缓存IO：数据从磁盘先通过DMA copy到内核空间，再从内核空间通过cpu copy到用户空间&lt;/p&gt;
+&lt;p&gt;直接IO： 数据从磁盘通过DMA copy到用户空间&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>命令行中使用git命令中文乱码怎么办？</title>
+      <link>https://cosmolei.github.io/posts/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8git%E5%91%BD%E4%BB%A4%E4%B8%AD%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</link>
+      <pubDate>Fri, 22 Mar 2019 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8git%E5%91%BD%E4%BB%A4%E4%B8%AD%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</guid>
+      <description>&lt;h2 id=&#34;命令行中使用git命令中文乱码怎么办&#34;&gt;
+  命令行中使用git命令中文乱码怎么办？
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%b8%ad%e4%bd%bf%e7%94%a8git%e5%91%bd%e4%bb%a4%e4%b8%ad%e6%96%87%e4%b9%b1%e7%a0%81%e6%80%8e%e4%b9%88%e5%8a%9e&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;git 默认中文文件名是\xxx\xxx等八进制形式，是因为对0x80以上的字符进行了转义。&lt;/p&gt;
+&lt;p&gt;解决办法是设置core.quotepath为false&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config --global core.quotepath false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Commands that output paths (e.g. &lt;em&gt;ls-files&lt;/em&gt;, &lt;em&gt;diff&lt;/em&gt;), will quote “unusual” characters in the pathname by enclosing the pathname in double-quotes and escaping those characters with backslashes in the same way C escapes control characters (e.g. &lt;code&gt;\t&lt;/code&gt; for TAB, &lt;code&gt;\n&lt;/code&gt; for LF, &lt;code&gt;\\&lt;/code&gt; for backslash) or bytes with values larger than 0x80 (e.g. octal &lt;code&gt;\302\265&lt;/code&gt; for “micro” in UTF-8). If this variable is set to false, bytes higher than 0x80 are not considered “unusual” any more. Double-quotes, backslash and control characters are always escaped regardless of the setting of this variable. A simple space character is not considered “unusual”. Many commands can output pathnames completely verbatim using the &lt;code&gt;-z&lt;/code&gt; option. The default value is true.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因为 &lt;code&gt;core.quotepath&lt;/code&gt; 默认值为 &lt;code&gt;true&lt;/code&gt;，git 命令把输出的内容中，存在用双引号引起来的路径名中的“不寻常”（指中文，或大于 0x80 的字节）的字符，用反斜杠进行转转义。&lt;/p&gt;
+&lt;p&gt;例如：会把 &lt;code&gt;Tab&lt;/code&gt; 转义为 &lt;code&gt;\t  &lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>理论基石：条件概率、独立性与贝叶斯</title>
+      <link>https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/</link>
+      <pubDate>Wed, 25 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF/</guid>
+      <description>&lt;h3 id=&#34;从概率到条件概率&#34;&gt;
+  从概率到条件概率
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%8e%e6%a6%82%e7%8e%87%e5%88%b0%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;条件概率的发生背景&#34;&gt;
+  条件概率的发生背景
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87%e7%9a%84%e5%8f%91%e7%94%9f%e8%83%8c%e6%99%af&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;从这一篇开始，我们就正式进入到概率统计的内容板块中了。&lt;/p&gt;
+&lt;p&gt;对于概率，相信大家都不会陌生，在各阶段的数学课上，它都是高频出现的常客，最简单的概率场景比如掷骰子：第一次掷出的点数为 5 的概率为多大？你会毫不犹豫的说出答案：16。&lt;/p&gt;
+&lt;p&gt;这太简单了。接下来我增加一个限定条件：已知在抛出骰子是奇数的情况下，抛掷点数为 5 的可能性有多大？&lt;/p&gt;
+&lt;p&gt;发现了没有，在第二个问题中我就没有直接的只问投掷出 5 这个事件的概率，而是增加了一个前提条件：这次抛掷出的点数为奇数。&lt;/p&gt;
+&lt;p&gt;生活中这类场景更多，我们一般不会直接去推断一个事件发生的可能性，因为这样实际意义并不明显，而且也不容易推断出结果。比如我问你今天下雨的概率是多大？你可能是一头雾水，什么地点？什么月份？当日云层的厚度？这些条件都没有提供，这样是无法给出一个有意义、有价值的合理推断的。&lt;/p&gt;
+&lt;p&gt;而且在实际情况下，一个事件一般而言也不会是孤立的发生，它会伴随着其他事情一同出现，单独谈一个事件的概率，一般而言也是不存在的。&lt;/p&gt;
+&lt;p&gt;因此，在实际的应用中，我们更关心的是条件概率，也就是在给定部分信息的基础上对试验结果的推断。这些给定的信息就是我们附加的条件，是我们研究时关注的重点。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量实践：聚焦多元正态分布</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/</link>
+      <pubDate>Tue, 24 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%AE%9E%E8%B7%B5%E8%81%9A%E7%84%A6%E5%A4%9A%E5%85%83%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/</guid>
+      <description>&lt;p&gt;在前两篇中，我们介绍了多元随机变量的有关概念，重点围绕着多元随机变量的联合概率、条件与边缘概率分布以及独立性和相关性，阐述了多元随机变量之间的关系，这些都是多元随机变量重点需要关注和研究的问题。&lt;/p&gt;
+&lt;p&gt;在上两篇理论知识的基础之上，我们在这篇文章里以多元正态分布作为实际例子，让大家能够更直观的理解和强化这些概念和方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量（下）：独立与相关</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Mon, 23 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8B%E7%8B%AC%E7%AB%8B%E4%B8%8E%E7%9B%B8%E5%85%B3/</guid>
+      <description>&lt;p&gt;在这篇文章中，我们开始讨论多元随机变量之间的关系，重点围绕独立性和相关性的概念展开。&lt;/p&gt;
+&lt;h3 id=&#34;关于独立性的讨论&#34;&gt;
+  关于独立性的讨论
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e5%85%b3%e4%ba%8e%e7%8b%ac%e7%ab%8b%e6%80%a7%e7%9a%84%e8%ae%a8%e8%ae%ba&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id=&#34;随机变量与事件的独立性&#34;&gt;
+  随机变量与事件的独立性
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e4%b8%8e%e4%ba%8b%e4%bb%b6%e7%9a%84%e7%8b%ac%e7%ab%8b%e6%80%a7&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;在概率统计的最开始部分，探讨过事件独立性的概念，同时我们知道：随机变量的取值，本质上同样也是一个事件，因此不难理解其独立性的概念。&lt;/p&gt;
+&lt;p&gt;首先我们讨论随机变量与事件之间的相互独立性。那么回到定义中去，我们可以说他的本质就是事件的发生与否，不会对随机变量的取值提供额外的新信息，这其实就是照搬了事件独立性的概念。如果用条件概率的式子来表示的话，就有：&lt;/p&gt;
+&lt;p&gt;如果随机变量 X 独立于事件 A，那么满足：&lt;/p&gt;
+&lt;p&gt;P({X=x}且A)=P({X=x})P(A)=PX(x)P(A)，对随机变量 X 的一切取值 X=x 都成立。&lt;/p&gt;
+&lt;p&gt;同时我们再拿出一个联合概率和条件概念的关系式：&lt;/p&gt;
+&lt;p&gt;P({X=x}且A)=PX|A(x)P(A)&lt;/p&gt;
+&lt;p&gt;我们把上下这两个式子结合起来看，就有了：&lt;/p&gt;
+&lt;p&gt;PX(x)P(A)=PX|A(x)P(A)⇒PX(x)=PX|A(x)&lt;/p&gt;
+&lt;p&gt;因此，PX(x)=PX|A(x) 对于随机变量 X 的一切取值恒成立，就是随机变量 X 和事件 A 满足独立性的等价条件，即无条件分布列和条件分布列完全相等。&lt;/p&gt;
+&lt;h4 id=&#34;随机变量之间的独立性&#34;&gt;
+  随机变量之间的独立性
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e4%b9%8b%e9%97%b4%e7%9a%84%e7%8b%ac%e7%ab%8b%e6%80%a7&#34;&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;这个时候，如果我们把上面的事件 A 看成是另一个随机变量 Y 的取值，就能顺手得到了随机变量 X 和随机变量 Y 之间相互独立需要满足的条件：&lt;/p&gt;
+&lt;p&gt;即：PX,Y(x,y)=pX(x)pY(y)，对于任意的取值 x 和取值 y 都成立，换言之，也就是事件 {X=x} 和 {Y=y} 相互独立。&lt;/p&gt;
+&lt;p&gt;然后再通过条件概率和联合概率的式子 pX,Y(x,y)=pX|Y(x|y)pY(y) 进行转换，最终我们就得到了：&lt;/p&gt;
+&lt;p&gt;pX|Y(x|y)=pX(x) 对于一切取值 x 和满足 pY(y)&amp;gt;0 的取值 y 都成立。&lt;/p&gt;
+&lt;p&gt;其实道理也是一样的，独立性意味着随机变量 Y 的取值，不会给随机变量 X 的取值提供任何额外的信息。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多元随机变量（上）：联合、边缘与条件</title>
+      <link>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/</link>
+      <pubDate>Sun, 22 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E5%A4%9A%E5%85%83%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8A%E8%81%94%E5%90%88%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6/</guid>
+      <description>&lt;h3 id=&#34;试验中引入多个随机变量&#34;&gt;
+  试验中引入多个随机变量
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%af%95%e9%aa%8c%e4%b8%ad%e5%bc%95%e5%85%a5%e5%a4%9a%e4%b8%aa%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;前两篇我们讨论的离散型和连续型随机变量都是单一变量，然而在现实当中，一个试验常常会涉及到多个随机变量。所谓多个随机变量是指在同一个试验结果之下产生的多个随机变量。这些随机变量的取值是由试验结果确定的，因此它们的取值会存在相互关联。这里我们先以离散型随机变量为例，将离散型随机变量的分布列和期望推广到多个随机变量的情况，并且进一步在此基础上讨论多元随机变量条件和独立的重要概念。&lt;/p&gt;
+&lt;p&gt;好了，此刻我们假设试验中不再只有一个随机变量，而是两个随机变量 X 和 Y，同时描述他们俩的取值概率，我们用什么方式？&lt;/p&gt;
+&lt;h3 id=&#34;联合分布列&#34;&gt;
+  联合分布列
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%81%94%e5%90%88%e5%88%86%e5%b8%83%e5%88%97&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;基于之前讲过的离散型随机变量分布列的概念，这里为多元随机变量引入联合分布列，用 pX,Y 对其进行表示。设 (x,y) 是随机变量 X 和 Y 的一组可能取值。因此对应的 (x,y) 的概率质量就定义为事件 {X=x,Y=y} 的概率：&lt;/p&gt;
+&lt;p&gt;PX,Y(x,y)=P({X=x,Y=y})，也就是同时满足事件 {X=x} 和 {Y=y} 的概率。那么首先，来实际看一个联合分布列的表示。很明显，我们可以用一个二维表格来表示随机变量 X 和 Y 的联合分布列：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/bfe9fb60-b667-11e9-96e0-d90b4d8f55a3&#34; alt=&#34;图1.多元随机变量的联合分布列&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;从这张表出发，就可以把联合分布列中所有的知识点都梳理一遍：&lt;/p&gt;
+&lt;p&gt;第一，可以从图中获得随机变量 X 和 Y 的任意一组取值的联合概率，例如：PX,Y(x3,y2)=P(X=x3,Y=y2)=3/20&lt;/p&gt;
+&lt;p&gt;第二，对于由随机变量 X 和 Y 构成的任意事件集合也是一样的，例如定义事件集合 A={(x1,y2),(x3,y2),(x4,y4)}，那么很显然，我们直接就能从联合分布列中计算出事件集合的总概率：&lt;/p&gt;
+&lt;p&gt;P((X,Y)∈A)=∑(x,y)∈ApX,Y(x,y)=1/20+3/20+1/20=5/20&lt;/p&gt;
+&lt;p&gt;第三，也是最朴实的一点，我们把二维表中所有的联合概率进行相加，得到的结果必然是 1，这也满足概率的归一性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>连续型随机变量：分布与数字特征</title>
+      <link>https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</link>
+      <pubDate>Sat, 21 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</guid>
+      <description>&lt;p&gt;在上一篇里，介绍了离散型随机变量，实际上，取值于连续区域的随机变量的应用领域也是十分普遍的。比如汽车行驶的速度、设备连续正常运行的时间等，这些在实际应用中都非常广泛，连续型随机变量能够刻画一些离散型随机变量无法描述的问题。&lt;/p&gt;
+&lt;h3 id=&#34;概率密度函数&#34;&gt;
+  概率密度函数
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%a6%82%e7%8e%87%e5%af%86%e5%ba%a6%e5%87%bd%e6%95%b0&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;在连续型随机变量的讨论范围中，随机变量由离散的变为了实轴上的连续值，那么与离散型随机变量的分布列以及 PMF 函数相对应，我们就有了连续型随机变量相类似的新概念：概率密度函数 PDF，二者在概念上是完全相对应的。&lt;/p&gt;
+&lt;p&gt;我们回顾一下前面在讲离散型随机变量分布列时所使用的一张图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/6876baf0-b46c-11e9-af8d-9f271adeee80&#34; alt=&#34;图1.离散型随机变量的分布列&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过将三个事件所对应的概率值进行相加，就能得到这个事件集合所对应的总的概率：&lt;/p&gt;
+&lt;p&gt;P(X∈S)=∑x∈SpX(x)=PX(1)+PX(2)+PX(3)&lt;/p&gt;
+&lt;p&gt;而连续型随机变量和离散型随机变量最明显的不同点是，连续型随机变量的个数是无限的、不可数的，不是像这样直接简单相加，而是在实轴的区间范围内，对概率密度函数进行积分运算。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/854303a0-b46c-11e9-af8d-9f271adeee80&#34; alt=&#34;图2.连续型随机变量概率密度函数以及积分运算&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们要对概率密度函数的特殊性进行强调：&lt;/p&gt;
+&lt;p&gt;第一：实数轴上单个点的概率密度函数 PDF 取值 fX(x) 不是概率，而是概率律，因此他的取值是可以大于 1 的。&lt;/p&gt;
+&lt;p&gt;第二：连续型随机变量的概率，我们一般讨论的是在一个区域内取值的概率，而不是某个单点的概率值。实际上，在连续区间内讨论单个点是没有意义的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>离散型随机变量：分布与数字特征</title>
+      <link>https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</link>
+      <pubDate>Fri, 20 Jul 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/</guid>
+      <description>&lt;h3 id=&#34;从事件到随机变量&#34;&gt;
+  从事件到随机变量
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e4%bb%8e%e4%ba%8b%e4%bb%b6%e5%88%b0%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f&#34;&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;在前面两篇内容中，我们介绍了事件概率的一些基本概念，给大家找了找概率的感觉，对于“试验”、“试验结果”、“事件发生的概率”等等重要概念有了直观的认识，那么我们进一步来讨论一个新的概念。&lt;/p&gt;
+&lt;p&gt;我们可以把某一次具体试验中所有可能出现的结果构成一个样本空间，对于样本空间中的每一个可能的试验结果，我们去将他关联到一个特定的数。这种试验结果与数的对应关系就形成了&lt;strong&gt;随机变量&lt;/strong&gt;，将试验结果所对应的数称为随机变量的取值。这里就是接下来要讨论的重要内容。&lt;/p&gt;
+&lt;p&gt;请注意这个概念中的一个关键点，随机变量如何取值？他可以直接就是试验的结果取值，比如“抛掷骰子的结果点数为 5”。&lt;/p&gt;
+&lt;p&gt;但是，随机变量更多的是这种情况，比如随机变量可以是“连续抛掷硬币 10 次，其中硬币正面出现的次数”，或者是“转了一道弯”的映射值：我们把骰子连续抛掷两次，随机变量对应连续两次试验中的最大值或者点数之和，这就是映射的情况。但是无论如何，对于随机变量，都必须要明确对应具体的取值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.gitbook.cn/5d01f2c0-b421-11e9-a960-5951e3207033&#34; alt=&#34;图1.随机变量表示试验结果与数的对应关系&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>fatal: unable to access server certificate verification failed</title>
+      <link>https://cosmolei.github.io/posts/git-failed/</link>
+      <pubDate>Thu, 22 Mar 2018 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/git-failed/</guid>
+      <description>&lt;h2 id=&#34;git-clone时遇到fatal-unable-to-access-server-certificate-verification-failed&#34;&gt;
+  git clone时遇到fatal: unable to access server certificate verification failed
+  &lt;a class=&#34;anchor&#34; href=&#34;#git-clone%e6%97%b6%e9%81%87%e5%88%b0fatal-unable-to-access-server-certificate-verification-failed&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;git clone 时遇到这样的问题：&lt;/p&gt;
+&lt;p&gt;fatal: unable to access &amp;lsquo;https://*.git&amp;rsquo;: server certificate verification failed. CAfile: none CRLfile: none&lt;/p&gt;
+&lt;p&gt;解决办法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config --global http.sslverify false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cosmolei.github.io/posts/%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E7%8B%AC%E7%AB%8B%E6%80%A7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E7%8B%AC%E7%AB%8B%E6%80%A7/</guid>
+      <description>事件的关系：深入理解独立性 #  重新梳理两个事件的独立性 #  在上一篇中，我们引入了条件概率 P(A|B) 这个重要概念，何谓条件概率？条件概率的核心就是刻画了事件 B 的发生给事件 A 是否发生所带来的额外信息。
+在所有的条件概率情况当中，我们注意到一个有趣且重要的特殊情况，那就是事件 B 的发生并没有给事件 A的发生带来什么新的额外信息。换言之，事件 B 的发生与否，并没有影响到事件 A 发生的概率，换句话说就是 P(A|B)=P(A) 所表达的意思。
+此时，我们称事件 A 是独立于事件 B 的，并由条件概率公式 P(A|B)=P(A∩B)P(B) 可以进一步推导出等价的表达式：P(A∩B)=P(A)P(B)。
+到这里，就是我们所回顾的上一篇中谈论到的两个事件相互独立的核心概念。
+不相容与独立性 #  我们首先看看下面这幅图中所描述的情况：
+在图中，表示事件 A 和事件 B 的两个圆圈互不相交，即意味着两个事件不相容，你会不会直观的感觉到，事件 A 和事件 B 二者看上去没啥关系，二者就是相互独立的？
+这个说法看似很有道理，然而事实上却恰巧相反。若事件 A 和事件 B 互不相容，并且像图中所描述的，能够保证两个事件发生的概率：P(A)&amp;gt;0 且 P(B)&amp;gt;0 成立，则他们永远不会相互独立。
+这是为什么呢？我们直接抠定义就好了。这是因为：首先有 A∩B=ϕ，那么显然有联合概率 P(A∩B)=0，而由于 P(A) 和 P(B) 均大于 0，则有 P(A)P(B)≠0 。因此，从 P(A∩B)≠P(A)P(B) 的结果来看，并不满足事件 A 和事件 B 相互独立的基本条件。
+其实，这个结果从常理上来说我们也很好理解，由于事件 A 和事件 B 不相容，从图中可以看出，如果事件 B发生，则意味着事件 A 一定不会发生，那么这就实际上说明了：事件 B 的发生就给事件 A 的发生引入了额外的信息。那么，二者显然就不是互相独立的了。</description>
+    </item>
+    
+  </channel>
+</rss>

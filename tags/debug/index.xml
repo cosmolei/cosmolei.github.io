@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>debug on Carpe diem</title>
+    <link>https://cosmolei.github.io/tags/debug/</link>
+    <description>Recent content in debug on Carpe diem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>All right is mine</copyright>
+    <lastBuildDate>Thu, 15 Apr 2021 14:50:32 +0800</lastBuildDate><atom:link href="https://cosmolei.github.io/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vscode中anaconda的python debug</title>
+      <link>https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/</link>
+      <pubDate>Thu, 15 Apr 2021 14:50:32 +0800</pubDate>
+      
+      <guid>https://cosmolei.github.io/posts/vscode%E4%B8%ADanaconda%E7%9A%84python-debug/</guid>
+      <description>&lt;p&gt;在调试ioserver的过程中，发现并没有正常条转到断点。&lt;/p&gt;
+&lt;p&gt;原因是在conda的环境ioserver中，安装了项目打包后的程序，导致从.vscode目录下的settings.json中配置的环境变量PYTHONPATH的效果抵消了。&lt;/p&gt;
+&lt;p&gt;于是卸载了项目打包后的程序，之后，重新正确配置PYTHONPATH&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;python.pythonPath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/Users/cosmo/miniconda3/envs/the_env/bin/python&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;terminal.integrated.env.osx&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;PYTHONPATH&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;${workspaceFolder}&amp;#34;&lt;/span&gt;}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解决问题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

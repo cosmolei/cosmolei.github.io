@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  pod底层核心原理
+  #
+
+pause容器共享网络，本地容器相互访问只需要使用localhost来访问，不需要ip地址。
+每一个pod里都有pause容器。
+pod内部的容器没有ip地址。
+
+创建pod后，会先创建pause容器。pause容器先于业务容器创建。
+pause容器用来共享pod中所有容器的网络，存储。
+pod中所有容器互相之间的访问，只需要使用localhost访问即可，相当于访问本地服务一样。
+一个pod只能在一个物理机上运行，不能分裂。一个物理机上可以部署多个pod。
+
+pod是K8s中的最小单位，一个Pod有一个或多个容器组成。
+pod用来做集群，只需要部署多个内容相同的pod。
+pod一旦当机，就不存在了（生命周期短）。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="kubernetes(一)" />
+<meta property="og:description" content="
+  pod底层核心原理
+  #
+
+pause容器共享网络，本地容器相互访问只需要使用localhost来访问，不需要ip地址。
+每一个pod里都有pause容器。
+pod内部的容器没有ip地址。
+
+创建pod后，会先创建pause容器。pause容器先于业务容器创建。
+pause容器用来共享pod中所有容器的网络，存储。
+pod中所有容器互相之间的访问，只需要使用localhost访问即可，相当于访问本地服务一样。
+一个pod只能在一个物理机上运行，不能分裂。一个物理机上可以部署多个pod。
+
+pod是K8s中的最小单位，一个Pod有一个或多个容器组成。
+pod用来做集群，只需要部署多个内容相同的pod。
+pod一旦当机，就不存在了（生命周期短）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cosmolei.github.io/posts/kubernetes%E4%B8%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-06T14:50:32+08:00" />
+<meta property="article:modified_time" content="2020-05-06T14:50:32+08:00" />
+
+<title>kubernetes(一) | Carpe diem</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.cf4acfc4608a90d7e73cbd853ba45f691912f313390429b5a827320e3da4254d.css" integrity="sha256-z0rPxGCKkNfnPL2FO6RfaRkS8xM5BCm1qCcyDj2kJU0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/cn.search.min.ba6cae0b65791fba93d1743ca47025a8bb7d8e20a3df13647f8a0fa1a823fc8a.js" integrity="sha256-umyuC2V5H7qT0XQ8pHAlqLt9jiCj3xNkf4oPoagj/Io=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Carpe diem</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li><a href="/posts/"><strong>Carpe diem</strong></a></li>
+<li><a href="/docs/read/"><strong>读书是件正经事</strong></a>
+<ul>
+<li><a href="/posts/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84Surbuntu/">Chapter 1</a></li>
+</ul>
+</li>
+<li><a href="/docs/game/"><strong>游戏制作</strong></a></li>
+<li><a href="/docs/project/"><strong>Project</strong></a>
+<ul>
+<li><a href="/docs/project/cosmono/">Cosmono</a></li>
+<li><a href="/docs/project/cosmoto/">Cosmoto</a></li>
+<li><a href="/docs/project/cosmorg/">Cosmorg</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>kubernetes(一)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#pod底层核心原理">pod底层核心原理</a></li>
+            <li><a href="#coredns">CoreDNS</a></li>
+            <li><a href="#k8s核心资源清单">K8s核心资源清单</a></li>
+            <li><a href="#服务注册与发现">服务注册与发现</a></li>
+            <li><a href="#集群搭建">集群搭建</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/">
+    下一页<br>Centos7 kubernetes搭建
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/">
+      上一页<br>postgresql 创建用户及表空间
+  </a>
+  
+</nav>
+
+<hr>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/kubernetes%E4%B8%80/">kubernetes(一)</a>
+  </h1>
+  
+  <h5>2020-05-06</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/Tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kubernetes/">kubernetes</a>, 
+      <a href="/tags/k8s/">k8s</a>
+  </div>
+  
+
+
+
+
+  <p><h3 id="pod底层核心原理">
+  pod底层核心原理
+  <a class="anchor" href="#pod%e5%ba%95%e5%b1%82%e6%a0%b8%e5%bf%83%e5%8e%9f%e7%90%86">#</a>
+</h3>
+<p>pause容器共享网络，本地容器相互访问只需要使用localhost来访问，不需要ip地址。</p>
+<p>每一个pod里都有pause容器。</p>
+<p>pod内部的容器没有ip地址。</p>
+<ol>
+<li>创建pod后，会先创建pause容器。pause容器先于业务容器创建。</li>
+<li>pause容器用来共享pod中所有容器的网络，存储。</li>
+<li>pod中所有容器互相之间的访问，只需要使用localhost访问即可，相当于访问本地服务一样。</li>
+<li>一个pod只能在一个物理机上运行，不能分裂。一个物理机上可以部署多个pod。</li>
+</ol>
+<p>pod是K8s中的最小单位，一个Pod有一个或多个容器组成。</p>
+<p>pod用来做集群，只需要部署多个内容相同的pod。</p>
+<p>pod一旦当机，就不存在了（生命周期短）。</p>
+<h3 id="coredns">
+  CoreDNS
+  <a class="anchor" href="#coredns">#</a>
+</h3>
+<p>为集群中的SVC创建一个域名IP的对应关系解析</p>
+<h3 id="k8s核心资源清单">
+  K8s核心资源清单
+  <a class="anchor" href="#k8s%e6%a0%b8%e5%bf%83%e8%b5%84%e6%ba%90%e6%b8%85%e5%8d%95">#</a>
+</h3>
+<ol>
+<li>
+<p><strong>replication controller(RC)</strong> &mdash;&ndash;副本控制器：创建与预期设定的副本数量相同的pod副本，且永远保持和预期设定的数量一致。永远保证服务高可用性。</p>
+<p>设置：replicas = 3（要求副本数量是3个）</p>
+<p>replication controller就必须维护3个副本</p>
+</li>
+<li>
+<p><strong>replica set (RS)</strong>  &mdash;-副本控制器：功能和replication controller功能一致。</p>
+<p>区别：选择器的功能不一样。RC只支持单选，RS可以支持多选。</p>
+<p>ReplicationController: selector支持单选</p>
+<p>app = Myapp</p>
+<p>ReplicaSet: selector支持多选</p>
+<p>app = Myapp &amp; name = order</p>
+<p>在新版的Kubernetes中建议使用ReplicaSet来取代ReplicationController</p>
+<p>滚动更新；项目根据需求变更，经常进行发布新的版本，每发布一个新的版本，就需要上线</p>
+<ul>
+<li>pod版本的迭代。</li>
+</ul>
+<p>ReplicaSet不支持滚动更新，Deployment资源对象支持pod滚动更新，因此RS通常跟Deployment一起使用。</p>
+</li>
+<li>
+<p><strong>Deployment资源对象</strong> &mdash;&ndash; 部署对象（部署服务，通常都是以deployment对象为准）</p>
+<p>支持滚动更新</p>
+<p><img src="kubernetes%28%e4%b8%80%29.assets/%e6%88%aa%e5%b1%8f2020-04-22%e4%b8%8b%e5%8d%883.45.21.png" alt="截屏2020-04-22下午3.45.21" /></p>
+</li>
+<li>
+<p><strong>HPA[HorizontalPodAutoScale]</strong> &mdash;&mdash;-支持pod自动扩容（减轻资源利用率，利用率超过80%，重新创建pod）</p>
+<p><img src="kubernetes%28%e4%b8%80%29.assets/%e6%88%aa%e5%b1%8f2020-04-22%e4%b8%8b%e5%8d%884.11.28.png" alt="截屏2020-04-22下午4.11.28" /></p>
+<p>扩容,缩容：</p>
+<ol>
+<li>scale replicas = 3</li>
+</ol>
+<p>k8s管理pod的多个副本，着多个副本都是一个服务集群。</p>
+<p>tomcat集群，mysql集群都可以使用deployment进行部署吗(使用容器部署)？</p>
+<ol>
+<li>容器生命周期是短暂的，容器重启，关闭对tomcat服务没有影响。</li>
+<li>tomcat服务不存储任何数据（tomcat无状态部署）</li>
+<li>mysql集群中分master/slave，挂了一台机器后丢失master/slave结构。</li>
+<li>同理，deployment的方式也无法管理elasticsearch</li>
+</ol>
+<p>数据存储服务不能放在容器中进行部署。数据存储服务有状态服务。</p>
+<ol>
+<li>容器进程服务，不存储数据，数据存储在磁盘</li>
+<li>容器服务都有一个唯一标识id，重新创建一个容器，这个容器就是全新容器，找不到原来那个容器的数据。</li>
+<li>集群不可用。</li>
+</ol>
+<p>如何解决mysql这样有状态服务也能部署在容器中？？？</p>
+<p>什么叫做有状态， 什么叫做无状态？</p>
+<p>有状态：</p>
+<ol>
+<li>需要有实时的数据需要存储更新存储</li>
+<li>在集群服务网络中，把某一个服务抽离出去，再加入回来，服务没有办法正常工作。</li>
+</ol>
+<p>满足以上两点的服务，就叫做有状态服务。</p>
+<p>无状态：</p>
+<ol>
+<li>没有实时的数据需要存储，或者更新。</li>
+<li>在集群服务网络中，把某一个服务抽离出去，再加回来，不影响服务正常运行。</li>
+</ol>
+<p>举例子：</p>
+<p>有状态：MYSQL，ES,MQ,redis,zookeeper,kafka，nginx（集群）&hellip;</p>
+<p>无状态：nginx（单机），tomcat，微服务架构项目</p>
+<p>k8s提供了一个组件：StatefullSet，此组件就是用来解决可以在k8s中部署有状态服务。</p>
+</li>
+<li>
+<p><strong>StatefullSet</strong> &mdash;&ndash;用来部署有状态服务</p>
+<ul>
+<li>稳定的持久化存储，pod重新调度后</li>
+<li>稳定的网络标识，重新调度后podname和hostname都不变</li>
+<li>pod创建是有顺序的，串行化进行</li>
+</ul>
+</li>
+<li>
+<p><strong>DaemonSet</strong> &mdash;&ndash;保证每一个node至少会存在一个pod(除非node节点被打上了污点)</p>
+</li>
+<li>
+<p><strong>Volume</strong> &mdash;-挂载卷（数据挂载，数据存储）</p>
+</li>
+<li>
+<p><strong>Label</strong> &mdash;-标签（资源对象都可以使用label给打上标签，作为唯一标识）</p>
+<p>rs, deployment,pod, statefullset, daemonset都可以使用标签进行标识。</p>
+<p>有了标签后：通过标签选择器selector，精确选择对应的资源对象，然后对这些资源对象进行相关操作。</p>
+<p>标签格式：键值对。</p>
+<p>app= Myapp</p>
+<p>yaml:</p>
+<p>app: Myapp</p>
+</li>
+</ol>
+<h3 id="服务注册与发现">
+  服务注册与发现
+  <a class="anchor" href="#%e6%9c%8d%e5%8a%a1%e6%b3%a8%e5%86%8c%e4%b8%8e%e5%8f%91%e7%8e%b0">#</a>
+</h3>
+<p>pod负载均衡</p>
+<p>网络问题</p>
+<p>iptables 负载均衡</p>
+<p>ipvs 负载均衡</p>
+<h3 id="集群搭建">
+  集群搭建
+  <a class="anchor" href="#%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">#</a>
+</h3>
+<p>创建pod：具体需要创建几个资源对象？</p>
+<p>创建pod，实际上必须创建3个资源对象：</p>
+<ol>
+<li>deployment    my-nginx</li>
+<li>ReplicaSet       my-nginx-756fb87568</li>
+<li>pod                  my-nginx-756fb87568-jqxcl</li>
+</ol>
+<p>kubectl run my-nginx &ndash;image=nginx &ndash;port=80</p>
+<p>含义：根据nginx镜像，创建一个pod，指定端口为80</p>
+<p>my-nginx是deployment对象的名字</p>
+<p>&ndash;image=nginx是pod内部运行的容器依赖的镜像，此镜像如果本地没有，将会从网络进行下载。</p>
+<p>调度策略：scheduler</p>
+<p>如果版本镜像：nginx:latest &mdash;没有指定特定版本，每次都会从网络下载镜像。</p>
+<p>svc 的type：</p>
+<ol>
+<li>ClusterIP：虚拟IP，没有在物理机上绑定端口，因此外网无法访问</li>
+<li>NodePort：可以在物理机上绑定端口，通过此端口，可以访问内网pod</li>
+<li>loadBalancer：第三方商家提供的外网访问的组件，阿里云&mdash;花钱</li>
+</ol>
+<p>yaml文件不需要自动编写，只需要通过指令，从网络上下载yaml文件</p></p>
+</article>
+
+<hr>
+
+<nav class="post-pagination">
+  
+  <a class="newer-posts" href="https://cosmolei.github.io/posts/Centos7-kubernetes%E6%90%AD%E5%BB%BA/">
+    下一页<br>Centos7 kubernetes搭建
+  </a>
+  
+  
+  
+  <a class="older-posts" href="https://cosmolei.github.io/posts/postgresql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/">
+      上一页<br>postgresql 创建用户及表空间
+  </a>
+  
+</nav>
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#pod底层核心原理">pod底层核心原理</a></li>
+            <li><a href="#coredns">CoreDNS</a></li>
+            <li><a href="#k8s核心资源清单">K8s核心资源清单</a></li>
+            <li><a href="#服务注册与发现">服务注册与发现</a></li>
+            <li><a href="#集群搭建">集群搭建</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
